@@ -125,6 +125,17 @@ public class Challenge {
         this.answerDescription = answerDescription;
     }
 
+    public Challenge(Challenge challenge) {
+        this.title = challenge.getTitle();
+        this.points = challenge.getPoints();
+        this.description = challenge.getDescription();
+        this.hint1 = challenge.getHint1();
+        this.hint2 = challenge.getHint2();
+        this.attachedFile = challenge.getAttachedFile();
+        this.answerDescription = challenge.getAnswerDescription();
+        this.validAnswer = challenge.getValidAnswer();
+    }
+
     public Challenge() {
     }
 }
