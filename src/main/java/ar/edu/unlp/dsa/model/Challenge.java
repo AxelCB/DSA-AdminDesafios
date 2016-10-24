@@ -29,9 +29,42 @@ public class Challenge {
 
     private File attachedFile;
 
+    private String attachedFileUrl;
+
     private String validAnswer;
 
     private String answerDescription;
+
+    @OneToOne
+    private Challenge nextChallenge;
+
+    public Challenge(String title, Category category, Long points, String description, Hint hint1, Hint hint2, File attachedFile, String attachedFileUrl, String validAnswer, String answerDescription) {
+        this.title = title;
+        this.category = category;
+        this.points = points;
+        this.description = description;
+        this.hint1 = hint1;
+        this.hint2 = hint2;
+        this.attachedFile = attachedFile;
+        this.validAnswer = validAnswer;
+        this.answerDescription = answerDescription;
+        this.attachedFileUrl = attachedFileUrl;
+    }
+
+    public Challenge(Challenge challenge) {
+        this.title = challenge.getTitle();
+        this.points = challenge.getPoints();
+        this.description = challenge.getDescription();
+        this.hint1 = challenge.getHint1();
+        this.hint2 = challenge.getHint2();
+        this.attachedFile = challenge.getAttachedFile();
+        this.answerDescription = challenge.getAnswerDescription();
+        this.validAnswer = challenge.getValidAnswer();
+        this.attachedFileUrl = challenge.getAttachedFileUrl();
+    }
+
+    public Challenge() {
+    }
 
     public String getTitle() {
         return title;
@@ -113,29 +146,19 @@ public class Challenge {
         this.id = id;
     }
 
-    public Challenge(String title, Category category, Long points, String description, Hint hint1, Hint hint2, File attachedFile, String validAnswer, String answerDescription) {
-        this.title = title;
-        this.category = category;
-        this.points = points;
-        this.description = description;
-        this.hint1 = hint1;
-        this.hint2 = hint2;
-        this.attachedFile = attachedFile;
-        this.validAnswer = validAnswer;
-        this.answerDescription = answerDescription;
+    public String getAttachedFileUrl() {
+        return attachedFileUrl;
     }
 
-    public Challenge(Challenge challenge) {
-        this.title = challenge.getTitle();
-        this.points = challenge.getPoints();
-        this.description = challenge.getDescription();
-        this.hint1 = challenge.getHint1();
-        this.hint2 = challenge.getHint2();
-        this.attachedFile = challenge.getAttachedFile();
-        this.answerDescription = challenge.getAnswerDescription();
-        this.validAnswer = challenge.getValidAnswer();
+    public void setAttachedFileUrl(String attachedFileUrl) {
+        this.attachedFileUrl = attachedFileUrl;
     }
 
-    public Challenge() {
+    public Challenge getNextChallenge() {
+        return nextChallenge;
+    }
+
+    public void setNextChallenge(Challenge nextChallenge) {
+        this.nextChallenge = nextChallenge;
     }
 }
