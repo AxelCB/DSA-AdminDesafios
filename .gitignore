@@ -1,1 +1,4 @@
 .idea/
+Backend/src/main/resources/static/
+Backend/.gradle/
+Backend/build/
