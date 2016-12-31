@@ -1,4 +1,57 @@
 .idea/
+
+###############
+### Backend ###
+###############
 Backend/src/main/resources/static/
 Backend/.gradle/
 Backend/build/
+
+# exclude everything
+Backend/src/main/resources/static/*
+
+# exception to the rule
+!Backend/src/main/resources/static/.gitkeep
+
+###################
+### FrontendWeb ###
+###################
+
+# compiled output
+FrontendWeb/dist
+FrontendWeb/tmp
+
+# dependencies
+FrontendWeb/node_modules
+
+# IDEs and editors
+FrontendWeb/.idea
+FrontendWeb/.project
+FrontendWeb/.classpath
+FrontendWeb/.c9/
+FrontendWeb/*.launch
+FrontendWeb/.settings/
+
+# IDE - VSCode
+FrontendWeb/.vscode/*
+FrontendWeb/!.vscode/settings.json
+FrontendWeb/!.vscode/tasks.json
+FrontendWeb/!.vscode/launch.json
+FrontendWeb/!.vscode/extensions.json
+
+# misc
+FrontendWeb/.sass-cache
+FrontendWeb/connect.lock
+FrontendWeb/coverage/*
+FrontendWeb/libpeerconnection.log
+FrontendWeb/npm-debug.log
+FrontendWeb/testem.log
+FrontendWeb/typings
+
+# e2e
+FrontendWeb/e2e/*.js
+FrontendWeb/e2e/*.map
+
+#System Files
+FrontendWeb/.DS_Store
+FrontendWeb/Thumbs.db
