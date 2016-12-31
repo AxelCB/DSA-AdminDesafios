@@ -1,9 +1,10 @@
 .idea/
+.idea/*
+.idea/workspace.xml
 
 ###############
 ### Backend ###
 ###############
-Backend/src/main/resources/static/
 Backend/.gradle/
 Backend/build/
 
@@ -26,6 +27,7 @@ FrontendWeb/node_modules
 
 # IDEs and editors
 FrontendWeb/.idea
+FrontendWeb/FrontendWeb.iml
 FrontendWeb/.project
 FrontendWeb/.classpath
 FrontendWeb/.c9/
