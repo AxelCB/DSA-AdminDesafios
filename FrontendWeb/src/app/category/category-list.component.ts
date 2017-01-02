@@ -13,10 +13,7 @@ import {CategoryService} from "./category.service";
   providers: [CategoryService]
 })
 
-
-
 export class CategoryListComponent implements OnInit {
-  title = 'List of Categories';
   categories : Category[];
 
   constructor(private categoryService: CategoryService) {}
