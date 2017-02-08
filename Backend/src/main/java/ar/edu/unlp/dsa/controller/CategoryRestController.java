@@ -1,9 +1,8 @@
 package ar.edu.unlp.dsa.controller;
 
+import ar.edu.unlp.dsa.Application;
 import ar.edu.unlp.dsa.model.Category;
-import ar.edu.unlp.dsa.model.Challenge;
 import ar.edu.unlp.dsa.repository.CategoryRepository;
-import ar.edu.unlp.dsa.repository.ChallengeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -17,7 +16,7 @@ import java.util.Collection;
  * Created by axel on 17/10/16.
  */
 @RestController
-@RequestMapping("/categories")
+@RequestMapping(Application.API_PREFIX+"/categories")
 public class CategoryRestController {
     private final CategoryRepository categoryRepository;
 

@@ -1,5 +1,6 @@
 package ar.edu.unlp.dsa.controller;
 
+import ar.edu.unlp.dsa.Application;
 import ar.edu.unlp.dsa.model.Challenge;
 import ar.edu.unlp.dsa.model.Hint;
 import ar.edu.unlp.dsa.repository.ChallengeRepository;
@@ -17,7 +18,7 @@ import java.util.Collection;
  * Created by axel on 17/10/16.
  */
 @RestController
-@RequestMapping("/{challengeId}/hints")
+@RequestMapping(Application.API_PREFIX+"/{challengeId}/hints")
 public class HintRestController {
 
     private final HintRepository hintRepository;

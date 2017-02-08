@@ -1,7 +1,6 @@
 package ar.edu.unlp.dsa.model;
 
 import javax.persistence.*;
-import java.io.File;
 
 /**
  * Created by axel on 16/10/16.
@@ -27,10 +26,8 @@ public class Challenge {
     @OneToOne
     private Hint hint2;
 
-    private File attachedFile;
-
     private String attachedFileUrl;
-
+    
     private String validAnswer;
 
     private String answerDescription;
@@ -38,29 +35,16 @@ public class Challenge {
     @OneToOne
     private Challenge nextChallenge;
 
-    public Challenge(String title, Category category, Long points, String description, Hint hint1, Hint hint2, File attachedFile, String attachedFileUrl, String validAnswer, String answerDescription) {
+    public Challenge(String title, Category category, Long points, String description, Hint hint1, Hint hint2, String attachedFileUrl, String validAnswer, String answerDescription) {
         this.title = title;
         this.category = category;
         this.points = points;
         this.description = description;
         this.hint1 = hint1;
         this.hint2 = hint2;
-        this.attachedFile = attachedFile;
+        this.attachedFileUrl = attachedFileUrl;
         this.validAnswer = validAnswer;
         this.answerDescription = answerDescription;
-        this.attachedFileUrl = attachedFileUrl;
-    }
-
-    public Challenge(Challenge challenge) {
-        this.title = challenge.getTitle();
-        this.points = challenge.getPoints();
-        this.description = challenge.getDescription();
-        this.hint1 = challenge.getHint1();
-        this.hint2 = challenge.getHint2();
-        this.attachedFile = challenge.getAttachedFile();
-        this.answerDescription = challenge.getAnswerDescription();
-        this.validAnswer = challenge.getValidAnswer();
-        this.attachedFileUrl = challenge.getAttachedFileUrl();
     }
 
     public Challenge() {
@@ -112,14 +96,6 @@ public class Challenge {
 
     public void setHint2(Hint hint2) {
         this.hint2 = hint2;
-    }
-
-    public File getAttachedFile() {
-        return attachedFile;
-    }
-
-    public void setAttachedFile(File attachedFile) {
-        this.attachedFile = attachedFile;
     }
 
     public String getValidAnswer() {

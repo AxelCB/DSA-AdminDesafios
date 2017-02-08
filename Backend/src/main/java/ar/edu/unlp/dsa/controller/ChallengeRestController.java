@@ -1,9 +1,8 @@
 package ar.edu.unlp.dsa.controller;
 
+import ar.edu.unlp.dsa.Application;
 import ar.edu.unlp.dsa.model.Challenge;
-import ar.edu.unlp.dsa.model.Hint;
 import ar.edu.unlp.dsa.repository.ChallengeRepository;
-import ar.edu.unlp.dsa.repository.HintRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -17,7 +16,7 @@ import java.util.Collection;
  * Created by axel on 17/10/16.
  */
 @RestController
-@RequestMapping("/challenges")
+@RequestMapping(Application.API_PREFIX+"/challenges")
 public class ChallengeRestController {
     private final ChallengeRepository challengeRepository;
 
@@ -51,7 +50,7 @@ public class ChallengeRestController {
         //TODO: Add Category
         //Todo maybe should persist hints separately?
         //Todo file upload
-        Challenge result = this.getChallengeRepository().save(new Challenge(input));
+        Challenge result = this.getChallengeRepository().save(input);
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setLocation(ServletUriComponentsBuilder
                 .fromCurrentRequest().path("/{id}")
