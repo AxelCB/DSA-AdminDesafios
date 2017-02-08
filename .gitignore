@@ -6,7 +6,16 @@
 ### Backend ###
 ###############
 Backend/.gradle/
+Backend/gradle/
+Backend/gradlew
+Backend/gradlew.bat
 Backend/build/
+Backend/log/
+Backend/bin/
+# eclipse
+Backend/.classpath
+Backend/.project
+Backend/.settings/org.eclipse.buildship.core.prefs
 
 # exclude everything
 Backend/src/main/resources/static/*
