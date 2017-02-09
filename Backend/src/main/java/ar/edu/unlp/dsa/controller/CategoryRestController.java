@@ -30,6 +30,7 @@ public class CategoryRestController {
         return this.getCategoryRepository().findOne(categoryId);
     }
 
+    //TODO throws DataIntegrityViolationException
     @RequestMapping(value = "/{categoryId}", method = RequestMethod.DELETE)
     public ResponseEntity<?> deleteCategory(@PathVariable Long categoryId) {
         this.getCategoryRepository().delete(categoryId);
