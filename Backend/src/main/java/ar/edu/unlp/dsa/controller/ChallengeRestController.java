@@ -15,6 +15,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import ar.edu.unlp.dsa.Application;
 import ar.edu.unlp.dsa.exception.CategoryNotFoundException;
+import ar.edu.unlp.dsa.exception.ChallengeNotFoundException;
 import ar.edu.unlp.dsa.exception.HintNotFoundException;
 import ar.edu.unlp.dsa.model.Category;
 import ar.edu.unlp.dsa.model.Challenge;
@@ -43,12 +44,20 @@ public class ChallengeRestController {
 
 	@RequestMapping(value = "/{challengeId}", method = RequestMethod.GET)
 	public Challenge getChallenge(@PathVariable Long challengeId) {
-		return this.getChallengeRepository().findOne(challengeId);
+		Challenge challenge = this.getChallengeRepository().findOne(challengeId);
+		if (challenge == null) {
+			throw new ChallengeNotFoundException(challengeId);
+		}
+		return challenge;
 	}
 
 	//TODO should delete hints as well?
 	@RequestMapping(value = "/{challengeId}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deleteChallenge(@PathVariable Long challengeId) {
+		Challenge challenge = this.getChallengeRepository().findOne(challengeId);
+		if (challenge == null) {
+			throw new ChallengeNotFoundException(challengeId);
+		}
 		this.getChallengeRepository().delete(challengeId);
 		HttpHeaders httpHeaders = new HttpHeaders();
 		httpHeaders.setLocation(ServletUriComponentsBuilder.fromCurrentRequest().path("/").buildAndExpand().toUri());
@@ -58,6 +67,17 @@ public class ChallengeRestController {
 	@RequestMapping(method = RequestMethod.GET)
 	public Collection<Challenge> listChallenges() {
 		return this.getChallengeRepository().findAll();
+	}
+
+	@RequestMapping(value = "/{challengeId}", method = RequestMethod.PUT)
+	public ResponseEntity<?> updateChallenge(@RequestBody Challenge input, @PathVariable Long challengeId) {
+		Challenge challenge = this.getChallengeRepository().findOne(challengeId);
+		if (challenge == null) {
+			throw new ChallengeNotFoundException(challengeId);
+		}
+		input.setId(challengeId);
+		this.getChallengeRepository().save(input);
+		return new ResponseEntity<>(null, null, HttpStatus.NO_CONTENT);
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
