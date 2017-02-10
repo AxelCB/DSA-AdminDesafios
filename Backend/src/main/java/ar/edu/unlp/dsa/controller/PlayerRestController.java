@@ -37,7 +37,7 @@ public class PlayerRestController {
 		return playerRepository;
 	}
 
-	@RequestMapping(value = "/{playerId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{playerId}/challenges", method = RequestMethod.GET)
 	public Collection<Challenge> getAvailableChallenges(@PathVariable Long playerId) {
 		Player player = this.getPlayerRepository().findOne(playerId);
 		if (player == null) {

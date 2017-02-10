@@ -1,7 +1,5 @@
 package ar.edu.unlp.dsa.controller;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -40,11 +38,6 @@ public class HintRestController {
 		}
 		return hint;
     }
-
-	@RequestMapping(method = RequestMethod.GET)
-	public Collection<Hint> listHints() {
-		return this.getHintRepository().findAll();
-	}
 
 	// TODO throws DataIntegrityViolationException
 	@RequestMapping(value = "/{hintId}", method = RequestMethod.DELETE)

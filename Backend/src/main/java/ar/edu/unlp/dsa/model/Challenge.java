@@ -32,9 +32,6 @@ public class Challenge {
 
     private String answerDescription;
 
-    @OneToOne
-    private Challenge nextChallenge;
-
     public Challenge(String title, Category category, Long points, String description, Hint hint1, Hint hint2, String attachedFileUrl, String validAnswer, String answerDescription) {
         this.title = title;
         this.category = category;
@@ -128,13 +125,5 @@ public class Challenge {
 
     public void setAttachedFileUrl(String attachedFileUrl) {
         this.attachedFileUrl = attachedFileUrl;
-    }
-
-    public Challenge getNextChallenge() {
-        return nextChallenge;
-    }
-
-    public void setNextChallenge(Challenge nextChallenge) {
-        this.nextChallenge = nextChallenge;
     }
 }
