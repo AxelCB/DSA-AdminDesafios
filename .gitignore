@@ -6,9 +6,6 @@
 ### Backend ###
 ###############
 Backend/.gradle/
-Backend/gradle/
-Backend/gradlew
-Backend/gradlew.bat
 Backend/build/
 Backend/log/
 Backend/bin/
