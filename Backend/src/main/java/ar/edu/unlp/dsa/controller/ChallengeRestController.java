@@ -85,9 +85,10 @@ public class ChallengeRestController {
 		// TODO: Add Category - done
 		// Todo maybe should persist hints separately? - should
 		// Todo file upload
-		validateChategory(input.getCategory());
+		validateCategory(input.getCategory());
 		validateHint(input.getHint1());
 		validateHint(input.getHint2());
+		validateChallenge(input.getNextChallenge());
 		Challenge result = this.getChallengeRepository().save(input);
 		HttpHeaders httpHeaders = new HttpHeaders();
 		httpHeaders.setLocation(
@@ -95,6 +96,15 @@ public class ChallengeRestController {
 		return new ResponseEntity<>(null, httpHeaders, HttpStatus.CREATED);
 	}
 
+	private void validateChallenge(Challenge inputChallenge) {
+		if (inputChallenge != null) {
+			Challenge challenge = this.getChallengeRepository().findOne(inputChallenge.getId());
+			if (challenge == null) {
+				throw new ChallengeNotFoundException(inputChallenge.getId());
+			}
+		}
+	}
+	
 	private void validateHint(Hint inputHint) {
 		if (inputHint != null) {
 			Hint hint = this.getHintRepository().findOne(inputHint.getId());
@@ -104,7 +114,7 @@ public class ChallengeRestController {
 		}
 	}
 
-	private void validateChategory(Category inputCategory) {
+	private void validateCategory(Category inputCategory) {
 		if (inputCategory != null) {
 			Category category = this.getCategoryRepository().findOne(inputCategory.getId());
 			if (category == null) {
