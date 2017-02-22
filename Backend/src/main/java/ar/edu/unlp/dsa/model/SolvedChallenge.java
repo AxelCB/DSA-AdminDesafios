@@ -1,7 +1,6 @@
 package ar.edu.unlp.dsa.model;
 
 import javax.persistence.*;
-import java.util.Date;
 
 /**
  * Created by axel on 23/10/16.
@@ -14,13 +13,11 @@ public class SolvedChallenge {
 
     private Long obtainedScore;
 
+    @ManyToOne
     private Challenge challenge;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date timestamp;
-
     @ManyToOne
-    private User user;
+    private Player solver;
 
     public Long getId() {
         return id;
@@ -46,19 +43,11 @@ public class SolvedChallenge {
         this.challenge = challenge;
     }
 
-    public User getUser() {
-        return user;
+    public Player getSolver() {
+        return solver;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Date getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(Date timestamp) {
-        this.timestamp = timestamp;
+    public void setSolver(Player solver) {
+        this.solver = solver;
     }
 }
