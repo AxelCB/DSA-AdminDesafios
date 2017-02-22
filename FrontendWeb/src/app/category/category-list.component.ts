@@ -15,6 +15,7 @@ import {CategoryService} from "./category.service";
 
 export class CategoryListComponent implements OnInit {
   categories : Category[];
+  selectedCategory : Category;
 
   constructor(private categoryService: CategoryService) {}
 
@@ -24,5 +25,9 @@ export class CategoryListComponent implements OnInit {
 
   getCategories():void {
     this.categoryService.getCategories().then(categories => this.categories = categories);
+  }
+
+  onSelect(category : Category):void {
+    this.selectedCategory=category;
   }
 }

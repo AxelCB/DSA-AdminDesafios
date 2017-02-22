@@ -6,6 +6,7 @@ import { RouterModule }   from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { CategoryListComponent } from './category/category-list.component'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { CategoryListComponent } from './category/category-list.component'
     CategoryListComponent
   ],
   imports: [
+    NgbModule.forRoot(),
     BrowserModule,
     FormsModule,
     HttpModule,
