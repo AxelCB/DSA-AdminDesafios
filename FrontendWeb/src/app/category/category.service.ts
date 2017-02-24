@@ -15,7 +15,7 @@ export class CategoryService {
   getCategories(): Promise<Category[]> {
       return this.http.get("http://localhost:8080/api/categories")
                   .toPromise()
-                  .then(response => response.json().data as Category[])
+                  .then(response => response.json() as Category[])
                   .catch(this.handleError);
   }
 

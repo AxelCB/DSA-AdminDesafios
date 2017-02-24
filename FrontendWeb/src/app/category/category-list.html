@@ -1,7 +1,7 @@
-<ul class="categories">
-  <li *ngFor="let category of categories"
-      [class.selected]="category === selectedCategory"
-      (click)="onSelect(category)">
-    <span class="badge">{{category.id}}</span> {{category.name}}
-  </li>
-</ul>
+<md-nav-list class="categories">
+  <md-list-item *ngFor="let category of categories" [class.selected]="category === selectedCategory">
+    <a href="">
+      {{category.name}}
+    </a>
+  </md-list-item>
+</md-nav-list>
