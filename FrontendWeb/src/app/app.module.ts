@@ -24,8 +24,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         path: 'categories',
         component: CategoryListComponent
       }
-    ],
-    MaterialModule)
+    ])
+    ,MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
