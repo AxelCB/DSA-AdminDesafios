@@ -6,13 +6,15 @@ import { HttpModule } from '@angular/http';
 import { RouterModule }   from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { CategoryListComponent } from './category/category-list.component'
+import { CategoryListComponent } from './category/category-list/category-list.component'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CategoryDetailComponent } from './category/category-detail/category-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CategoryListComponent
+    CategoryListComponent,
+    CategoryDetailComponent
   ],
   imports: [
     NgbModule.forRoot(),
@@ -23,6 +25,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
       {
         path: 'categories',
         component: CategoryListComponent
+      },
+      {
+        path: 'categories/:id',
+        component: CategoryDetailComponent
       }
     ])
     ,MaterialModule

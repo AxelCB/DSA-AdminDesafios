@@ -19,6 +19,13 @@ export class CategoryService {
                   .catch(this.handleError);
   }
 
+  getCategory(id: number): Promise<Category> {
+    return this.http.get("http://localhost:8080/api/categories/"+id)
+                .toPromise()
+                .then(response => response.json() as Category)
+                .catch(this.handleError);
+  }
+
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);
