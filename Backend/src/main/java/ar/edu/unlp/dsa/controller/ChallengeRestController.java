@@ -6,11 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import ar.edu.unlp.dsa.Application;
@@ -42,6 +38,7 @@ public class ChallengeRestController {
 		this.hintRepository = hintRepository;
 	}
 
+	@CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
 	@RequestMapping(value = "/{challengeId}", method = RequestMethod.GET)
 	public Challenge getChallenge(@PathVariable Long challengeId) {
 		Challenge challenge = this.getChallengeRepository().findOne(challengeId);
@@ -52,6 +49,7 @@ public class ChallengeRestController {
 	}
 
 	//TODO should delete hints as well?
+	@CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
 	@RequestMapping(value = "/{challengeId}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deleteChallenge(@PathVariable Long challengeId) {
 		Challenge challenge = this.getChallengeRepository().findOne(challengeId);
@@ -64,11 +62,13 @@ public class ChallengeRestController {
 		return new ResponseEntity<>(null, httpHeaders, HttpStatus.NO_CONTENT);
 	}
 
+	@CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
 	@RequestMapping(method = RequestMethod.GET)
 	public Collection<Challenge> listChallenges() {
 		return this.getChallengeRepository().findAll();
 	}
 
+	@CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
 	@RequestMapping(value = "/{challengeId}", method = RequestMethod.PUT)
 	public ResponseEntity<?> updateChallenge(@RequestBody Challenge input, @PathVariable Long challengeId) {
 		Challenge challenge = this.getChallengeRepository().findOne(challengeId);
@@ -80,6 +80,7 @@ public class ChallengeRestController {
 		return new ResponseEntity<>(null, null, HttpStatus.NO_CONTENT);
 	}
 
+	@CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
 	@RequestMapping(method = RequestMethod.POST)
 	ResponseEntity<?> add(@RequestBody Challenge input) {
 		// TODO: Add Category - done
