@@ -2,17 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import {CategoryService} from "../category.service";
 import {Category} from "../category";
 import {ActivatedRoute, Params} from "@angular/router";
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-category-detail',
-  templateUrl: 'category-detail.component.html',
-  styleUrls: ['category-detail.component.css'],
+  templateUrl: './category-detail.component.html',
+  styleUrls: ['./category-detail.component.css'],
   providers: [CategoryService]
 })
 export class CategoryDetailComponent implements OnInit {
   category: Category;
 
-  constructor(private categoryService: CategoryService,private route: ActivatedRoute, private location: Location) { }
+  constructor(private categoryService: CategoryService, private route: ActivatedRoute, private location: Location) { }
 
   ngOnInit() {
     this.route.params

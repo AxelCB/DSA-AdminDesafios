@@ -1,6 +1,6 @@
 <md-nav-list class="categories">
-  <md-list-item *ngFor="let category of categories" [class.selected]="category === selectedCategory">
-    <a href="">
+  <md-list-item *ngFor="let category of categories">
+    <a [routerLink]="['/categories', category.id]">
       {{category.name}}
     </a>
   </md-list-item>

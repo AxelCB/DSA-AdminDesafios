@@ -8,8 +8,8 @@ import {CategoryService} from "../category.service";
 
 @Component({
   selector: 'category-list',
-  templateUrl: 'category-list.html',
-  styleUrls: ['category-list.css'],
+  templateUrl: './category-list.html',
+  styleUrls: ['./category-list.css'],
   providers: [CategoryService]
 })
 
