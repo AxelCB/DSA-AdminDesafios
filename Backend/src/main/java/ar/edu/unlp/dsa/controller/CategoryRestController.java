@@ -6,11 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import ar.edu.unlp.dsa.Application;
@@ -31,6 +27,7 @@ public class CategoryRestController {
         this.categoryRepository=categoryRepository;
     }
 
+    @CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
     @RequestMapping(value = "/{categoryId}", method = RequestMethod.GET)
     public Category getCategory(@PathVariable Long categoryId) {
     	Category category = this.getCategoryRepository().findOne(categoryId);
@@ -41,6 +38,7 @@ public class CategoryRestController {
     }
 
     //TODO throws DataIntegrityViolationException
+    @CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
     @RequestMapping(value = "/{categoryId}", method = RequestMethod.DELETE)
     public ResponseEntity<?> deleteCategory(@PathVariable Long categoryId) {
     	Category category = this.getCategoryRepository().findOne(categoryId);
@@ -55,11 +53,13 @@ public class CategoryRestController {
         return new ResponseEntity<>(null, httpHeaders, HttpStatus.NO_CONTENT);
     }
 
+    @CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
     @RequestMapping(method = RequestMethod.GET)
     public Collection<Category> listCategories() {
         return this.getCategoryRepository().findAll();
     }
     
+    @CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
 	@RequestMapping(value = "/{categoryId}", method = RequestMethod.PUT)
 	public ResponseEntity<?> updateCategory(@RequestBody Category input, @PathVariable Long categoryId) {
 		Category category = this.getCategoryRepository().findOne(categoryId);
@@ -71,6 +71,7 @@ public class CategoryRestController {
 		return new ResponseEntity<>(null, null, HttpStatus.NO_CONTENT);
 	}
 
+    @CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> add(@RequestBody Category input) {
         Category result = this.getCategoryRepository().save(new Category(input.getName()));

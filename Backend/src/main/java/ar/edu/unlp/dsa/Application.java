@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class Application{
 	public static final String API_PREFIX = "/api";
+	public static final String FRONTEND_PORT = "4200";
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
