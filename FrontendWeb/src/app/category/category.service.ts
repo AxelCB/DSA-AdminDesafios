@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 import {Category} from "./category";
 import {Http, Headers, RequestOptions} from "@angular/http";
 import 'rxjs/add/operator/toPromise';
+import {environment} from "../../environments/environment";
 
 @Injectable()
 export class CategoryService {
@@ -13,7 +14,7 @@ export class CategoryService {
   constructor(private http: Http) { }
 
   getCategories(): Promise<Category[]> {
-      return this.http.get("http://localhost:8080/api/categories")
+      return this.http.get(environment.backendUrl+"/categories")
                   .toPromise()
                   .then(response => response.json() as Category[])
                   .catch(this.handleError);
@@ -21,7 +22,7 @@ export class CategoryService {
 
   getCategory(id: number): Promise<Category> {
       if (! isNaN(id)) {
-          return this.http.get("http://localhost:8080/api/categories/"+id)
+          return this.http.get(environment.backendUrl+"/categories/"+id)
             .toPromise()
             .then(response => response.json() as Category)
             .catch(this.handleError);
@@ -34,14 +35,14 @@ export class CategoryService {
   update(category: Category): void {
       let headers = new Headers({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
-      this.http.put("http://localhost:8080/api/categories/"+category.id,category,options)
+      this.http.put(environment.backendUrl+"/categories/"+category.id,category,options)
         .toPromise().then().catch(this.handleError);
   }
 
   create(category: Category): void {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-    this.http.post("http://localhost:8080/api/categories/",category,options)
+    this.http.post(environment.backendUrl+"/categories/",category,options)
       .toPromise().then().catch(this.handleError);
 
   }
