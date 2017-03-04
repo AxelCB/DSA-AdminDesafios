@@ -1,16 +1,20 @@
 {
   "categories": [
     {
-      "id": "3",
+      "id": 3,
       "name": "forensia"
     },
     {
-      "id": "4",
+      "id": 4,
       "name": "inyección"
     },
     {
-      "id": "5",
+      "id": 5,
       "name": "criptografía"
+    },
+    {
+      "name": "no se que poner",
+      "id": 6
     }
   ],
   "hints": [
