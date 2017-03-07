@@ -4,51 +4,57 @@
 
 import { Injectable } from '@angular/core';
 import {Category} from "./category";
-import {Http, Headers, RequestOptions} from "@angular/http";
+import {Http, Headers, RequestOptions, Response} from "@angular/http";
 import 'rxjs/add/operator/toPromise';
 import {environment} from "../../environments/environment";
+import {Observable} from "rxjs";
 
 @Injectable()
 export class CategoryService {
 
   constructor(private http: Http) { }
 
-  getCategories(): Promise<Category[]> {
+  getCategories(): Observable<Category[]> {
       return this.http.get(environment.backendUrl+"/categories")
-                  .toPromise()
-                  .then(response => response.json() as Category[])
+                  .map(response => response.json() as Category[])
                   .catch(this.handleError);
   }
 
-  getCategory(id: number): Promise<Category> {
+  getCategory(id: number): Observable<Category> {
       if (! isNaN(id)) {
           return this.http.get(environment.backendUrl+"/categories/"+id)
-            .toPromise()
-            .then(response => response.json() as Category)
-            .catch(this.handleError);
+              .map(response => response.json() as Category)
+              .catch(this.handleError)
       } else {
-          return Promise.resolve(new Category());
+          return Observable.of<Category>();
       }
 
   }
 
-  update(category: Category): void {
+  update(category: Category): Observable<Category> {
       let headers = new Headers({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
-      this.http.put(environment.backendUrl+"/categories/"+category.id,category,options)
-        .toPromise().then().catch(this.handleError);
+      return this.http.put(environment.backendUrl+"/categories/"+category.id,JSON.stringify(category),options)
+          .catch(this.handleError);
   }
 
-  create(category: Category): void {
+  create(category: Category): Observable<Category> {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-    this.http.post(environment.backendUrl+"/categories/",category,options)
-      .toPromise().then().catch(this.handleError);
-
+    return this.http.post(environment.backendUrl+"/categories/",JSON.stringify(category),options)
+        .catch(this.handleError);
   }
 
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
-    return Promise.reject(error.message || error);
+  private handleError (error: Response | any) {
+    let errMsg: string;
+    if (error instanceof Response) {
+      const body = error.json() || '';
+      const err = body.error || JSON.stringify(body);
+      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+    } else {
+      errMsg = error.message ? error.message : error.toString();
+    }
+    console.error(errMsg);
+    return Observable.throw(errMsg);
   }
 }

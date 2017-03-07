@@ -6,37 +6,39 @@ import { Location } from '@angular/common';
 import {isNullOrUndefined} from "util";
 
 @Component({
+  moduleId: module.id,
   selector: 'app-category-detail',
   templateUrl: './category-detail.component.html',
   styleUrls: ['./category-detail.component.css'],
   providers: [CategoryService]
 })
 export class CategoryDetailComponent implements OnInit {
-  category: Category;
+  category: Category = new Category();
 
   constructor(private categoryService: CategoryService, private route: ActivatedRoute, private location: Location) { }
 
   ngOnInit() {
-    //only do this if there's an id as param
     this.route.params
       .switchMap((params: Params) => this.categoryService.getCategory(+params['id']))
       .subscribe(category => this.category = category);
+  }
 
+  goBack() {
+      this.location.back();
   }
 
   save() {
       this.category.name = this.category.name.trim();
-      if ( this.category.name.length > 0) {
+      if ( this.category.name ) {
           if ( isNullOrUndefined( this.category.id ) ) {
-              this.categoryService.create(this.category);
+              this.categoryService.create(this.category).subscribe(() => this.goBack());
           } else {
-              this.categoryService.update(this.category);
+            this.categoryService.update(this.category).subscribe(() => this.goBack());
           }
-          //if succesful go back to list
       }
   }
 
   cancel() {
-      //go back to list
+      this.goBack();
   }
 }
