@@ -1,15 +1,19 @@
 {
-  "name": "frontend-web",
-  "version": "0.0.0",
+  "name": "dsa-frontend",
+  "version": "0.0.1",
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve -e qa",
+    "startDev": "ng serve -dev",
+    "startLocally": "concurrently --kill-others \"npm run startDev\" \"npm run startLocalDB\"",
+    "startLocalDB": "json-server --watch db.json",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
     "pree2e": "webdriver-manager update --standalone false --gecko false",
-    "e2e": "protractor"
+    "e2e": "protractor",
+    "typings": "typings"
   },
   "private": true,
   "dependencies": {
@@ -28,13 +32,14 @@
     "zone.js": "^0.7.2"
   },
   "devDependencies": {
+    "@angular/cli": "^1.0.0-beta.24",
     "@angular/compiler-cli": "^2.3.1",
     "@types/jasmine": "2.5.38",
     "@types/node": "^6.0.42",
-    "angular-cli": "1.0.0-beta.24",
     "codelyzer": "~2.0.0-beta.1",
     "jasmine-core": "2.5.2",
     "jasmine-spec-reporter": "2.5.0",
+    "json-server": "^0.9.5",
     "karma": "1.2.0",
     "karma-chrome-launcher": "^2.0.0",
     "karma-cli": "^1.0.1",

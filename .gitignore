@@ -30,7 +30,7 @@ FrontendWeb/tmp
 FrontendWeb/FrontendWeb.iml
 
 # dependencies
-FrontendWeb/node_modules
+FrontendWeb/node_modules/
 
 # IDEs and editors
 FrontendWeb/.idea

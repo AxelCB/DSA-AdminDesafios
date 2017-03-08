@@ -1,0 +1,32 @@
+{
+  "categories": [
+    {
+      "id": 3,
+      "name": "forensia"
+    },
+    {
+      "id": 4,
+      "name": "inyección"
+    },
+    {
+      "id": 5,
+      "name": "criptografía"
+    },
+    {
+      "name": "no se que poner",
+      "id": 6
+    }
+  ],
+  "hints": [
+    {
+      "id": 1,
+      "description": "buscalo en google",
+      "points_percentage_cost": 10
+    },
+    {
+      "id": 2,
+      "description": "busca debajo de la tapa del piano",
+      "points_percentage_cost": 25
+    }
+  ]
+}
