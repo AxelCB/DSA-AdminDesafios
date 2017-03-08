@@ -1,9 +1,6 @@
 package ar.edu.unlp.dsa.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 /**
  * Created by axel on 23/10/16.
@@ -11,7 +8,8 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Player {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="player_id_seq")
+    @SequenceGenerator(name="player_id_seq", sequenceName="player_id_seq", allocationSize=1)
     private Long id;
 
     private String username;

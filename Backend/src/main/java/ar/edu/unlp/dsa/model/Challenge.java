@@ -8,7 +8,8 @@ import javax.persistence.*;
 @Entity
 public class Challenge {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="challenge_id_seq")
+    @SequenceGenerator(name="challenge_id_seq", sequenceName="challenge_id_seq", allocationSize=1)
     private Long id;
 
     private String title;

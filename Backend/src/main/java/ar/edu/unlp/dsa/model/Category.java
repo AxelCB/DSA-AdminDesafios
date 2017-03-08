@@ -1,8 +1,6 @@
 package ar.edu.unlp.dsa.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by axel on 16/10/16.
@@ -11,7 +9,8 @@ import javax.persistence.Id;
 public class Category {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="category_id_seq")
+    @SequenceGenerator(name="category_id_seq", sequenceName="category_id_seq", allocationSize=1)
     private Long id;
 
     private String name;
