@@ -1,0 +1,9 @@
+<md-nav-list class="categories">
+  <md-list-item *ngFor="let challenge of challenges">
+    <a [routerLink]="['/challenges', challenge.id]">
+      {{challenge.title}}
+    </a>
+  </md-list-item>
+</md-nav-list>
+<a md-mini-fab routerLink="/challenges/new"><md-icon>add</md-icon></a>
+
