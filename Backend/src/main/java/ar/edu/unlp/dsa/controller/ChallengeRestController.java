@@ -83,13 +83,17 @@ public class ChallengeRestController {
 	@CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
 	@RequestMapping(method = RequestMethod.POST)
 	ResponseEntity<?> add(@RequestBody Challenge input) {
-		// TODO: Add Category - done
-		// Todo maybe should persist hints separately? - should
 		// Todo file upload
 		validateCategory(input.getCategory());
-		validateHint(input.getHint1());
-		validateHint(input.getHint2());
 		validateChallenge(input.getNextChallenge());
+		if(input.getHint1() != null ){
+			Hint savedHint = this.getHintRepository().save(input.getHint1());
+			input.setHint1(savedHint);
+		}
+		if(input.getHint2() != null ){
+			Hint savedHint = this.getHintRepository().save(input.getHint2());
+			input.setHint2(savedHint);
+		}
 		Challenge result = this.getChallengeRepository().save(input);
 		HttpHeaders httpHeaders = new HttpHeaders();
 		httpHeaders.setLocation(
