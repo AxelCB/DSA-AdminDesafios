@@ -76,7 +76,44 @@ public class ChallengeRestController {
 			throw new ChallengeNotFoundException(challengeId);
 		}
 		input.setId(challengeId);
+		Long deletedHint1Id = null;
+        if (challenge.getHint1() == null) {
+            if (input.getHint1() != null) {
+                Hint savedHint = this.getHintRepository().save(input.getHint1());
+                input.setHint1(savedHint);
+            }
+        } else {
+            if (input.getHint1() != null) {
+                input.getHint1().setId(challenge.getHint1().getId());
+                this.getHintRepository().save(input.getHint1());
+            } else {
+				deletedHint1Id = challenge.getHint1().getId();
+				challenge.setHint1(null);
+            }
+        }
+		Long deletedHint2Id = null;
+		if (challenge.getHint2() == null) {
+			if (input.getHint2() != null) {
+				Hint savedHint = this.getHintRepository().save(input.getHint2());
+				input.setHint2(savedHint);
+			}
+		} else {
+			if (input.getHint2() != null) {
+				input.getHint2().setId(challenge.getHint2().getId());
+				this.getHintRepository().save(input.getHint2());
+			} else {
+				deletedHint2Id = challenge.getHint2().getId();
+				challenge.setHint2(null);
+			}
+		}
 		this.getChallengeRepository().save(input);
+		//TODO catch "constraint violation"
+        if(deletedHint1Id != null ){
+			this.getHintRepository().delete(deletedHint1Id);
+		}
+		if(deletedHint2Id != null ){
+			this.getHintRepository().delete(deletedHint2Id);
+		}
 		return new ResponseEntity<>(null, null, HttpStatus.NO_CONTENT);
 	}
 
