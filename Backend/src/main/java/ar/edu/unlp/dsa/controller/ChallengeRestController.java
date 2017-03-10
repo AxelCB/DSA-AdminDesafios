@@ -78,32 +78,36 @@ public class ChallengeRestController {
 		input.setId(challengeId);
 		Long deletedHint1Id = null;
         if (challenge.getHint1() == null) {
-            if (input.getHint1() != null) {
+            if (input.getHint1() != null && input.getHint1().getDescription()!= null && input.getHint1().getPointsPercentageCost()!=null) {
                 Hint savedHint = this.getHintRepository().save(input.getHint1());
                 input.setHint1(savedHint);
-            }
+            } else {
+				input.setHint1(null);
+			}
         } else {
-            if (input.getHint1() != null) {
+            if (input.getHint1() != null && input.getHint1().getDescription()!= null && input.getHint1().getPointsPercentageCost()!=null) {
                 input.getHint1().setId(challenge.getHint1().getId());
                 this.getHintRepository().save(input.getHint1());
             } else {
 				deletedHint1Id = challenge.getHint1().getId();
-				challenge.setHint1(null);
+				input.setHint1(null);
             }
         }
 		Long deletedHint2Id = null;
 		if (challenge.getHint2() == null) {
-			if (input.getHint2() != null) {
+			if (input.getHint2() != null && input.getHint2().getDescription()!= null && input.getHint2().getPointsPercentageCost()!=null) {
 				Hint savedHint = this.getHintRepository().save(input.getHint2());
 				input.setHint2(savedHint);
+			} else {
+				input.setHint2(null);
 			}
 		} else {
-			if (input.getHint2() != null) {
+			if (input.getHint2() != null && input.getHint2().getDescription()!= null && input.getHint2().getPointsPercentageCost()!=null) {
 				input.getHint2().setId(challenge.getHint2().getId());
 				this.getHintRepository().save(input.getHint2());
 			} else {
 				deletedHint2Id = challenge.getHint2().getId();
-				challenge.setHint2(null);
+				input.setHint2(null);
 			}
 		}
 		this.getChallengeRepository().save(input);
@@ -123,13 +127,21 @@ public class ChallengeRestController {
 		// Todo file upload
 		validateCategory(input.getCategory());
 		validateChallenge(input.getNextChallenge());
-		if(input.getHint1() != null ){
-			Hint savedHint = this.getHintRepository().save(input.getHint1());
-			input.setHint1(savedHint);
+		if(input.getHint1() != null) {
+			if (input.getHint1().getDescription() != null && input.getHint1().getPointsPercentageCost() != null) {
+				input.setHint1(null);
+			} else {
+				Hint savedHint = this.getHintRepository().save(input.getHint1());
+				input.setHint1(savedHint);
+			}
 		}
 		if(input.getHint2() != null ){
-			Hint savedHint = this.getHintRepository().save(input.getHint2());
-			input.setHint2(savedHint);
+			if (input.getHint2().getDescription() != null && input.getHint2().getPointsPercentageCost() != null) {
+				input.setHint2(null);
+			} else {
+				Hint savedHint = this.getHintRepository().save(input.getHint2());
+				input.setHint2(savedHint);
+			}
 		}
 		Challenge result = this.getChallengeRepository().save(input);
 		HttpHeaders httpHeaders = new HttpHeaders();

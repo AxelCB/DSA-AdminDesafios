@@ -20,10 +20,10 @@ public class Challenge {
 
     private String description;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     private Hint hint1;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     private Hint hint2;
 
     private String attachedFileUrl;
