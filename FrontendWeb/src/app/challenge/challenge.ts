@@ -13,9 +13,4 @@ export class Challenge {
   validAnswer: string;
   answerDescription: string;
   nextChallenge: Challenge;
-
-  constructor() {
-    this.hint1 = new Hint();
-    this.hint2 = new Hint();
-  }
 }
