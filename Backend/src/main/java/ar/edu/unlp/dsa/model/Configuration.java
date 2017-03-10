@@ -1,13 +1,12 @@
 package ar.edu.unlp.dsa.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Configuration {
 	@Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="configuration_id_seq")
+    @SequenceGenerator(name="configuration_id_seq", sequenceName="configuration_id_seq", allocationSize=1)
     private Long id;
 
     private String name;

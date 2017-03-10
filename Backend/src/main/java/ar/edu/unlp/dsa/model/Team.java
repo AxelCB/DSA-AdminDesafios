@@ -2,16 +2,13 @@ package ar.edu.unlp.dsa.model;
 
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 
 @Entity
 public class Team {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="team_id_seq")
+	@SequenceGenerator(name="team_id_seq", sequenceName="team_id_seq", allocationSize=1)
 	private Long id;
 
 	@Column(nullable = false)

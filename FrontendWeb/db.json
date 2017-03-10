@@ -1,20 +1,20 @@
 {
   "categories": [
     {
-      "id": 3,
+      "id": 1,
       "name": "forensia"
     },
     {
-      "id": 4,
+      "id": 2,
       "name": "inyección"
     },
     {
-      "id": 5,
+      "id": 3,
       "name": "criptografía"
     },
     {
-      "name": "no se que poner",
-      "id": 6
+      "name": "windows",
+      "id": 4
     }
   ],
   "hints": [
@@ -27,6 +27,148 @@
       "id": 2,
       "description": "busca debajo de la tapa del piano",
       "points_percentage_cost": 25
+    }
+  ],
+  "challenges": [
+    {
+      "id": 1,
+      "title": "inyeccion 1",
+      "category": {
+        "id": 2,
+        "name": "inyección"
+      },
+      "points": 60,
+      "description": "trata de encontrar el flag escondido en http://asd.qwe/index.php?desafio=2",
+      "hint1": {
+        "id": 1,
+        "description": "buscalo en google",
+        "pointsPercentageCost": 10
+      },
+      "validAnswer": "12222_lalala",
+      "answerDescription": "para evitar esto no hay que tomar input",
+    },
+    {
+      "id": 2,
+      "title": "inyeccion 2",
+      "category": {
+        "id": 2,
+        "name": "inyección"
+      },
+      "points": 25,
+      "description": "trata de encontrar el flag escondido en http://asd.qwe/index.php?desafio=2",
+      "hint1": {
+        "id": 2,
+        "description": "busca debajo de la tapa del piano",
+        "pointsPercentageCost": 25
+      },
+      "validAnswer": "12356_lalala",
+      "answerDescription": "viste???",
+    }
+  ],
+  "players":[
+    {
+      "id": 1,
+      "username": "pedro",
+      "team": {
+        "id": 1,
+        "name": "team 1",
+        "usedHints": [ ],
+        "solvedChallenges": [ ]
+      }
+    },
+    {
+      "id": 2,
+      "username": "juan22",
+      "team": {
+        "id": 1,
+        "name": "team 1",
+        "usedHints": [ ],
+        "solvedChallenges": [ ]
+      }
+    },
+    {
+      "id": 3,
+      "username": "pepe",
+      "team": {
+        "id": 1,
+        "name": "team 1",
+        "usedHints": [ ],
+        "solvedChallenges": [ ]
+      }
+    },
+    {
+      "id": 4,
+      "username": "luisa",
+      "team": {
+        "id": 2,
+        "name": "team 2",
+        "usedHints": [ ],
+        "solvedChallenges": [ ]
+      }
+    },
+    {
+      "id": 5,
+      "username": "hector",
+      "team": {
+        "id": 3,
+        "name": "team 3",
+        "usedHints": [ ],
+        "solvedChallenges": [ ]
+      }
+    },
+    {
+      "id": 6,
+      "username": "twisted_cables",
+      "team": {
+        "id": 3,
+        "name": "team 3",
+        "usedHints": [ ],
+        "solvedChallenges": [ ]
+      }
+    },
+    {
+      "id": 7,
+      "username": "xxxHungarOxxx",
+      "team": {
+        "id": 1,
+        "name": "team 1",
+        "usedHints": [ ],
+        "solvedChallenges": [ ]
+      }
+    }
+
+  ],
+  "teams": [
+    {
+      "id": 1,
+      "name": "team 1",
+      "usedHints": [ ],
+      "solvedChallenges": [ ]
+    },
+    {
+      "id": 2,
+      "name": "team 2",
+      "usedHints": [ ],
+      "solvedChallenges": [ ]
+    },
+    {
+      "id": 3,
+      "name": "team 3",
+      "usedHints": [ ],
+      "solvedChallenges": [ ]
+    }
+  ],
+  "configurations":
+  [
+    {
+      "id": 1,
+      "name": "id_juego",
+      "value": "?"
+    },
+    {
+      "id": 2,
+      "name": "progressive",
+      "value": "true"
     }
   ]
 }
