@@ -15,29 +15,43 @@
                [(ngModel)]="challenge.points" name="points" required  type="number">
       </md-input-container>
       <br>
-      <md-input-container>
-        <input mdInput class="form-control one-field" placeholder="Ingrese la descripción de la pista 1"
-               [(ngModel)]="challenge.hint1.description" name="hintDescription1" required type="text">
-      </md-input-container>
+      <span>Desea ingresar la primera pista?</span>
+      <md-checkbox class="form-control one-field" [(ngModel)]="displayHint1" name="displayHint1" (click)="toggleHint1Display()"></md-checkbox>
       <br>
-      <md-input-container>
-        <input mdInput class="form-control one-field" placeholder="Ingrese el porcentaje de puntos descontados por la pista 1"
-               [(ngModel)]="challenge.hint1.pointsPercentageCost" name="hintPointsPercentageCost1" required type="number">
-      </md-input-container>
+      <md-card *ngIf="displayHint1">
+        <md-card-content>
+          <md-input-container>
+            <input mdInput class="form-control one-field" placeholder="Ingrese la descripción de la pista 1"
+                   [(ngModel)]="challenge.hint1.description" name="hintDescription1" type="text">
+          </md-input-container>
+          <br>
+          <md-input-container>
+            <input mdInput class="form-control one-field" placeholder="Ingrese el porcentaje de puntos descontados por la pista 1"
+                   [(ngModel)]="challenge.hint1.pointsPercentageCost" name="hintPointsPercentageCost1" type="number">
+          </md-input-container>
+        </md-card-content>
+      </md-card>
       <br>
-      <md-input-container>
-        <input mdInput class="form-control one-field" placeholder="Ingrese la descripción de la pista 2"
-               [(ngModel)]="challenge.hint2.description" name="hintDescription2" required type="text">
-      </md-input-container>
+      <span>Desea ingresar la segunda pista?</span>
+      <md-checkbox class="form-control one-field" [(ngModel)]="displayHint2" name="displayHint2" (click)="toggleHint2Display()"></md-checkbox>
       <br>
-      <md-input-container>
-        <input mdInput class="form-control one-field" placeholder="Ingrese el porcentaje de puntos descontados por la pista 2"
-               [(ngModel)]="challenge.hint2.pointsPercentageCost" name="hintPointsPercentageCost2" required type="text">
-      </md-input-container>
+      <md-card *ngIf="displayHint2">
+        <md-card-content>
+          <md-input-container>
+            <input mdInput class="form-control one-field" placeholder="Ingrese la descripción de la pista 2"
+                   [(ngModel)]="challenge.hint2.description" name="hintDescription2" type="text">
+          </md-input-container>
+          <br>
+          <md-input-container>
+            <input mdInput class="form-control one-field" placeholder="Ingrese el porcentaje de puntos descontados por la pista 2"
+                   [(ngModel)]="challenge.hint2.pointsPercentageCost" name="hintPointsPercentageCost2" type="text">
+          </md-input-container>
+        </md-card-content>
+      </md-card>
       <br>
       <md-input-container>
         <input mdInput class="form-control one-field" placeholder="Ingrese la descripción del desafío"
-               [(ngModel)]="challenge.description" name="description"  type="text">
+               [(ngModel)]="challenge.description" required name="description"  type="text">
       </md-input-container>
       <br>
       <md-input-container>
@@ -47,12 +61,12 @@
       <br>
       <md-input-container>
         <input mdInput class="form-control one-field" placeholder="Ingrese la respuesta del desafío"
-               [(ngModel)]="challenge.validAnswer" name="validAnswer" required  type="text">
+               [(ngModel)]="challenge.validAnswer" required name="validAnswer" required  type="text">
       </md-input-container>
       <br>
       <md-input-container>
         <input mdInput class="form-control one-field" placeholder="Ingrese la descripción de la respuesta"
-               [(ngModel)]="challenge.answerDescription" name="answerDescription"  type="text">
+               [(ngModel)]="challenge.answerDescription" required name="answerDescription"  type="text">
       </md-input-container>
     </form>
     <br>
