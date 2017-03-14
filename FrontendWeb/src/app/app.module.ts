@@ -10,6 +10,7 @@ import { CategoryListComponent } from './category/category-list/category-list.co
 import { CategoryDetailComponent } from './category/category-detail/category-detail.component';
 import { ChallengeListComponent } from './challenge/challenge-list/challenge-list.component';
 import { ChallengeDetailComponent } from './challenge/challenge-detail/challenge-detail.component';
+import { DialogConfirmDeleteComponent } from './dialog-confirm-delete/dialog-confirm-delete.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ChallengeDetailComponent } from './challenge/challenge-detail/challenge
     CategoryDetailComponent,
     ChallengeListComponent,
     ChallengeDetailComponent
+    DialogConfirmDeleteComponent
   ],
   imports: [
     BrowserModule,
@@ -48,9 +50,10 @@ import { ChallengeDetailComponent } from './challenge/challenge-detail/challenge
         path: 'challenges/new',
         component: ChallengeDetailComponent
       }
-    ])
-    ,MaterialModule
+    ]),
+    MaterialModule
   ],
+  entryComponents: [DialogConfirmDeleteComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

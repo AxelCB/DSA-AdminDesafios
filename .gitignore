@@ -13,6 +13,9 @@ Backend/bin/
 Backend/.classpath
 Backend/.project
 Backend/.settings/org.eclipse.buildship.core.prefs
+Backend/Backend.iml
+Backend/Backend.ipr
+Backend/Backend.iws
 
 # exclude everything
 Backend/src/main/resources/static/*

@@ -1,9 +1,10 @@
 <md-nav-list class="categories">
   <md-list-item *ngFor="let category of categories">
-    <a [routerLink]="['/categories', category.id]">
+    <a class="category-name" [routerLink]="['/categories', category.id]">
       {{category.name}}
     </a>
+    <button md-button (click)="delete(category)"><md-icon> delete </md-icon></button>
   </md-list-item>
 </md-nav-list>
-<a md-mini-fab routerLink="/categories/new"><md-icon>add</md-icon></a>
+<a md-mini-fab routerLink="/categories/new"><md-icon> add </md-icon></a>
 
