@@ -55,15 +55,11 @@ export class ChallengeDetailComponent implements OnInit {
   }
 
   toggleHint1Display() {
-    if (isNullOrUndefined(this.challenge.hint1)) {
-      this.challenge.hint1 = new Hint()
-    }
+    this.challenge.hint1 = new Hint()
   }
 
   toggleHint2Display() {
-    if (isNullOrUndefined(this.challenge.hint2)) {
-      this.challenge.hint2 = new Hint()
-    }
+    this.challenge.hint2 = new Hint()
   }
 
   cancel() {
