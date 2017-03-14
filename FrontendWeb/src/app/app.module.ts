@@ -18,7 +18,7 @@ import { DialogConfirmDeleteComponent } from './dialog-confirm-delete/dialog-con
     CategoryListComponent,
     CategoryDetailComponent,
     ChallengeListComponent,
-    ChallengeDetailComponent
+    ChallengeDetailComponent,
     DialogConfirmDeleteComponent
   ],
   imports: [
