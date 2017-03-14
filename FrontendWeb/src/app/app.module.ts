@@ -9,13 +9,17 @@ import { AppComponent } from './app.component';
 import { CategoryListComponent } from './category/category-list/category-list.component';
 import { CategoryDetailComponent } from './category/category-detail/category-detail.component';
 import { DialogConfirmDeleteComponent } from './dialog-confirm-delete/dialog-confirm-delete.component';
+import { ConfigurationListComponent } from './configuration/configuration-list/configuration-list.component';
+import { ConfigurationDetailComponent } from './configuration/configuration-detail/configuration-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CategoryListComponent,
     CategoryDetailComponent,
-    DialogConfirmDeleteComponent
+    DialogConfirmDeleteComponent,
+    ConfigurationListComponent,
+    ConfigurationDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +37,14 @@ import { DialogConfirmDeleteComponent } from './dialog-confirm-delete/dialog-con
       {
         path: 'categories/new',
         component: CategoryDetailComponent
+      },
+      {
+        path: 'configurations',
+        component: ConfigurationListComponent
+      },
+      {
+        path: 'configurations/:id',
+        component: ConfigurationDetailComponent
       }
     ]),
     MaterialModule
