@@ -8,12 +8,14 @@ import { RouterModule }   from '@angular/router';
 import { AppComponent } from './app.component';
 import { CategoryListComponent } from './category/category-list/category-list.component';
 import { CategoryDetailComponent } from './category/category-detail/category-detail.component';
+import { DialogConfirmDeleteComponent } from './dialog-confirm-delete/dialog-confirm-delete.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CategoryListComponent,
-    CategoryDetailComponent
+    CategoryDetailComponent,
+    DialogConfirmDeleteComponent
   ],
   imports: [
     BrowserModule,
@@ -32,9 +34,10 @@ import { CategoryDetailComponent } from './category/category-detail/category-det
         path: 'categories/new',
         component: CategoryDetailComponent
       }
-    ])
-    ,MaterialModule
+    ]),
+    MaterialModule
   ],
+  entryComponents: [DialogConfirmDeleteComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
