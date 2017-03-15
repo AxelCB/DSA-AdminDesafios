@@ -1,12 +1,19 @@
 package ar.edu.unlp.dsa.controller;
 
+import java.nio.file.Path;
 import java.util.Collection;
 
+import ar.edu.unlp.dsa.utils.storage.StorageFileNotFoundException;
+import ar.edu.unlp.dsa.utils.storage.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import ar.edu.unlp.dsa.Application;
@@ -29,13 +36,17 @@ public class ChallengeRestController {
 	private final ChallengeRepository challengeRepository;
 	private final CategoryRepository categoryRepository;
 	private final HintRepository hintRepository;
+	private final StorageService storageService;
 
 	@Autowired
 	ChallengeRestController(ChallengeRepository challengeRepository, CategoryRepository categoryRepository,
-			HintRepository hintRepository) {
+			HintRepository hintRepository,StorageService storageService) {
 		this.challengeRepository = challengeRepository;
 		this.categoryRepository = categoryRepository;
 		this.hintRepository = hintRepository;
+		this.storageService = storageService;
+
+
 	}
 
 	@CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
@@ -150,6 +161,8 @@ public class ChallengeRestController {
 		return new ResponseEntity<>(null, httpHeaders, HttpStatus.CREATED);
 	}
 
+
+
 	private void validateChallenge(Challenge inputChallenge) {
 		if (inputChallenge != null) {
 			Challenge challenge = this.getChallengeRepository().findOne(inputChallenge.getId());
@@ -175,6 +188,36 @@ public class ChallengeRestController {
 				throw new CategoryNotFoundException(inputCategory.getId());
 			}
 		}
+	}
+	@GetMapping("/files/{filename:.+}")
+	@ResponseBody
+	public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
+
+		Resource file = storageService.loadAsResource(filename);
+		return ResponseEntity
+				.ok()
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\""+file.getFilename()+"\"")
+				.body(file);
+	}
+
+	@PostMapping("/")
+	public String handleFileUpload(@RequestParam("file") MultipartFile file,
+								   RedirectAttributes redirectAttributes) {
+
+		Path uploadedFilePath = storageService.store(file);
+
+		MvcUriComponentsBuilder
+				.fromMethodName(ChallengeRestController.class, "serveFile", uploadedFilePath.getFileName().toString())
+				.build().toString();
+		redirectAttributes.addFlashAttribute("message",
+				"You successfully uploaded " + file.getOriginalFilename() + "!");
+
+		return "redirect:/";
+	}
+
+	@ExceptionHandler(StorageFileNotFoundException.class)
+	public ResponseEntity handleStorageFileNotFound(StorageFileNotFoundException exc) {
+		return ResponseEntity.notFound().build();
 	}
 
 	public ChallengeRepository getChallengeRepository() {
