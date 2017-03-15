@@ -45,7 +45,7 @@
         "pointsPercentageCost": 10
       },
       "validAnswer": "12222_lalala",
-      "answerDescription": "para evitar esto no hay que tomar input",
+      "answerDescription": "para evitar esto no hay que tomar input"
     },
     {
       "id": 2,
@@ -62,7 +62,7 @@
         "pointsPercentageCost": 25
       },
       "validAnswer": "12356_lalala",
-      "answerDescription": "viste???",
+      "answerDescription": "viste???"
     }
   ],
   "players":[
