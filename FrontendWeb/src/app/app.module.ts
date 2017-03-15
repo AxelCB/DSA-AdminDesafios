@@ -11,6 +11,8 @@ import { CategoryDetailComponent } from './category/category-detail/category-det
 import { ChallengeListComponent } from './challenge/challenge-list/challenge-list.component';
 import { ChallengeDetailComponent } from './challenge/challenge-detail/challenge-detail.component';
 import { DialogConfirmDeleteComponent } from './dialog-confirm-delete/dialog-confirm-delete.component';
+import { ConfigurationListComponent } from './configuration/configuration-list/configuration-list.component';
+import { ConfigurationDetailComponent } from './configuration/configuration-detail/configuration-detail.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { DialogConfirmDeleteComponent } from './dialog-confirm-delete/dialog-con
     CategoryDetailComponent,
     ChallengeListComponent,
     ChallengeDetailComponent,
-    DialogConfirmDeleteComponent
+    DialogConfirmDeleteComponent,
+    ConfigurationListComponent,
+    ConfigurationDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +53,14 @@ import { DialogConfirmDeleteComponent } from './dialog-confirm-delete/dialog-con
       {
         path: 'challenges/new',
         component: ChallengeDetailComponent
+      },
+      { 
+        path: 'configurations',
+        component: ConfigurationListComponent
+      },
+      {
+        path: 'configurations/:id',
+        component: ConfigurationDetailComponent
       }
     ]),
     MaterialModule
