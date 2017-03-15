@@ -1,0 +1,7 @@
+<p><md-nav-list class="configurations">
+  <md-list-item *ngFor="let configuration of configurations">
+    <a [routerLink]="['/configurations', configuration.id]">
+      {{configuration.name}}
+    </a>
+  </md-list-item>
+</md-nav-list>
