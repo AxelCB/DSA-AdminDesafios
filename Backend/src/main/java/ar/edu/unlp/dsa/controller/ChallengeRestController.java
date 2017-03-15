@@ -129,18 +129,18 @@ public class ChallengeRestController {
 		validateChallenge(input.getNextChallenge());
 		if(input.getHint1() != null) {
 			if (input.getHint1().getDescription() != null && input.getHint1().getPointsPercentageCost() != null) {
-				input.setHint1(null);
-			} else {
 				Hint savedHint = this.getHintRepository().save(input.getHint1());
 				input.setHint1(savedHint);
+			} else {
+				input.setHint1(null);
 			}
 		}
 		if(input.getHint2() != null ){
 			if (input.getHint2().getDescription() != null && input.getHint2().getPointsPercentageCost() != null) {
-				input.setHint2(null);
-			} else {
 				Hint savedHint = this.getHintRepository().save(input.getHint2());
 				input.setHint2(savedHint);
+			} else {
+				input.setHint2(null);
 			}
 		}
 		Challenge result = this.getChallengeRepository().save(input);
