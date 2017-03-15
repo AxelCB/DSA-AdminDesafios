@@ -37,6 +37,7 @@ public class ConfigurationRestController {
 		return this.getConfigurationRepository().findAll();
 	}
 
+	@CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
 	@RequestMapping(value = "/{configurationId}", method = RequestMethod.PUT)
 	public ResponseEntity<?> updateConfiguration(@RequestBody Configuration input, @PathVariable Long configurationId) {
 		Configuration configuration = this.getConfigurationRepository().findOne(configurationId);
