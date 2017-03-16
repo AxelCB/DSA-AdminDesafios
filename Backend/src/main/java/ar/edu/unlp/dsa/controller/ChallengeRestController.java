@@ -1,5 +1,6 @@
 package ar.edu.unlp.dsa.controller;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Collection;
 
@@ -189,6 +190,7 @@ public class ChallengeRestController {
 			}
 		}
 	}
+
 	@GetMapping("/files/{filename:.+}")
 	@ResponseBody
 	public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
@@ -200,19 +202,23 @@ public class ChallengeRestController {
 				.body(file);
 	}
 
-	@PostMapping("/")
-	public String handleFileUpload(@RequestParam("file") MultipartFile file,
+	@CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
+	@PostMapping("/files")
+	public ResponseEntity<String> handleFileUpload(@RequestParam("uploadFile") MultipartFile file,
 								   RedirectAttributes redirectAttributes) {
-
-		Path uploadedFilePath = storageService.store(file);
-
-		MvcUriComponentsBuilder
-				.fromMethodName(ChallengeRestController.class, "serveFile", uploadedFilePath.getFileName().toString())
+		String uploadedFilePath;
+		try {
+			uploadedFilePath = storageService.store(file);
+			MvcUriComponentsBuilder
+				.fromMethodName(ChallengeRestController.class, "serveFile", uploadedFilePath)
 				.build().toString();
-		redirectAttributes.addFlashAttribute("message",
-				"You successfully uploaded " + file.getOriginalFilename() + "!");
-
-		return "redirect:/";
+			redirectAttributes.addFlashAttribute("message", "You successfully uploaded " + file.getOriginalFilename() + "!");
+		} catch(IOException ioException){
+			System.out.println("could not store file!");
+			ioException.printStackTrace();
+			return new ResponseEntity<String>(null,null,HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return ResponseEntity.ok().body(uploadedFilePath);
 	}
 
 	@ExceptionHandler(StorageFileNotFoundException.class)

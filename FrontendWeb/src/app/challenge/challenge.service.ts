@@ -53,4 +53,17 @@ export class ChallengeService {
     return Observable.throw(errMsg);
   }
 
+  uploadChallengeFile(file: File): Observable<string>{
+    let formData:FormData = new FormData();
+    formData.append('uploadFile', file, file.name);
+    let headers = new Headers();
+    //headers.append('Content-Type', 'multipart/form-data');
+    headers.append('Accept', 'application/json');
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post(environment.backendUrl+"/challenges/files", formData, options)
+      .map(res => res.text())
+      .catch(error => Observable.throw(error));
+  }
+
 }

@@ -20,6 +20,8 @@ export class ChallengeDetailComponent implements OnInit {
   categories: Category[];
   displayHint1 = false;
   displayHint2 = false;
+  fileChanged = false;
+  fileList: FileList;
 
   constructor(private challengeService: ChallengeService, private categoryService: CategoryService, private route: ActivatedRoute, private location: Location) { }
 
@@ -43,15 +45,20 @@ export class ChallengeDetailComponent implements OnInit {
   }
 
   save() {
-    if ( this.validateChallenge(this.challenge) ) {
-      if ( isNullOrUndefined( this.challenge.id ) ) {
-        this.challengeService.create(this.challenge).subscribe(() => this.goBack());
+    if ( isNullOrUndefined(this.fileList) && !this.fileChanged ) {
+      if ( this.validateChallenge(this.challenge) ) {
+        if ( isNullOrUndefined( this.challenge.id ) ) {
+          this.challengeService.create(this.challenge).subscribe(() => this.goBack());
+        } else {
+          this.challengeService.update(this.challenge).subscribe(() => this.goBack());
+        }
       } else {
-        this.challengeService.update(this.challenge).subscribe(() => this.goBack());
+        console.log("MOSTRAR MENSAJE");
       }
     } else {
-      console.log("MOSTRAR MENSAJE");
+      this.uploadFile();
     }
+
   }
 
   toggleHint1Display() {
@@ -86,5 +93,27 @@ export class ChallengeDetailComponent implements OnInit {
       return false;
     }
     return true;
+  }
+
+  fileChange(event) {
+    this.fileChanged = true;
+    this.fileList = event.target.files;
+  }
+
+  uploadFile() {
+    if(this.fileList.length > 0) {
+      let file: File = this.fileList[0];
+      this.challengeService.uploadChallengeFile(file).subscribe(
+        data => {
+          if(data){
+            this.fileChanged = false;
+            this.fileList = null;
+            this.challenge.attachedFileUrl = data;
+            this.save();
+          }
+        },
+        error => console.log(error)
+      );
+    }
   }
 }

@@ -3,6 +3,7 @@ package ar.edu.unlp.dsa.utils.storage;
 import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.nio.file.Path;
 
 /**
@@ -10,5 +11,5 @@ import java.nio.file.Path;
  */
 public interface StorageService {
     public Resource loadAsResource(String fileName);
-    public Path store(MultipartFile file);
+    public String store(MultipartFile file) throws IOException;
 }

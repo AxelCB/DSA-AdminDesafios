@@ -54,10 +54,8 @@
                [(ngModel)]="challenge.description" required name="description"  type="text">
       </md-input-container>
       <br>
-      <md-input-container>
-        <input mdInput class="form-control one-field" placeholder="Ingrese la url del archivo adjunto"
-               [(ngModel)]="challenge.attachedFileUrl" name="attachedFileUrl"  type="text">
-      </md-input-container>
+      <input class="form-control one-field" placeholder="Ingrese la url del archivo adjunto"
+               name="attachedFileUrl"  type="file" (change)="fileChange($event)">
       <br>
       <md-input-container>
         <input mdInput class="form-control one-field" placeholder="Ingrese la respuesta del desafío"
