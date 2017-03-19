@@ -122,6 +122,18 @@ public class ChallengeRestController {
 				input.setHint2(null);
 			}
 		}
+		if((challenge.getAttachedFileUrl() != null && !challenge.getAttachedFileUrl().isEmpty() && input.getAttachedFileUrl() == null)
+				||(challenge.getAttachedFileUrl() != null && input.getAttachedFileUrl() != null   && !challenge.getAttachedFileUrl().equals(input.getAttachedFileUrl()))){
+			try {
+				String[] attachedFileUrlSplitted = challenge.getAttachedFileUrl().split("/");
+				if (!this.storageService.remove(attachedFileUrlSplitted[attachedFileUrlSplitted.length-1])){
+					return new ResponseEntity<>(null, null, HttpStatus.INTERNAL_SERVER_ERROR);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				return new ResponseEntity<>(null, null, HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+		}
 		this.getChallengeRepository().save(input);
 		//TODO catch "constraint violation"
         if(deletedHint1Id != null ){

@@ -12,4 +12,5 @@ import java.nio.file.Path;
 public interface StorageService {
     public Resource loadAsResource(String fileName);
     public String store(MultipartFile file) throws IOException;
+    public Boolean remove(String fileName);
 }
