@@ -28,6 +28,8 @@ public class Challenge {
     private Hint hint2;
 
     private String attachedFileUrl;
+
+    private String fileName;
     
     private String validAnswer;
 
@@ -138,5 +140,13 @@ public class Challenge {
 
     public void setNextChallenge(Challenge nextChallenge) {
         this.nextChallenge = nextChallenge;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 }

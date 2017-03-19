@@ -10,6 +10,7 @@ export class Challenge {
   hint1: Hint;
   hint2: Hint;
   attachedFileUrl: string;
+  fileName: string;
   validAnswer: string;
   answerDescription: string;
   nextChallenge: Challenge;

@@ -100,6 +100,11 @@ export class ChallengeDetailComponent implements OnInit {
     this.fileList = event.target.files;
   }
 
+  deleteFile(){
+    this.fileChanged = false;
+    this.fileList = null;
+  }
+
   uploadFile() {
     if(this.fileList.length > 0) {
       let file: File = this.fileList[0];
@@ -109,6 +114,7 @@ export class ChallengeDetailComponent implements OnInit {
             this.fileChanged = false;
             this.fileList = null;
             this.challenge.attachedFileUrl = data;
+            this.challenge.fileName = file.name;
             this.save();
           }
         },
