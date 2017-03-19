@@ -68,6 +68,10 @@
         <input mdInput class="form-control one-field" placeholder="Ingrese la descripción de la respuesta"
                [(ngModel)]="challenge.answerDescription" required name="answerDescription"  type="text">
       </md-input-container>
+      <br>
+      <md-select placeholder="Seleccione el próximo desafío" [(ngModel)]="challenge.nextChallenge" name="nextChallenge">
+        <md-option *ngFor="let nextChallenge of otherChallenges" [value]="nextChallenge">{{ nextChallenge.title }}</md-option>
+      </md-select>
     </form>
     <br>
     <button md-mini-fab (click)="save()"><md-icon>check</md-icon></button>
