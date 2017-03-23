@@ -3,6 +3,7 @@
     <a [routerLink]="['/challenges', challenge.id]">
       {{challenge.title}}
     </a>
+    <button md-button (click)="delete(challenge)"><md-icon> delete </md-icon></button>
   </md-list-item>
 </md-nav-list>
 <a md-mini-fab routerLink="/challenges/new"><md-icon>add</md-icon></a>
