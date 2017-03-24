@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+    <configuration>
+        <stop-on-errors>true</stop-on-errors>
+        <date-format>dd/MM/yyyy HH:mm:ss.SSS</date-format>
+        <wildcard>true</wildcard>
+        <relationship-type>non-cumulative</relationship-type>
+    </configuration>
+    <mapping>
+        <class-a>ar.edu.unlp.dsa.model.Challenge</class-a>
+        <class-b>ar.edu.unlp.dsa.dto.ChallengeDTO</class-b>
+
+        <field>
+            <a>id</a>
+            <b>id_desafio</b>
+        </field>
+        <field>
+            <a>title</a>
+            <b>titulo</b>
+        </field>
+        <field>
+            <a>description</a>
+            <b>descripcion</b>
+        </field>
+        <field>
+            <a>category.name</a>
+            <b>categoria</b>
+        </field>
+        <field>
+            <a>points</a>
+            <b>puntos</b>
+        </field>
+        <field>
+            <a>attachedFileUrl</a>
+            <b>adjunto</b>
+        </field>
+    </mapping>
+    <mapping>
+        <class-a>ar.edu.unlp.dsa.model.Hint</class-a>
+        <class-b>ar.edu.unlp.dsa.dto.HintDTO</class-b>
+        <field>
+            <a>id</a>
+            <b>id_hint</b>
+        </field>
+        <field>
+            <a>pointsPercentageCost</a>
+            <b>porcentaje</b>
+        </field>
+    </mapping>
+</mappings>

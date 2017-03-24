@@ -1,7 +1,11 @@
 package ar.edu.unlp.dsa.controller;
 
 import java.util.Collection;
+import java.util.List;
 
+import ar.edu.unlp.dsa.dto.ChallengeDTO;
+import ar.edu.unlp.dsa.utils.DozerUtils;
+import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -29,13 +33,21 @@ public class ChallengeRestController {
 	private final ChallengeRepository challengeRepository;
 	private final CategoryRepository categoryRepository;
 	private final HintRepository hintRepository;
+	private final Mapper mapper;
 
 	@Autowired
 	ChallengeRestController(ChallengeRepository challengeRepository, CategoryRepository categoryRepository,
-			HintRepository hintRepository) {
+			HintRepository hintRepository, Mapper mapper) {
 		this.challengeRepository = challengeRepository;
 		this.categoryRepository = categoryRepository;
 		this.hintRepository = hintRepository;
+		this.mapper = mapper;
+	}
+
+	@CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
+	@RequestMapping(method = RequestMethod.GET, value="/desafios")
+	public Collection<ChallengeDTO> listDesafios() {
+		return DozerUtils.map(this.mapper,this.getChallengeRepository().findAll(),ChallengeDTO.class);
 	}
 
 	@CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
