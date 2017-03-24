@@ -18,7 +18,7 @@ public class AppConfiguration {
     @Bean
     @Scope("singleton")
     public Mapper mapper(){
-        return new DozerBeanMapper(new ArrayList<String>(Arrays.asList("dozerGlobalMappings.xml")));
+        return new DozerBeanMapper(new ArrayList<String>(Arrays.asList("dozer/dozerGlobalMappings.xml")));
     }
 
 }

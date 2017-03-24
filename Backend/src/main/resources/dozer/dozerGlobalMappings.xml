@@ -21,8 +21,8 @@
             <b>titulo</b>
         </field>
         <field>
-            <a>id</a>
-            <b>id_desafio</b>
+            <a>description</a>
+            <b>descripcion</b>
         </field>
         <field>
             <a>category.name</a>
@@ -35,6 +35,18 @@
         <field>
             <a>attachedFileUrl</a>
             <b>adjunto</b>
+        </field>
+    </mapping>
+    <mapping>
+        <class-a>ar.edu.unlp.dsa.model.Hint</class-a>
+        <class-b>ar.edu.unlp.dsa.dto.HintDTO</class-b>
+        <field>
+            <a>id</a>
+            <b>id_hint</b>
+        </field>
+        <field>
+            <a>pointsPercentageCost</a>
+            <b>porcentaje</b>
         </field>
     </mapping>
 </mappings>
