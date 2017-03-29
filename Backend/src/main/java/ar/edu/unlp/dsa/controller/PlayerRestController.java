@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import ar.edu.unlp.dsa.dto.ChallengeDTO;
 import ar.edu.unlp.dsa.dto.HintDTO;
+import ar.edu.unlp.dsa.exception.ChallengeNotFoundException;
 import ar.edu.unlp.dsa.model.*;
 import ar.edu.unlp.dsa.repository.ConfigurationRepository;
 import ar.edu.unlp.dsa.utils.DozerUtils;
@@ -14,10 +15,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.collections.map.HashedMap;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ar.edu.unlp.dsa.Application;
 import ar.edu.unlp.dsa.exception.PlayerNotFoundException;
 import ar.edu.unlp.dsa.repository.ChallengeRepository;
@@ -47,13 +45,13 @@ public class PlayerRestController {
 		return playerRepository;
 	}
 
+	@CrossOrigin(origins = "http://localhost:"+Application.USER_ADMIN_PORT)
 	@RequestMapping(value = "/{playerId}/challenges", method = RequestMethod.GET)
-	public Map<String, Object> getAvailableChallenges(@PathVariable Long playerId) throws JsonProcessingException {
+	public Map<String, Object> getAvailableChallenges(@PathVariable Long playerId) {
 		Player player = this.getPlayerRepository().findOne(playerId);
 		if (player == null) {
 			throw new PlayerNotFoundException(playerId);
 		}
-		//TODO build response JSON
 		Map<String, Object> result = new HashedMap();
 		result.put("date", new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
 		result.put("id_juego", configurationRepository.findByName("id_juego").getValue());
@@ -71,24 +69,81 @@ public class PlayerRestController {
 		}
 		Collection<ChallengeDTO> desafios = prepareDesafio(challenges, player.getTeam());
 		result.put("desafios", desafios);
-		System.out.println(new ObjectMapper().writeValueAsString(result));
 		return result;
 	}
 
-	private Collection<ChallengeDTO> prepareDesafio(Collection<Challenge> challenges, Team team) {
+	@CrossOrigin(origins = "http://localhost:"+Application.USER_ADMIN_PORT)
+	@RequestMapping(value = "/{playerId}/challenges/{challengeId}", method = RequestMethod.GET)
+	public Map<String, Object> getChallengeStatus(@PathVariable Long playerId, @PathVariable Long challengeId) {
+		Player player = this.getPlayerRepository().findOne(playerId);
+		if (player == null) {
+			throw new PlayerNotFoundException(playerId);
+		}
+		Challenge challenge = this.getChallengeRepository().findOne(challengeId);
+		if (challenge == null){
+			throw new ChallengeNotFoundException(challengeId);
+		}
+		Map<String, Object> result = new HashedMap();
+		result.put("date", new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
+		result.put("id_juego", configurationRepository.findByName("id_juego").getValue());
+		result.put("id_equipo", player.getTeam().getId());
+		result.put("id_usuario", player.getId());
+		result.put("id_desafio", challenge.getId());
+		result.put("titulo", challenge.getTitle());
+		result.put("categoria", challenge.getCategory().getName());
+		result.put("puntos", challenge.getPoints());
+		result.put("descripcion", challenge.getDescription());
+		Collection<SolvedChallenge> solvedChallenges = player.getTeam().getSolvedChallenges();
+		SolvedChallenge solved = null;
+		for (SolvedChallenge solvedChallenge: solvedChallenges) {
+			if(solvedChallenge.getChallenge().equals(challenge)){
+				solved = solvedChallenge;
+				break;
+			}
+		}
+		if (solved != null) {
+			result.put("estado","resuelto");
+			result.put("quien_resolvio", solved.getSolver().getId());
+			result.put("puntaje_obtenido",solved.getObtainedScore());
+		} else {
+			Hint hint1 = challenge.getHint1();
+			if (hint1 != null){
+				result.put("hint1", this.prepareHint(hint1, player.getTeam()));
+			}
+			Hint hint2 = challenge.getHint1();
+			if (hint2 != null){
+				result.put("hint2", this.prepareHint(hint2, player.getTeam()));
+			}
+			result.put("adjunto", challenge.getAttachedFileUrl());
+			result.put("estado","pendiente");
+		}
+		return result;
+	}
+
+		private Collection<ChallengeDTO> prepareDesafio(Collection<Challenge> challenges, Team team) {
 		Collection<ChallengeDTO> desafios = DozerUtils.map(this.mapper,new ArrayList<>(challenges),ChallengeDTO.class);
 		for (ChallengeDTO desafio : desafios) {
 			HintDTO hint1 = desafio.getHint1();
 			if (hint1 != null) {
 				Hint hint = new Hint();
 				hint.setId(hint1.getId_hint());
-				hint1.setDisponible(!team.getUsedHints().contains(hint));
+				hint1.setDisponible(team.getUsedHints().contains(hint));
 			}
 			HintDTO hint2 = desafio.getHint2();
 			if (hint2 != null) {
-				hint2.setDisponible(team.getUsedHints().contains(hint2));
+				Hint hint = new Hint();
+				hint.setId(hint2.getId_hint());
+				hint2.setDisponible(team.getUsedHints().contains(hint));
 			}
 		}
 		return desafios;
+	}
+
+	private HintDTO prepareHint(Hint hint, Team team) {
+		HintDTO hintDTO = new HintDTO();
+		hintDTO.setId_hint(hint.getId());
+		hintDTO.setPorcentaje(hint.getPointsPercentageCost());
+		hintDTO.setDisponible(team.getUsedHints().contains(hint));
+		return  hintDTO;
 	}
 }
