@@ -40,6 +40,13 @@ export class ChallengeService {
       .catch(this.handleError);
   }
 
+  delete(challenge: Challenge): Observable<Challenge> {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.delete(environment.backendUrl+"/challenges/"+challenge.id,options)
+      .catch(this.handleError);
+  }
+
   private handleError (error: Response | any) {
     let errMsg: string;
     if (error instanceof Response) {
