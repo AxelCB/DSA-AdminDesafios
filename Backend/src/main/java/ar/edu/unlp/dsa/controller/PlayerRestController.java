@@ -159,6 +159,13 @@ public class PlayerRestController {
 		result.put("id_usuario", player.getId());
 		result.put("id_desafio", challenge.getId());
 		if(challenge.getValidAnswer().equals(answer)){
+			String progressive = this.getConfigurationRepository().findByName("progressive").getValue();
+			if (progressive.equals("true") && challenge.getNextChallenge() != null) {
+				httpHeaders.add("Link",
+						"<http://localhost:" + Application.BACKEND_PORT + "/player/" + playerId + "/challenges/"
+								+ challenge.getNextChallenge().getId() + ">;rel=\"next\"");
+			}
+
 			Collection<SolvedChallenge> solvedChallenges = player.getTeam().getSolvedChallenges();
 			SolvedChallenge solved = null;
 			for (SolvedChallenge solvedChallenge: solvedChallenges) {
@@ -171,11 +178,6 @@ public class PlayerRestController {
 			result.put("descripcion", challenge.getAnswerDescription());
 			if (solved != null) {
 				result.put("puntaje", solved.getObtainedScore());
-				if (challenge.getNextChallenge() != null) {
-					httpHeaders.add("Link",
-							"<http://localhost:" + Application.BACKEND_PORT + "/player/" + playerId + "/challenges/"
-									+ challenge.getNextChallenge().getId() + ">;rel=\"next\"");
-				}
 				return new ResponseEntity<>(result, httpHeaders, HttpStatus.OK); //which code?
 			} else {
 				Long obtainedScore = challenge.getPoints();
@@ -195,11 +197,6 @@ public class PlayerRestController {
 				player.getTeam().getSolvedChallenges().add(solvedChallenge);
 				this.getPlayerRepository().save(player); //or maybe team repository?
 				result.put("puntaje", obtainedScore);
-				if (challenge.getNextChallenge() != null) {
-					httpHeaders.add("Link",
-							"<http://localhost:" + Application.BACKEND_PORT + "/player/" + playerId + "/challenges/"
-									+ challenge.getNextChallenge().getId() + ">;rel=\"next\"");
-				}
 				return new ResponseEntity<>(result, httpHeaders, HttpStatus.CREATED); //which code?
 			}
 		} else {
