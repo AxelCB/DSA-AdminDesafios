@@ -167,6 +167,11 @@ public class PlayerRestController {
 			result.put("descripcion", challenge.getAnswerDescription());
 			if (solved != null) {
 				result.put("puntaje", solved.getObtainedScore());
+				if (challenge.getNextChallenge() != null) {
+					httpHeaders.add("Link",
+							"<http://localhost:" + Application.BACKEND_PORT + "/player/" + playerId + "/challenges/"
+									+ challenge.getNextChallenge().getId() + ">;rel=\"next\"");
+				}
 				return new ResponseEntity<>(result, httpHeaders, HttpStatus.OK); //which code?
 			} else {
 				Long obtainedScore = challenge.getPoints();
