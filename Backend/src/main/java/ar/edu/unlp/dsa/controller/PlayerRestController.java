@@ -1,25 +1,25 @@
 package ar.edu.unlp.dsa.controller;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import ar.edu.unlp.dsa.dto.ChallengeDTO;
+import ar.edu.unlp.dsa.dto.HintDTO;
 import ar.edu.unlp.dsa.model.*;
 import ar.edu.unlp.dsa.repository.ConfigurationRepository;
+import ar.edu.unlp.dsa.utils.DozerUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.collections.map.HashedMap;
+import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.fasterxml.jackson.annotation.JsonView;
-
 import ar.edu.unlp.dsa.Application;
 import ar.edu.unlp.dsa.exception.PlayerNotFoundException;
-import ar.edu.unlp.dsa.jsonview.View;
 import ar.edu.unlp.dsa.repository.ChallengeRepository;
 import ar.edu.unlp.dsa.repository.PlayerRepository;
 
@@ -29,12 +29,14 @@ public class PlayerRestController {
 	private final ChallengeRepository challengeRepository;
 	private final PlayerRepository playerRepository;
 	private final ConfigurationRepository configurationRepository;
+	private final Mapper mapper;
 
 	@Autowired
-	PlayerRestController(ChallengeRepository challengeRepository, PlayerRepository playerRepository, ConfigurationRepository configurationRepository) {
+	PlayerRestController(ChallengeRepository challengeRepository, PlayerRepository playerRepository, ConfigurationRepository configurationRepository, Mapper mapper) {
 		this.challengeRepository = challengeRepository;
 		this.playerRepository = playerRepository;
 		this.configurationRepository = configurationRepository;
+		this.mapper = mapper;
 	}
 
 	public ChallengeRepository getChallengeRepository() {
@@ -46,14 +48,13 @@ public class PlayerRestController {
 	}
 
 	@RequestMapping(value = "/{playerId}/challenges", method = RequestMethod.GET)
-	@JsonView(View.UserAdmin.class)
 	public Map<String, Object> getAvailableChallenges(@PathVariable Long playerId) throws JsonProcessingException {
 		Player player = this.getPlayerRepository().findOne(playerId);
 		if (player == null) {
 			throw new PlayerNotFoundException(playerId);
 		}
 		//TODO build response JSON
-		Map<String, Object> result = new HashMap<String, Object>();
+		Map<String, Object> result = new HashedMap();
 		result.put("date", new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
 		result.put("id_juego", configurationRepository.findByName("id_juego").getValue());
 		result.put("id_equipo", player.getTeam().getId());
@@ -68,27 +69,26 @@ public class PlayerRestController {
 					.collect(Collectors.toList());
 			challenges = this.getChallengeRepository().findByIdNotIn(challengeIds);
 		}
-		Collection<Desafio> desafios = prepareDesafio(challenges, player.getTeam());
+		Collection<ChallengeDTO> desafios = prepareDesafio(challenges, player.getTeam());
 		result.put("desafios", desafios);
 		System.out.println(new ObjectMapper().writeValueAsString(result));
 		return result;
 	}
 
-	private Collection<Desafio> prepareDesafio(Collection<Challenge> challenges, Team team) {
-		Collection<Desafio> result = new ArrayList<Desafio>();
-		for (Challenge challenge : challenges) {
-			Hint hint1 = challenge.getHint1();
-			Pista pista1 = null;
+	private Collection<ChallengeDTO> prepareDesafio(Collection<Challenge> challenges, Team team) {
+		Collection<ChallengeDTO> desafios = DozerUtils.map(this.mapper,new ArrayList<>(challenges),ChallengeDTO.class);
+		for (ChallengeDTO desafio : desafios) {
+			HintDTO hint1 = desafio.getHint1();
 			if (hint1 != null) {
-				pista1 = new Pista(hint1, team.getUsedHints().contains(hint1));
+				Hint hint = new Hint();
+				hint.setId(hint1.getId_hint());
+				hint1.setDisponible(!team.getUsedHints().contains(hint));
 			}
-			Hint hint2 = challenge.getHint2();
-			Pista pista2 = null;
+			HintDTO hint2 = desafio.getHint2();
 			if (hint2 != null) {
-				pista2 = new Pista(hint2, team.getUsedHints().contains(hint2));
+				hint2.setDisponible(team.getUsedHints().contains(hint2));
 			}
-			result.add(new Desafio(challenge, pista1, pista2));
 		}
-		return result;
+		return desafios;
 	}
 }

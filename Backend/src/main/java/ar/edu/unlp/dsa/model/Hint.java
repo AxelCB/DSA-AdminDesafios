@@ -48,4 +48,11 @@ public class Hint {
         this.description = description;
         this.pointsPercentageCost = pointsPercentageCost;
     }
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Hint) {
+            return this.getId().equals(((Hint) obj).getId());
+        } else
+            return false;
+    }
 }
