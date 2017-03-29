@@ -7,9 +7,9 @@ import java.util.stream.Collectors;
 import ar.edu.unlp.dsa.dto.ChallengeDTO;
 import ar.edu.unlp.dsa.dto.HintDTO;
 import ar.edu.unlp.dsa.exception.ChallengeNotFoundException;
+import ar.edu.unlp.dsa.exception.HintNotFoundException;
 import ar.edu.unlp.dsa.model.*;
-import ar.edu.unlp.dsa.repository.ConfigurationRepository;
-import ar.edu.unlp.dsa.repository.SolvedChallengeRepository;
+import ar.edu.unlp.dsa.repository.*;
 import ar.edu.unlp.dsa.utils.DozerUtils;
 import org.apache.commons.collections.map.HashedMap;
 import org.dozer.Mapper;
@@ -20,8 +20,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ar.edu.unlp.dsa.Application;
 import ar.edu.unlp.dsa.exception.PlayerNotFoundException;
-import ar.edu.unlp.dsa.repository.ChallengeRepository;
-import ar.edu.unlp.dsa.repository.PlayerRepository;
 
 @RestController
 @RequestMapping(Application.API_PREFIX + "/players")
@@ -30,14 +28,16 @@ public class PlayerRestController {
 	private final SolvedChallengeRepository solvedChallengeRepository;
 	private final PlayerRepository playerRepository;
 	private final ConfigurationRepository configurationRepository;
+	private final HintRepository hintRepository;
 	private final Mapper mapper;
 
 	@Autowired
-	PlayerRestController(ChallengeRepository challengeRepository, PlayerRepository playerRepository, ConfigurationRepository configurationRepository, Mapper mapper, SolvedChallengeRepository solvedChallengeRepository) {
+	PlayerRestController(ChallengeRepository challengeRepository, PlayerRepository playerRepository, ConfigurationRepository configurationRepository, Mapper mapper, SolvedChallengeRepository solvedChallengeRepository, HintRepository hintRepository) {
 		this.challengeRepository = challengeRepository;
 		this.solvedChallengeRepository = solvedChallengeRepository;
 		this.playerRepository = playerRepository;
 		this.configurationRepository = configurationRepository;
+		this.hintRepository = hintRepository;
 		this.mapper = mapper;
 	}
 
@@ -55,6 +55,10 @@ public class PlayerRestController {
 
 	public ConfigurationRepository getConfigurationRepository() {
 		return configurationRepository;
+	}
+
+	public HintRepository getHintRepository() {
+		return hintRepository;
 	}
 
 	public Mapper getMapper() {
@@ -206,7 +210,37 @@ public class PlayerRestController {
 		}
 	}
 
-	private Collection<ChallengeDTO> prepareDesafio(Collection<Challenge> challenges, Team team) {
+	@RequestMapping(value = "/{playerId}/hint/{hintId}", method = RequestMethod.POST)
+	ResponseEntity<?> getHint(@PathVariable Long playerId, @PathVariable Long hintId) {
+		Player player = this.getPlayerRepository().findOne(playerId);
+		if (player == null) {
+			throw new PlayerNotFoundException(playerId);
+		}
+		Hint hint = this.getHintRepository().findOne(hintId);
+		if (hint == null){
+			throw new HintNotFoundException(hintId);
+		}
+		HttpHeaders httpHeaders = new HttpHeaders();
+		Map<String, Object> result = new HashedMap();
+		result.put("date", new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
+		result.put("id_juego", this.getConfigurationRepository().findByName("id_juego").getValue());
+		result.put("id_equipo", player.getTeam().getId());
+		result.put("id_usuario", player.getId());
+		result.put("id_hint", hint.getId());
+		result.put("descripcion", hint.getDescription());
+		result.put("porcentaje", hint.getPointsPercentageCost());
+		if(player.getTeam().getUsedHints().contains(hint)) {
+			return new ResponseEntity<>(result, httpHeaders, HttpStatus.OK);
+		} else {
+			player.getTeam().getUsedHints().add(hint);
+			this.getPlayerRepository().save(player);
+			return new ResponseEntity<>(result, httpHeaders, HttpStatus.CREATED); //it does not actually create an entity, though
+		}
+	}
+
+
+
+		private Collection<ChallengeDTO> prepareDesafio(Collection<Challenge> challenges, Team team) {
 		Collection<ChallengeDTO> desafios = DozerUtils.map(this.getMapper(),new ArrayList<>(challenges),ChallengeDTO.class);
 		for (ChallengeDTO desafio : desafios) {
 			HintDTO hint1 = desafio.getHint1();
