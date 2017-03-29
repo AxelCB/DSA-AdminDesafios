@@ -147,4 +147,13 @@ public class Challenge {
     public void setNextChallenge(Challenge nextChallenge) {
         this.nextChallenge = nextChallenge;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Challenge) {
+            return this.getId().equals(((Challenge) obj).getId());
+        } else {
+            return super.equals(obj);
+        }
+    }
 }
