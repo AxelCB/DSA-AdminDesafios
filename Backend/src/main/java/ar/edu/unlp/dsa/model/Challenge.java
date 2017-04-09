@@ -2,6 +2,9 @@ package ar.edu.unlp.dsa.model;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+
 /**
  * Created by axel on 16/10/16.
  */
@@ -33,8 +36,8 @@ public class Challenge {
 
     private String answerDescription;
 
-    //TODO: avoid recursion (id only)
     @OneToOne
+    @JsonIgnoreProperties({"title","category","points", "description","hint1","hint2","attachedFileUrl","validAnswer","answerDescription","nextChallenge"})
     private Challenge nextChallenge;
 
     public Challenge(String title, Category category, Long points, String description, Hint hint1, Hint hint2, String attachedFileUrl, String validAnswer, String answerDescription) {
@@ -138,5 +141,14 @@ public class Challenge {
 
     public void setNextChallenge(Challenge nextChallenge) {
         this.nextChallenge = nextChallenge;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Challenge) {
+            return this.getId().equals(((Challenge) obj).getId());
+        } else {
+            return super.equals(obj);
+        }
     }
 }

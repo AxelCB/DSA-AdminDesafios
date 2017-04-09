@@ -60,7 +60,6 @@ public class ChallengeRestController {
 		return challenge;
 	}
 
-	//TODO should delete hints as well?
 	@CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
 	@RequestMapping(value = "/{challengeId}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deleteChallenge(@PathVariable Long challengeId) {
