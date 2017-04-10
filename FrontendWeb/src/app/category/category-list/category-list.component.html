@@ -1,10 +1,18 @@
-<md-nav-list class="categories">
-  <md-list-item *ngFor="let category of categories">
-    <a class="category-name" [routerLink]="['/categories', category.id]">
-      {{category.name}}
-    </a>
-    <button md-button (click)="delete(category)"><md-icon> delete </md-icon></button>
-  </md-list-item>
-</md-nav-list>
-<a md-mini-fab routerLink="/categories/new"><md-icon> add </md-icon></a>
+<button class="btn btn-success" routerLink="/categories/new">Crear Categoría</button>
+<table class="table table-hover">
+  <thead class="thead-inverse">
+    <tr>
+      <th scope="row">Nombre</th>
+      <th scope="row">Editar</th>
+      <th scope="row">Borrar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let category of categories">
+      <td>{{ category.name }}</td>
+      <td><a [routerLink]="['/categories', category.id]" class="full-cell"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+      <td (click)="delete(category)"><a class="full-cell link-without-href" tabindex="1"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+    </tr>
+  </tbody>
+</table>
 

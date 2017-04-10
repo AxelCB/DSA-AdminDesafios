@@ -1,10 +1,10 @@
 <md-card>
   <md-card-content>
     <form>
-      <md-input-container>
+      <div class="form-group">
         <input mdInput class="form-control one-field" placeholder="Ingrese el nombre de la categoria"
                [(ngModel)]="category.name" name="name" required  type="text">
-      </md-input-container>
+      </div>
     </form>
     <br>
     <button md-mini-fab (click)="save()"><md-icon>check</md-icon></button>

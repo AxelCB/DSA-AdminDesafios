@@ -1,10 +1,10 @@
 <md-card>
   <md-card-content>
     <label>{{ configuration.name }}</label><br>
-    <md-input-container>
+    <div class="form-group">
       <input mdInput class="form-control one-field" placeholder="Ingrese el valor de la configuración"
              [(ngModel)]="configuration.value" name="value" required  type="text">
-    </md-input-container>
+    </div>
     <br>
     <button md-mini-fab (click)="save()"><md-icon>check</md-icon></button>
     <button md-mini-fab color="warn" (click)="cancel()"><md-icon>close</md-icon></button>

@@ -5,7 +5,6 @@
 import {Component, OnInit} from '@angular/core';
 import { Category } from '../category';
 import {CategoryService} from "../category.service";
-import {MdDialog} from "@angular/material";
 import {DialogConfirmDeleteComponent} from "../../dialog-confirm-delete/dialog-confirm-delete.component";
 
 @Component({
@@ -20,7 +19,7 @@ export class CategoryListComponent implements OnInit {
   categories : Category[];
 
 
-  constructor(private categoryService: CategoryService, public dialog: MdDialog) {}
+  constructor(private categoryService: CategoryService) {}
 
   ngOnInit(): void {
     this.getCategories();
@@ -31,11 +30,13 @@ export class CategoryListComponent implements OnInit {
   }
 
   delete(category: Category): void {
+    /*
     let dialogRef = this.dialog.open(DialogConfirmDeleteComponent);
     dialogRef.afterClosed().subscribe(result => {
       if ( result ) {
         this.categoryService.delete(category).subscribe(()=> this.getCategories());
       }
     });
+    */
   }
 }
