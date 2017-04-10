@@ -6,8 +6,8 @@ import { RouterModule }   from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { CategoryListComponent } from './category/category-list/category-list.component';
-/*
 import { CategoryDetailComponent } from './category/category-detail/category-detail.component';
+/*
 import { ChallengeListComponent } from './challenge/challenge-list/challenge-list.component';
 import { ChallengeDetailComponent } from './challenge/challenge-detail/challenge-detail.component';
 import { DialogConfirmDeleteComponent } from './dialog-confirm-delete/dialog-confirm-delete.component';
@@ -19,8 +19,8 @@ import { ConfigurationDetailComponent } from './configuration/configuration-deta
   declarations: [
     AppComponent,
     CategoryListComponent,
-    /*
     CategoryDetailComponent,
+    /*
     ChallengeListComponent,
     ChallengeDetailComponent,
     DialogConfirmDeleteComponent,
@@ -37,7 +37,6 @@ import { ConfigurationDetailComponent } from './configuration/configuration-deta
         path: 'categories',
         component: CategoryListComponent
       },
-      /*
       {
         path: 'categories/:id',
         component: CategoryDetailComponent
@@ -46,6 +45,8 @@ import { ConfigurationDetailComponent } from './configuration/configuration-deta
         path: 'categories/new',
         component: CategoryDetailComponent
       },
+      /*
+      /*
       {
         path: 'challenges',
         component: ChallengeListComponent
