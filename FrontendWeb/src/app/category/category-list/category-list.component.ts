@@ -4,8 +4,7 @@
 
 import {Component, OnInit} from '@angular/core';
 import { Category } from '../category';
-import {CategoryService} from "../category.service";
-import {DialogConfirmDeleteComponent} from "../../dialog-confirm-delete/dialog-confirm-delete.component";
+import {CategoryService} from '../category.service';
 
 @Component({
   moduleId: module.id,
@@ -16,7 +15,7 @@ import {DialogConfirmDeleteComponent} from "../../dialog-confirm-delete/dialog-c
 })
 
 export class CategoryListComponent implements OnInit {
-  categories : Category[];
+  categories: Category[];
 
 
   constructor(private categoryService: CategoryService) {}
@@ -25,7 +24,7 @@ export class CategoryListComponent implements OnInit {
     this.getCategories();
   }
 
-  getCategories():void {
+  getCategories(): void {
     this.categoryService.getCategories().subscribe(categories => this.categories = categories);
   }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Challenge} from "../challenge";
-import {ChallengeService} from "../challenge.service";
+import {Challenge} from '../challenge';
+import {ChallengeService} from '../challenge.service';
 
 @Component({
   moduleId: module.id,

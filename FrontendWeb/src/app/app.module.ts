@@ -70,7 +70,7 @@ import { ConfigurationDetailComponent } from './configuration/configuration-deta
       */
     ])
   ],
-  //entryComponents: [DialogConfirmDeleteComponent],
+  // entryComponents: [DialogConfirmDeleteComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {ChallengeService} from "../challenge.service";
-import {CategoryService} from "../../category/category.service";
-import {Challenge} from "../challenge";
-import {Category} from "../../category/category";
-import {ActivatedRoute, Params} from "@angular/router";
+import {ChallengeService} from '../challenge.service';
+import {CategoryService} from '../../category/category.service';
+import {Challenge} from '../challenge';
+import {Category} from '../../category/category';
+import {ActivatedRoute, Params} from '@angular/router';
 import { Location } from '@angular/common';
-import {isNullOrUndefined} from "util";
-import {Hint} from "../../hint/hint";
+import {isNullOrUndefined} from 'util';
+import {Hint} from '../../hint/hint';
 
 @Component({
   moduleId: module.id,
@@ -50,7 +50,7 @@ export class ChallengeDetailComponent implements OnInit {
         this.challengeService.update(this.challenge).subscribe(() => this.goBack());
       }
     } else {
-      console.log("MOSTRAR MENSAJE");
+      console.log('MOSTRAR MENSAJE');
     }
   }
 
@@ -67,7 +67,7 @@ export class ChallengeDetailComponent implements OnInit {
   }
 
   validateChallenge(challenge: Challenge): boolean {
-    if ( isNullOrUndefined(challenge.title) || challenge.title === "") {
+    if ( isNullOrUndefined(challenge.title) || challenge.title === '') {
         return false;
     }
     if ( isNullOrUndefined(challenge.category) || isNullOrUndefined(challenge.category.id)) {
@@ -76,13 +76,13 @@ export class ChallengeDetailComponent implements OnInit {
     if ( isNullOrUndefined(challenge.points) || challenge.points < 0) {
       return false;
     }
-    if ( isNullOrUndefined(challenge.description) || challenge.title === "") {
+    if ( isNullOrUndefined(challenge.description) || challenge.title === '') {
       return false;
     }
-    if ( isNullOrUndefined(challenge.validAnswer) || challenge.validAnswer === "") {
+    if ( isNullOrUndefined(challenge.validAnswer) || challenge.validAnswer === '') {
       return false;
     }
-    if ( isNullOrUndefined(challenge.answerDescription) || challenge.answerDescription === "") {
+    if ( isNullOrUndefined(challenge.answerDescription) || challenge.answerDescription === '') {
       return false;
     }
     return true;

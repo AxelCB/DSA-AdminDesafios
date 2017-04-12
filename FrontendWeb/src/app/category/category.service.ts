@@ -3,11 +3,11 @@
  */
 
 import { Injectable } from '@angular/core';
-import {Category} from "./category";
-import {Http, Headers, RequestOptions, Response} from "@angular/http";
+import {Category} from './category';
+import {Http, Headers, RequestOptions, Response} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import {environment} from "../../environments/environment";
-import {Observable} from "rxjs";
+import {environment} from '../../environments/environment';
+import {Observable} from 'rxjs';
 
 @Injectable()
 export class CategoryService {
@@ -15,14 +15,14 @@ export class CategoryService {
   constructor(private http: Http) { }
 
   getCategories(): Observable<Category[]> {
-      return this.http.get(environment.backendUrl+"/categories")
+      return this.http.get(environment.backendUrl+'/categories')
                   .map(response => response.json() as Category[])
                   .catch(this.handleError);
   }
 
   getCategory(id: number): Observable<Category> {
       if (! isNaN(id)) {
-          return this.http.get(environment.backendUrl+"/categories/"+id)
+          return this.http.get(environment.backendUrl+'/categories/'+id)
               .map(response => response.json() as Category)
               .catch(this.handleError)
       } else {
@@ -34,21 +34,21 @@ export class CategoryService {
   update(category: Category): Observable<Category> {
       let headers = new Headers({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
-      return this.http.put(environment.backendUrl+"/categories/"+category.id,JSON.stringify(category),options)
+      return this.http.put(environment.backendUrl+'/categories/'+category.id,JSON.stringify(category),options)
           .catch(this.handleError);
   }
 
   delete(category: Category): Observable<Category> {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-    return this.http.delete(environment.backendUrl+"/categories/"+category.id,options)
+    return this.http.delete(environment.backendUrl+'/categories/'+category.id,options)
       .catch(this.handleError);
   }
 
   create(category: Category): Observable<Category> {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-    return this.http.post(environment.backendUrl+"/categories/",JSON.stringify(category),options)
+    return this.http.post(environment.backendUrl+'/categories/',JSON.stringify(category),options)
         .catch(this.handleError);
   }
 
