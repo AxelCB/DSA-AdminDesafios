@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DialogConfirmDeleteComponent implements OnInit {
 
-  constructor() { }
+  constructor(private callback: Function) { }
 
   ngOnInit() {
+  }
+
+  confirmDeletion() {
+    this.callback();
   }
 
 }
