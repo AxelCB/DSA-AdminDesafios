@@ -6,9 +6,10 @@
                [(ngModel)]="challenge.title" name="title" required  type="text">
       </md-input-container>
       <br>
-      <md-select placeholder="Seleccione la categoría del desafío" [(ngModel)]="challenge.category" name="category" required>
-        <md-option *ngFor="let category of categories" [value]="category">{{ category.name }}</md-option>
-      </md-select>
+      <select [(ngModel)]="challenge.category" name="category" required>
+        <option [ngValue]="{}">Seleccione la categoría del desafío</option>
+        <option *ngFor="let category of categories" [ngValue]="category">{{ category.name }}</option>
+      </select>
       <br>
       <md-input-container>
         <input mdInput class="form-control one-field" placeholder="Ingrese los puntos otorgados por el desafío"
@@ -68,6 +69,11 @@
         <input mdInput class="form-control one-field" placeholder="Ingrese la descripción de la respuesta"
                [(ngModel)]="challenge.answerDescription" required name="answerDescription"  type="text">
       </md-input-container>
+      <br>
+      <select [(ngModel)]="challenge.nextChallenge" name="nextChallenge">
+        <option [ngValue]="{}">Seleccione el próximo desafío</option>
+        <option *ngFor="let nextChallenge of otherChallenges" [ngValue]="nextChallenge">{{ nextChallenge.title }}</option>
+      </select>
     </form>
     <br>
     <button md-mini-fab (click)="save()"><md-icon>check</md-icon></button>
