@@ -18,7 +18,7 @@ export class ConfigurationListComponent implements OnInit {
     this.getConfigurations();
   }
 
-  getConfigurations():void {
+  getConfigurations(): void {
     this.configurationService.getConfigurations().subscribe(configurations => this.configurations = configurations);
   }
 }

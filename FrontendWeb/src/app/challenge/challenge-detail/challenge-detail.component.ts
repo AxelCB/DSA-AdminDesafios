@@ -21,7 +21,8 @@ export class ChallengeDetailComponent implements OnInit {
   displayHint1 = false;
   displayHint2 = false;
 
-  constructor(private challengeService: ChallengeService, private categoryService: CategoryService, private route: ActivatedRoute, private location: Location) { }
+  constructor(private challengeService: ChallengeService, private categoryService: CategoryService,
+              private route: ActivatedRoute, private location: Location) { }
 
   ngOnInit(): void {
     this.getCategories();
@@ -38,7 +39,7 @@ export class ChallengeDetailComponent implements OnInit {
     this.location.back();
   }
 
-  getCategories():void {
+  getCategories(): void {
     this.categoryService.getCategories().subscribe(categories => this.categories = categories);
   }
 
@@ -55,11 +56,11 @@ export class ChallengeDetailComponent implements OnInit {
   }
 
   toggleHint1Display() {
-    this.challenge.hint1 = new Hint()
+    this.challenge.hint1 = new Hint();
   }
 
   toggleHint2Display() {
-    this.challenge.hint2 = new Hint()
+    this.challenge.hint2 = new Hint();
   }
 
   cancel() {

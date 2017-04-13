@@ -5,7 +5,7 @@
 import {Component, OnInit} from '@angular/core';
 import { Category } from '../category';
 import {CategoryService} from '../category.service';
-import {DialogConfirmDeleteComponent} from "../../dialog-confirm-delete/dialog-confirm-delete.component";
+import {DialogConfirmDeleteComponent} from '../../dialog-confirm-delete/dialog-confirm-delete.component';
 
 @Component({
   moduleId: module.id,
@@ -31,7 +31,7 @@ export class CategoryListComponent implements OnInit {
 
   delete(category: Category): void {
     this.deleteConfirmationDialog = new DialogConfirmDeleteComponent(() => {
-        this.categoryService.delete(category).subscribe(()=> this.getCategories())});
+        this.categoryService.delete(category).subscribe(() => this.getCategories()); });
     this.deleteConfirmationDialog.open();
   }
 }

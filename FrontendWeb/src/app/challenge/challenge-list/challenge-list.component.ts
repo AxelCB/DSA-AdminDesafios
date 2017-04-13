@@ -18,7 +18,7 @@ export class ChallengeListComponent implements OnInit {
     this.getChallenges();
   }
 
-  getChallenges():void {
+  getChallenges(): void {
     this.challengeService.getChallenges().subscribe(challenges => this.challenges = challenges);
   }
 

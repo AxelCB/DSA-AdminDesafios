@@ -10,16 +10,16 @@ export class ConfigurationService {
   constructor(private http: Http) { }
 
   getConfigurations(): Observable<Configuration[]> {
-    return this.http.get(environment.backendUrl+'/configurations')
+    return this.http.get(environment.backendUrl + '/configurations')
       .map(response => response.json() as Configuration[])
       .catch(this.handleError);
   }
 
   getConfiguration(id: number): Observable<Configuration> {
     if (! isNaN(id)) {
-      return this.http.get(environment.backendUrl+'/configurations/'+id)
+      return this.http.get(environment.backendUrl + '/configurations/' + id)
         .map(response => response.json() as Configuration)
-        .catch(this.handleError)
+        .catch(this.handleError);
     } else {
       return Observable.of<Configuration>();
     }
@@ -29,7 +29,7 @@ export class ConfigurationService {
   update(configuration: Configuration): Observable<Configuration> {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-    return this.http.put(environment.backendUrl+'/configurations/'+configuration.id,JSON.stringify(configuration),options)
+    return this.http.put(environment.backendUrl + '/configurations/' + configuration.id, JSON.stringify(configuration), options)
       .catch(this.handleError);
   }
 

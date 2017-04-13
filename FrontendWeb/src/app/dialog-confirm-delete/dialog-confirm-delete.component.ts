@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-declare var $:JQueryStatic;
+declare var $: JQueryStatic;
 
 @Component({
   selector: 'app-dialog-confirm-delete',
@@ -13,7 +13,7 @@ export class DialogConfirmDeleteComponent implements OnInit {
   ngOnInit() {
   }
 
-  open(){
+  open() {
     $('#deleteConfirmationModal').modal('show');
   }
 

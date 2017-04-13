@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  environmentName: "dev",
-  backendUrl: "http://localhost:3000"
+  environmentName: 'dev',
+  backendUrl: 'http://localhost:3000'
 };

@@ -10,16 +10,16 @@ export class ChallengeService {
   constructor(private http: Http) { }
 
   getChallenges(): Observable<Challenge[]> {
-    return this.http.get(environment.backendUrl+'/challenges')
+    return this.http.get(environment.backendUrl + '/challenges')
       .map(response => response.json() as Challenge[])
       .catch(this.handleError);
   }
 
   getChallenge(id: number): Observable<Challenge> {
     if (! isNaN(id)) {
-      return this.http.get(environment.backendUrl+'/challenges/'+id)
+      return this.http.get(environment.backendUrl + '/challenges/' + id)
         .map(response => response.json() as Challenge)
-        .catch(this.handleError)
+        .catch(this.handleError);
     } else {
       return Observable.of<Challenge>();
     }
@@ -29,21 +29,21 @@ export class ChallengeService {
   update(challenge: Challenge): Observable<Challenge> {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-    return this.http.put(environment.backendUrl+'/challenges/'+challenge.id,JSON.stringify(challenge),options)
+    return this.http.put(environment.backendUrl + '/challenges/' + challenge.id, JSON.stringify(challenge), options)
       .catch(this.handleError);
   }
 
   create(challenge: Challenge): Observable<Challenge> {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-    return this.http.post(environment.backendUrl+'/challenges/',JSON.stringify(challenge),options)
+    return this.http.post(environment.backendUrl + '/challenges/', JSON.stringify(challenge), options)
       .catch(this.handleError);
   }
 
   delete(challenge: Challenge): Observable<Challenge> {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-    return this.http.delete(environment.backendUrl+'/challenges/'+challenge.id,options)
+    return this.http.delete(environment.backendUrl + '/challenges/' + challenge.id, options)
       .catch(this.handleError);
   }
 
