@@ -20,7 +20,7 @@
       "styles": [
         "styles.css"
       ],
-      "scripts": ["../node_modules/jquery/dist/jquery.js"],
+      "scripts": ["../node_modules/jquery/dist/jquery.js","../src/assets/bootstrap-3.3.7/js/bootstrap.js"],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.dev.ts",
