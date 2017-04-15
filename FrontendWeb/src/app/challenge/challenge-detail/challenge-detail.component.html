@@ -1,91 +1,129 @@
-<md-card>
-  <md-card-content>
-    <form>
-      <div class="form-group">
-        <input mdInput class="form-control one-field" placeholder="Ingrese el titulo del desafío"
-               [(ngModel)]="challenge.title" name="title" required  type="text">
-      </div>
-      <br>
-      <select placeholder="Seleccione la categoría del desafío" [(ngModel)]="challenge.category" name="category" required>
+<form class="form-horizontal">
+  <div class="form-group">
+    <label class="col-sm-2 control-label" for="title">Título:</label>
+    <div class="col-sm-8">
+      <input class="form-control one-field" placeholder="Ingrese el titulo del desafío"
+             [(ngModel)]="challenge.title" name="title" required  type="text" id="title">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label" for="category">Categoría:</label>
+    <div class="col-sm-8">
+      <select [(ngModel)]="challenge.category" name="category" required class="form-control" id="category">
         <option *ngFor="let category of categories" [value]="category">{{ category.name }}</option>
       </select>
-      <!--
-      <md-select placeholder="Seleccione la categoría del desafío" [(ngModel)]="challenge.category" name="category" required>
-        <md-option *ngFor="let category of categories" [value]="category">{{ category.name }}</md-option>
-      </md-select>
-      -->
-      <br>
-      <div class="form-group">
-        <input mdInput class="form-control one-field" placeholder="Ingrese los puntos otorgados por el desafío"
-               [(ngModel)]="challenge.points" name="points" required  type="number">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label" for="points">Puntos Otorgados:</label>
+    <div class="col-sm-8">
+      <input class="form-control one-field" placeholder="Ingrese los puntos otorgados por el desafío"
+             [(ngModel)]="challenge.points" name="points" required  type="number" id="points">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-8">
+      <div class="checkbox">
+        <input [(ngModel)]="displayHint1" name="displayHint1" (click)="toggleHint1Display()" id="hint1" type="checkbox">
+        Ingresar la primera pista?
       </div>
-      <br>
-      <span>Desea ingresar la primera pista?</span>
-      <md-checkbox class="form-control one-field" [(ngModel)]="displayHint1" name="displayHint1" (click)="toggleHint1Display()"></md-checkbox>
-      <br>
-      <md-card *ngIf="displayHint1">
-        <md-card-content>
-          <div class="form-group">
-            <input mdInput class="form-control one-field" placeholder="Ingrese la descripción de la pista 1"
-                   [(ngModel)]="challenge.hint1.description" name="hintDescription1" type="text">
-          </div>
-          <br>
-          <div class="form-group">
-            <input mdInput class="form-control one-field" placeholder="Ingrese el porcentaje de puntos descontados por la pista 1"
-                   [(ngModel)]="challenge.hint1.pointsPercentageCost" name="hintPointsPercentageCost1" type="number">
-          </div>
-        </md-card-content>
-      </md-card>
-      <br>
-      <span>Desea ingresar la segunda pista?</span>
-      <md-checkbox class="form-control one-field" [(ngModel)]="displayHint2" name="displayHint2" (click)="toggleHint2Display()"></md-checkbox>
-      <br>
-      <md-card *ngIf="displayHint2">
-        <md-card-content>
-          <div class="form-group">
-            <input mdInput class="form-control one-field" placeholder="Ingrese la descripción de la pista 2"
-                   [(ngModel)]="challenge.hint2.description" name="hintDescription2" type="text">
-          </div>
-          <br>
-          <div class="form-group">
-            <input mdInput class="form-control one-field" placeholder="Ingrese el porcentaje de puntos descontados por la pista 2"
-                   [(ngModel)]="challenge.hint2.pointsPercentageCost" name="hintPointsPercentageCost2" type="text">
-          </div>
-        </md-card-content>
-      </md-card>
-      <br>
+    </div>
+  </div>
+  <div class="panel panel-primary" *ngIf="displayHint1">
+    <div class="panel-heading">
+      <h3 class="panel-title">Pista 1</h3>
+    </div>
+    <div class="panel-body">
       <div class="form-group">
-        <input mdInput class="form-control one-field" placeholder="Ingrese la descripción del desafío"
-               [(ngModel)]="challenge.description" required name="description"  type="text">
+        <label class="col-sm-2 control-label" for="hintDescription1">Descripción:</label>
+        <div class="col-sm-8">
+          <input class="form-control one-field" placeholder="Ingrese la descripción de la pista 1"
+                 [(ngModel)]="challenge.hint1.description" name="hintDescription1" id="hintDescription1" type="text">
+        </div>
       </div>
-      <br>
       <div class="form-group">
-        <input mdInput class="form-control one-field" placeholder="Ingrese la url del archivo adjunto"
-               [(ngModel)]="challenge.attachedFileUrl" name="attachedFileUrl"  type="text">
+        <label class="col-sm-2 control-label" for="hintPointsPercentageCost1">Porcentaje de Puntos Descontados:</label>
+        <div class="col-sm-8">
+          <input class="form-control one-field" placeholder="Ingrese el porcentaje de puntos descontados por la pista 1"
+               [(ngModel)]="challenge.hint1.pointsPercentageCost" name="hintPointsPercentageCost1" id="hintPointsPercentageCost1" type="number">
+        </div>
       </div>
-      <br>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-8">
+      <div class="checkbox">
+        <input [(ngModel)]="displayHint2" name="displayHint2" (click)="toggleHint2Display()" id="hint2" type="checkbox">
+        Ingresar la segunda pista?
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-primary" *ngIf="displayHint2">
+    <div class="panel-heading">
+      <h3 class="panel-title">Pista 2</h3>
+    </div>
+    <div class="panel-body">
       <div class="form-group">
-        <input mdInput class="form-control one-field" placeholder="Ingrese la respuesta del desafío"
-               [(ngModel)]="challenge.validAnswer" required name="validAnswer" required  type="text">
+        <label class="col-sm-2 control-label" for="hintDescription1">Descripción:</label>
+        <div class="col-sm-8">
+          <input class="form-control one-field" placeholder="Ingrese la descripción de la pista 2"
+                 [(ngModel)]="challenge.hint2.description" name="hintDescription1" id="hintDescription2" type="text">
+        </div>
       </div>
-      <br>
       <div class="form-group">
-        <input mdInput class="form-control one-field" placeholder="Ingrese la descripción de la respuesta"
-               [(ngModel)]="challenge.answerDescription" required name="answerDescription"  type="text">
+        <label class="col-sm-2 control-label" for="hintPointsPercentageCost2">Porcentaje de Puntos Descontados:</label>
+        <div class="col-sm-8">
+          <input class="form-control one-field" placeholder="Ingrese el porcentaje de puntos descontados por la pista 2"
+                 [(ngModel)]="challenge.hint2.pointsPercentageCost" name="hintPointsPercentageCost2" id="hintPointsPercentageCost2" type="number">
+        </div>
       </div>
-      <br>
-      <!--
-      <select [(ngModel)]="challenge.nextChallenge" name="nextChallenge">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label" for="description">Descripción del Desafío:</label>
+    <div class="col-sm-8">
+      <input class="form-control one-field" placeholder="Ingrese la descripción del desafío"
+           [(ngModel)]="challenge.description" required name="description"  type="text" id="description">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label" for="attachedFileUrl">URL del Archivo AdjuntO:</label>
+    <div class="col-sm-8">
+      <input class="form-control one-field" placeholder="Ingrese la url del archivo adjunto"
+             [(ngModel)]="challenge.attachedFileUrl" name="attachedFileUrl"  type="text" id="attachedFileUrl">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label" for="validAnswer">Respuesta:</label>
+    <div class="col-sm-8">
+      <input class="form-control one-field" placeholder="Ingrese la respuesta del desafío" id="validAnswer"
+             [(ngModel)]="challenge.validAnswer" required name="validAnswer" required  type="text">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label" for="answerDescription">Descripción de la Respuesta:</label>
+    <div class="col-sm-8">
+      <input class="form-control one-field" placeholder="Ingrese la descripción de la respuesta" id="answerDescription"
+             [(ngModel)]="challenge.answerDescription" required name="answerDescription" type="text">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label" for="nextChallenge">Próximo Desafío</label>
+    <div class="col-sm-8">
+      <select [(ngModel)]="challenge.nextChallenge" name="nextChallenge" class="form-control" id="nextChallenge">
+        <option [value]="{}"> Sin próximo desafío </option>
         <option *ngFor="let nextChallenge of otherChallenges" [value]="nextChallenge">{{ nextChallenge.title }}</option>
       </select>
-      -->
-      <md-select placeholder="Seleccione el próximo desafío" [(ngModel)]="challenge.nextChallenge" name="nextChallenge">
-        <md-option [value]="{}"> Sin próximo desafío </md-option>
-        <md-option *ngFor="let nextChallenge of otherChallenges" [value]="nextChallenge">{{ nextChallenge.title }}</md-option>
-      </md-select>
-    </form>
-    <br>
-    <button md-mini-fab (click)="save()"><md-icon>check</md-icon></button>
-    <button md-mini-fab color="warn" (click)="cancel()"><md-icon>close</md-icon></button>
-  </md-card-content>
-</md-card>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-8">
+      <button class="btn btn-success" (click)="save()">
+        Confirmar
+      </button>
+      <button class="btn btn-danger" (click)="cancel()">
+        Cancelar
+      </button>
+    </div>
+  </div>
+</form>
