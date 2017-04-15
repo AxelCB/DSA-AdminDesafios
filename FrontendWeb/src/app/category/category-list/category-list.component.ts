@@ -2,22 +2,23 @@
  * Created by acollard on 31/12/16.
  */
 
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { Category } from '../category';
 import {CategoryService} from '../category.service';
 import {DialogConfirmDeleteComponent} from '../../dialog-confirm-delete/dialog-confirm-delete.component';
 
 @Component({
   moduleId: module.id,
-  selector: 'category-list',
+  selector: 'app-category-list',
   templateUrl: 'category-list.component.html',
   styleUrls: ['category-list.component.css'],
-  providers: [CategoryService]
+  providers: [CategoryService],
 })
 
 export class CategoryListComponent implements OnInit {
   categories: Category[];
-  deleteConfirmationDialog: DialogConfirmDeleteComponent;
+  @ViewChild(DialogConfirmDeleteComponent)
+  private deleteDialog: DialogConfirmDeleteComponent;
 
   constructor(private categoryService: CategoryService) {}
 
@@ -30,8 +31,6 @@ export class CategoryListComponent implements OnInit {
   }
 
   delete(category: Category): void {
-    this.deleteConfirmationDialog = new DialogConfirmDeleteComponent(() => {
-        this.categoryService.delete(category).subscribe(() => this.getCategories()); });
-    this.deleteConfirmationDialog.open();
+    this.deleteDialog.open(() => this.categoryService.delete(category).subscribe(() => this.getCategories()));
   }
 }
