@@ -10,7 +10,9 @@ import { CategoryDetailComponent } from './category/category-detail/category-det
 /*
 import { ChallengeListComponent } from './challenge/challenge-list/challenge-list.component';
 import { ChallengeDetailComponent } from './challenge/challenge-detail/challenge-detail.component';
+*/
 import { DialogConfirmDeleteComponent } from './dialog-confirm-delete/dialog-confirm-delete.component';
+/*
 import { ConfigurationListComponent } from './configuration/configuration-list/configuration-list.component';
 import { ConfigurationDetailComponent } from './configuration/configuration-detail/configuration-detail.component';
 */
@@ -20,10 +22,11 @@ import { ConfigurationDetailComponent } from './configuration/configuration-deta
     AppComponent,
     CategoryListComponent,
     CategoryDetailComponent,
+    DialogConfirmDeleteComponent,
     /*
     ChallengeListComponent,
     ChallengeDetailComponent,
-    DialogConfirmDeleteComponent,
+
     ConfigurationListComponent,
     ConfigurationDetailComponent
     */
