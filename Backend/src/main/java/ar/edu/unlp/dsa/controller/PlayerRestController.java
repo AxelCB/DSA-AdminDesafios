@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import ar.edu.unlp.dsa.dto.AvailableChallengesListDTO;
 import ar.edu.unlp.dsa.dto.ChallengeDTO;
 import ar.edu.unlp.dsa.dto.HintDTO;
 import ar.edu.unlp.dsa.exception.ChallengeNotFoundException;
@@ -67,16 +68,16 @@ public class PlayerRestController {
 
 	@CrossOrigin(origins = "http://localhost:"+Application.USER_ADMIN_PORT)
 	@RequestMapping(value = "/{playerId}/challenges", method = RequestMethod.GET)
-	public Map<String, Object> getAvailableChallenges(@PathVariable Long playerId) {
+	public AvailableChallengesListDTO getAvailableChallenges(@PathVariable Long playerId) {
 		Player player = this.getPlayerRepository().findOne(playerId);
 		if (player == null) {
 			throw new PlayerNotFoundException(playerId);
 		}
-		Map<String, Object> result = new HashedMap();
-		result.put("date", new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
-		result.put("id_juego", this.getConfigurationRepository().findByName("id_juego").getValue());
-		result.put("id_equipo", player.getTeam().getId());
-		result.put("id_usuario", player.getId());
+		AvailableChallengesListDTO result = new AvailableChallengesListDTO();
+		result.setDate(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
+		result.setId_juego(this.getConfigurationRepository().findByName("id_juego").getValue());
+		result.setId_equipo(player.getTeam().getId());
+		result.setId_usuario(player.getId());
 		Collection<SolvedChallenge> solvedChallenges = player.getTeam().getSolvedChallenges();
 		Collection<Challenge> challenges;
 		if (solvedChallenges.size() == 0) {
@@ -88,7 +89,7 @@ public class PlayerRestController {
 			challenges = this.getChallengeRepository().findByIdNotIn(challengeIds);
 		}
 		Collection<ChallengeDTO> desafios = prepareDesafio(challenges, player.getTeam());
-		result.put("desafios", desafios);
+		result.setDesafios(desafios);
 		return result;
 	}
 
