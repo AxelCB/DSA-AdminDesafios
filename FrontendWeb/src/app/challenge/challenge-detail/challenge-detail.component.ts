@@ -18,6 +18,7 @@ import {Hint} from '../../hint/hint';
 export class ChallengeDetailComponent implements OnInit {
   challenge: Challenge = new Challenge();
   categories: Category[];
+  otherChallenges: Challenge[];
   displayHint1 = false;
   displayHint2 = false;
 
@@ -32,6 +33,7 @@ export class ChallengeDetailComponent implements OnInit {
           this.challenge = challenge;
           this.displayHint1 = (challenge.hint1 != null && challenge.hint1.description != null);
           this.displayHint2 = (challenge.hint2 != null && challenge.hint2.description != null);
+          this.getChallenges();
       });
   }
 
@@ -41,6 +43,13 @@ export class ChallengeDetailComponent implements OnInit {
 
   getCategories(): void {
     this.categoryService.getCategories().subscribe(categories => this.categories = categories);
+  }
+
+  getChallenges():void {
+    this.challengeService.getChallenges().subscribe(
+      challenges => this.otherChallenges = challenges.filter(
+        challenge => challenge.id != this.challenge.id)
+    );
   }
 
   save() {
