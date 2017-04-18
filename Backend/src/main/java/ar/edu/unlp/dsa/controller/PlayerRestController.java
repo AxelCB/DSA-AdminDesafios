@@ -4,9 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import ar.edu.unlp.dsa.dto.AvailableChallengesListDTO;
-import ar.edu.unlp.dsa.dto.ChallengeDTO;
-import ar.edu.unlp.dsa.dto.HintDTO;
+import ar.edu.unlp.dsa.dto.*;
 import ar.edu.unlp.dsa.exception.ChallengeNotFoundException;
 import ar.edu.unlp.dsa.exception.HintNotFoundException;
 import ar.edu.unlp.dsa.model.*;
@@ -95,7 +93,7 @@ public class PlayerRestController {
 
 	@CrossOrigin(origins = "http://localhost:"+Application.USER_ADMIN_PORT)
 	@RequestMapping(value = "/{playerId}/challenges/{challengeId}", method = RequestMethod.GET)
-	public Map<String, Object> getChallengeStatus(@PathVariable Long playerId, @PathVariable Long challengeId) {
+	public ChallengeStatusDTO getChallengeStatus(@PathVariable Long playerId, @PathVariable Long challengeId) {
 		Player player = this.getPlayerRepository().findOne(playerId);
 		if (player == null) {
 			throw new PlayerNotFoundException(playerId);
@@ -104,16 +102,6 @@ public class PlayerRestController {
 		if (challenge == null){
 			throw new ChallengeNotFoundException(challengeId);
 		}
-		Map<String, Object> result = new HashedMap();
-		result.put("date", new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
-		result.put("id_juego", this.getConfigurationRepository().findByName("id_juego").getValue());
-		result.put("id_equipo", player.getTeam().getId());
-		result.put("id_usuario", player.getId());
-		result.put("id_desafio", challenge.getId());
-		result.put("titulo", challenge.getTitle());
-		result.put("categoria", challenge.getCategory().getName());
-		result.put("puntos", challenge.getPoints());
-		result.put("descripcion", challenge.getDescription());
 		Collection<SolvedChallenge> solvedChallenges = player.getTeam().getSolvedChallenges();
 		SolvedChallenge solved = null;
 		for (SolvedChallenge solvedChallenge: solvedChallenges) {
@@ -123,22 +111,39 @@ public class PlayerRestController {
 			}
 		}
 		if (solved != null) {
-			result.put("estado","resuelto");
-			result.put("quien_resolvio", solved.getSolver().getId());
-			result.put("puntaje_obtenido",solved.getObtainedScore());
+			ChallengeStatusSolvedDTO result = new ChallengeStatusSolvedDTO();
+			prepareStatus(player, challenge, result);
+			result.setEstado("resuelto");
+			result.setQuien_resolvio(solved.getSolver().getId());
+			result.setPuntaje_obtenido(solved.getObtainedScore());
+			return result;
 		} else {
+			ChallengeStatusPendingDTO result = new ChallengeStatusPendingDTO();
+			prepareStatus(player, challenge, result);
 			Hint hint1 = challenge.getHint1();
 			if (hint1 != null){
-				result.put("hint1", this.prepareHint(hint1, player.getTeam()));
+				result.setHint1(this.prepareHint(hint1, player.getTeam()));
 			}
 			Hint hint2 = challenge.getHint1();
 			if (hint2 != null){
-				result.put("hint2", this.prepareHint(hint2, player.getTeam()));
+				result.setHint2(this.prepareHint(hint2, player.getTeam()));
 			}
-			result.put("adjunto", challenge.getAttachedFileUrl());
-			result.put("estado","pendiente");
+			result.setAdjunto(challenge.getAttachedFileUrl());
+			result.setEstado("pendiente");
+			return result;
 		}
-		return result;
+	}
+
+	private void prepareStatus(Player player, Challenge challenge, ChallengeStatusDTO result) {
+		result.setDate(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
+		result.setId_juego(this.getConfigurationRepository().findByName("id_juego").getValue());
+		result.setId_equipo(player.getTeam().getId());
+		result.setId_usuario(player.getId());
+		result.setId_desafio(challenge.getId());
+		result.setTitulo(challenge.getTitle());
+		result.setCategoria(challenge.getCategory().getName());
+		result.setPuntos(challenge.getPoints());
+		result.setDescripcion(challenge.getDescription());
 	}
 
 	@CrossOrigin(origins = "http://localhost:"+Application.USER_ADMIN_PORT)
