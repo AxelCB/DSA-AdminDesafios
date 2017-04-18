@@ -97,4 +97,21 @@ export class ChallengeDetailComponent implements OnInit {
     }
     return true;
   }
+
+  challengeEqualsById(challenge1: Challenge, challenge2: Challenge) {
+      if (challenge1 != null && challenge2 != null && challenge1.id != null && challenge2.id != null) {
+        return challenge1.id === challenge2.id;
+      } else {
+        return false;
+      }
+
+  }
+
+  categoryEqualsById(category1: Category, category2: Category) {
+    if (category1 != null && category2 != null && category1.id != null && category2.id != null) {
+      return category1.id === category2.id;
+    } else {
+      return false;
+    }
+  }
 }

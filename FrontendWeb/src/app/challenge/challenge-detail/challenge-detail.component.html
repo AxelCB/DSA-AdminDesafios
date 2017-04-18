@@ -9,8 +9,8 @@
   <div class="form-group">
     <label class="col-sm-2 control-label" for="category">Categoría:</label>
     <div class="col-sm-8">
-      <select [(ngModel)]="challenge.category" name="category" required class="form-control" id="category">
-        <option *ngFor="let category of categories" [value]="category">{{ category.name }}</option>
+      <select [(ngModel)]="challenge.category" name="category" required class="form-control" id="category" [compareWith]="categoryEqualsById  ">
+        <option *ngFor="let category of categories" [ngValue]="category">{{ category.name }}</option>
       </select>
     </div>
   </div>
@@ -110,9 +110,9 @@
   <div class="form-group">
     <label class="col-sm-2 control-label" for="nextChallenge">Próximo Desafío</label>
     <div class="col-sm-8">
-      <select [(ngModel)]="challenge.nextChallenge" name="nextChallenge" class="form-control" id="nextChallenge">
-        <option [value]="{}"> Sin próximo desafío </option>
-        <option *ngFor="let nextChallenge of otherChallenges" [value]="nextChallenge">{{ nextChallenge.title }}</option>
+      <select [(ngModel)]="challenge.nextChallenge" name="nextChallenge" class="form-control" id="nextChallenge" [compareWith]="challengeEqualsById">
+        <option [ngValue]="{}"> Sin próximo desafío </option>
+        <option *ngFor="let nextChallenge of otherChallenges" [ngValue]="nextChallenge">{{ nextChallenge.title }}</option>
       </select>
     </div>
   </div>
