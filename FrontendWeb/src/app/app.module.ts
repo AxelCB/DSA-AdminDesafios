@@ -13,6 +13,7 @@ import { ChallengeDetailComponent } from './challenge/challenge-detail/challenge
 import { DialogConfirmDeleteComponent } from './dialog-confirm-delete/dialog-confirm-delete.component';
 import { ConfigurationListComponent } from './configuration/configuration-list/configuration-list.component';
 import { ConfigurationDetailComponent } from './configuration/configuration-detail/configuration-detail.component';
+import { AlertMessagesComponent } from './alert-messages/alert-messages.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ConfigurationDetailComponent } from './configuration/configuration-deta
     ChallengeDetailComponent,
     DialogConfirmDeleteComponent,
     ConfigurationListComponent,
-    ConfigurationDetailComponent
+    ConfigurationDetailComponent,
+    AlertMessagesComponent
   ],
   imports: [
     BrowserModule,
