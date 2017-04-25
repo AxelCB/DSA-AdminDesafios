@@ -124,7 +124,7 @@ public class PlayerRestController {
 			if (hint1 != null){
 				result.setHint1(this.prepareHint(hint1, player.getTeam()));
 			}
-			Hint hint2 = challenge.getHint1();
+			Hint hint2 = challenge.getHint2();
 			if (hint2 != null){
 				result.setHint2(this.prepareHint(hint2, player.getTeam()));
 			}
