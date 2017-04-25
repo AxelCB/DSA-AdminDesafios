@@ -7,9 +7,9 @@ import java.util.Collection;
  */
 public class ChallengeListDTO {
 	private String date;
-	private Long id_equipo;
-	private Long id_usuario;
 	private String id_juego;
+	private Long id_usuario;
+	private Long id_equipo;
 
 	public ChallengeListDTO() {
 	}
