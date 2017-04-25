@@ -224,14 +224,14 @@ public class PlayerRestController {
 			throw new HintNotFoundException(hintId);
 		}
 		HttpHeaders httpHeaders = new HttpHeaders();
-		Map<String, Object> result = new HashedMap();
-		result.put("date", new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
-		result.put("id_juego", this.getConfigurationRepository().findByName("id_juego").getValue());
-		result.put("id_equipo", player.getTeam().getId());
-		result.put("id_usuario", player.getId());
-		result.put("id_hint", hint.getId());
-		result.put("descripcion", hint.getDescription());
-		result.put("porcentaje", hint.getPointsPercentageCost());
+		HintStatusDTO result = new HintStatusDTO();
+		result.setDate(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
+		result.setId_juego(this.getConfigurationRepository().findByName("id_juego").getValue());
+		result.setId_equipo(player.getTeam().getId());
+		result.setId_usuario(player.getId());
+		result.setId_hint(hint.getId());
+		result.setDescripcion(hint.getDescription());
+		result.setPorcentaje(hint.getPointsPercentageCost());
 		if(player.getTeam().getUsedHints().contains(hint)) {
 			return new ResponseEntity<>(result, httpHeaders, HttpStatus.OK);
 		} else {
