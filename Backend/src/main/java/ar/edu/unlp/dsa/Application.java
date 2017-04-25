@@ -12,6 +12,7 @@ public class Application{
 	public static final String BACKEND_PORT = "8080";
 	public static final String FRONTEND_PORT = "4200";
 	public static final String USER_ADMIN_PORT = "2222";
+	public static final String SCOREBOARD_PORT = "9999";
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
