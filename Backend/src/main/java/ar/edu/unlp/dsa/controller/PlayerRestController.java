@@ -158,12 +158,12 @@ public class PlayerRestController {
 			throw new ChallengeNotFoundException(challengeId);
 		}
 		HttpHeaders httpHeaders = new HttpHeaders();
-		Map<String, Object> result = new HashedMap();
-		result.put("date", new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
-		result.put("id_juego", this.getConfigurationRepository().findByName("id_juego").getValue());
-		result.put("id_equipo", player.getTeam().getId());
-		result.put("id_usuario", player.getId());
-		result.put("id_desafio", challenge.getId());
+		CheckAnswerResponseDTO result = new CheckAnswerResponseDTO();
+		result.setDate(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
+		result.setId_juego(this.getConfigurationRepository().findByName("id_juego").getValue());
+		result.setId_equipo(player.getTeam().getId());
+		result.setId_usuario(player.getId());
+		result.setId_desafio(challenge.getId());
 		if(challenge.getValidAnswer().equals(answer)){
 			String progressive = this.getConfigurationRepository().findByName("progressive").getValue();
 			if (progressive.equals("true") && challenge.getNextChallenge() != null) {
@@ -180,10 +180,10 @@ public class PlayerRestController {
 					break;
 				}
 			}
-			result.put("resultado", true);
-			result.put("descripcion", challenge.getAnswerDescription());
+			result.setResultado(true);
+			result.setDescripcion(challenge.getAnswerDescription());
 			if (solved != null) {
-				result.put("puntaje", solved.getObtainedScore());
+				result.setPuntaje(solved.getObtainedScore());
 				return new ResponseEntity<>(result, httpHeaders, HttpStatus.OK); //which code?
 			} else {
 				Long obtainedScore = challenge.getPoints();
@@ -202,13 +202,13 @@ public class PlayerRestController {
 				this.getSolvedChallengeRepository().save(solvedChallenge);
 				player.getTeam().getSolvedChallenges().add(solvedChallenge);
 				this.getPlayerRepository().save(player); //or maybe team repository?
-				result.put("puntaje", obtainedScore);
+				result.setPuntaje(obtainedScore);
 				return new ResponseEntity<>(result, httpHeaders, HttpStatus.CREATED); //which code?
 			}
 		} else {
-			result.put("resultado", false);
-			result.put("descripcion", "NOTOK");
-			result.put("puntaje", 0);
+			result.setResultado(false);
+			result.setDescripcion("NOTOK");
+			result.setPuntaje(0L);
 			return new ResponseEntity<>(result, httpHeaders, HttpStatus.OK);
 		}
 	}
