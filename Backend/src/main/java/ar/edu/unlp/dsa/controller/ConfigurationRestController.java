@@ -49,6 +49,21 @@ public class ConfigurationRestController {
 		return new ResponseEntity<>(null, null, HttpStatus.NO_CONTENT);
 	}
 
+	@CrossOrigin(origins = "http://localhost:"+Application.CONTROL_PORT)
+	@RequestMapping(value = "/game/{gameId}", method = RequestMethod.POST)
+	public ResponseEntity<?> newGame(@PathVariable String gameId) {
+		Configuration configuration = this.getConfigurationRepository().findByName("id_juego");
+		if (configuration == null) {
+			throw new ConfigurationNotFoundException(1L);
+		}
+		configuration.setValue(gameId);
+		//TODO: delete all teams (cascade)
+		//TODO: call Users Module for new teams
+		//TODO: save new teams and users
+		this.getConfigurationRepository().save(configuration);
+		return new ResponseEntity<>(null, null, HttpStatus.NO_CONTENT);
+	}
+
 	public ConfigurationRepository getConfigurationRepository() {
 		return configurationRepository;
 	}
