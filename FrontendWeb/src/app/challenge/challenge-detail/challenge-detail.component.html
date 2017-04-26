@@ -111,7 +111,7 @@
     <label class="col-sm-2 control-label" for="nextChallenge">Próximo Desafío</label>
     <div class="col-sm-8">
       <select [(ngModel)]="challenge.nextChallenge" name="nextChallenge" class="form-control" id="nextChallenge" [compareWith]="challengeEqualsById">
-        <option [ngValue]="{}"> Sin próximo desafío </option>
+        <option [ngValue]="null"> Sin próximo desafío </option>
         <option *ngFor="let nextChallenge of otherChallenges" [ngValue]="nextChallenge">{{ nextChallenge.title }}</option>
       </select>
     </div>

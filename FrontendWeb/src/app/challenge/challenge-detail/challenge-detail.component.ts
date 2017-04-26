@@ -101,10 +101,11 @@ export class ChallengeDetailComponent implements OnInit {
   challengeEqualsById(challenge1: Challenge, challenge2: Challenge) {
       if (challenge1 != null && challenge2 != null && challenge1.id != null && challenge2.id != null) {
         return challenge1.id === challenge2.id;
+      } else if (challenge1 == null && challenge2 == null) {
+        return true;
       } else {
         return false;
       }
-
   }
 
   categoryEqualsById(category1: Category, category2: Category) {
