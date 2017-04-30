@@ -37,7 +37,6 @@ public class Challenge {
     private String answerDescription;
 
     @OneToOne
-    @JsonIgnoreProperties({"title","category","points", "description","hint1","hint2","attachedFileUrl","validAnswer","answerDescription","nextChallenge"})
     private Challenge nextChallenge;
 
     public Challenge(String title, Category category, Long points, String description, Hint hint1, Hint hint2, String attachedFileUrl, String validAnswer, String answerDescription) {

@@ -1,3 +1,8 @@
-.category-name{
-  min-width: 25em;
+.full-cell{
+  width:100%;
+  display:inline-block;
+}
+
+.link-without-href{
+  cursor:hand;
 }
