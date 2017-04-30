@@ -1,4 +1,3 @@
-import { MaterialModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -20,9 +19,9 @@ import { AlertMessagesComponent } from './alert-messages/alert-messages.componen
     AppComponent,
     CategoryListComponent,
     CategoryDetailComponent,
+    DialogConfirmDeleteComponent,
     ChallengeListComponent,
     ChallengeDetailComponent,
-    DialogConfirmDeleteComponent,
     ConfigurationListComponent,
     ConfigurationDetailComponent,
     AlertMessagesComponent
@@ -56,7 +55,7 @@ import { AlertMessagesComponent } from './alert-messages/alert-messages.componen
         path: 'challenges/new',
         component: ChallengeDetailComponent
       },
-      { 
+      {
         path: 'configurations',
         component: ConfigurationListComponent
       },
@@ -64,10 +63,8 @@ import { AlertMessagesComponent } from './alert-messages/alert-messages.componen
         path: 'configurations/:id',
         component: ConfigurationDetailComponent
       }
-    ]),
-    MaterialModule
+    ])
   ],
-  entryComponents: [DialogConfirmDeleteComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

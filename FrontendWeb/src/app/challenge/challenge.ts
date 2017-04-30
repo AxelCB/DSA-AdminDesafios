@@ -1,5 +1,5 @@
-import {Category} from "../category/category";
-import {Hint} from "../hint/hint";
+import {Category} from '../category/category';
+import {Hint} from '../hint/hint';
 
 export class Challenge {
   id: number;

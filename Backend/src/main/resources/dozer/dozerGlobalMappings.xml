@@ -49,4 +49,25 @@
             <b>porcentaje</b>
         </field>
     </mapping>
+    <mapping>
+        <class-a>ar.edu.unlp.dsa.model.SolvedChallenge</class-a>
+        <class-b>ar.edu.unlp.dsa.dto.SolvedChallengeDTO</class-b>
+        <field>
+            <a>challenge.id</a>
+            <b>id_desafio</b>
+        </field>
+        <field>
+            <a>solver.id</a>
+            <b>resuelto_por</b>
+        </field>
+        <field>
+            <a>challenge.title</a>
+            <b>titulo</b>
+        </field>
+        <field>
+            <a>obtainedScore</a>
+            <b>puntaje</b>
+        </field>
+    </mapping>
+
 </mappings>
