@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Configuration} from "../configuration";
-import {ConfigurationService} from "../configuration.service";
+import {Configuration} from '../configuration';
+import {ConfigurationService} from '../configuration.service';
 
 @Component({
   moduleId: module.id,
@@ -18,7 +18,7 @@ export class ConfigurationListComponent implements OnInit {
     this.getConfigurations();
   }
 
-  getConfigurations():void {
+  getConfigurations(): void {
     this.configurationService.getConfigurations().subscribe(configurations => this.configurations = configurations);
   }
 }

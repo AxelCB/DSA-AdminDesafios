@@ -13,6 +13,7 @@ public class Application{
 	public static final String FRONTEND_PORT = "4200";
 	public static final String USER_ADMIN_PORT = "2222";
 	public static final String CONTROL_PORT = "3333";
+	public static final String SCOREBOARD_PORT = "9999";
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }

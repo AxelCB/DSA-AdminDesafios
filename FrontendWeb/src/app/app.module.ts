@@ -1,4 +1,3 @@
-import { MaterialModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -19,9 +18,9 @@ import { ConfigurationDetailComponent } from './configuration/configuration-deta
     AppComponent,
     CategoryListComponent,
     CategoryDetailComponent,
+    DialogConfirmDeleteComponent,
     ChallengeListComponent,
     ChallengeDetailComponent,
-    DialogConfirmDeleteComponent,
     ConfigurationListComponent,
     ConfigurationDetailComponent
   ],
@@ -54,7 +53,7 @@ import { ConfigurationDetailComponent } from './configuration/configuration-deta
         path: 'challenges/new',
         component: ChallengeDetailComponent
       },
-      { 
+      {
         path: 'configurations',
         component: ConfigurationListComponent
       },
@@ -62,10 +61,8 @@ import { ConfigurationDetailComponent } from './configuration/configuration-deta
         path: 'configurations/:id',
         component: ConfigurationDetailComponent
       }
-    ]),
-    MaterialModule
+    ])
   ],
-  entryComponents: [DialogConfirmDeleteComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

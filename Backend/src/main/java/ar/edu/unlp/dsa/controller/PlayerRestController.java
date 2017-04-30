@@ -5,7 +5,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import ar.edu.unlp.dsa.dto.ChallengeDTO;
+import ar.edu.unlp.dsa.dto.SolvedChallengeListDTO;
 import ar.edu.unlp.dsa.dto.HintDTO;
+import ar.edu.unlp.dsa.dto.SolvedChallengeDTO;
 import ar.edu.unlp.dsa.exception.ChallengeNotFoundException;
 import ar.edu.unlp.dsa.exception.HintNotFoundException;
 import ar.edu.unlp.dsa.model.*;
@@ -235,6 +237,35 @@ public class PlayerRestController {
 		}
 	}
 
+	@CrossOrigin(origins = "http://localhost:"+Application.SCOREBOARD_PORT)
+	@RequestMapping(value = "/{playerId}/team-score", method = RequestMethod.GET)
+	public SolvedChallengeListDTO getTeamStatus(@PathVariable Long playerId) {
+		Player player = this.getPlayerRepository().findOne(playerId);
+		if (player == null) {
+			throw new PlayerNotFoundException(playerId);
+		}
+		SolvedChallengeListDTO result = new SolvedChallengeListDTO();
+		result.setDate(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
+		result.setId_juego(this.getConfigurationRepository().findByName("id_juego").getValue());
+		result.setId_equipo(player.getTeam().getId());
+		result.setId_usuario(player.getId());
+		Collection<SolvedChallenge> solvedChallenges = player.getTeam().getSolvedChallenges();
+		Collection<SolvedChallengeDTO> desafiosResueltos = new ArrayList<>();
+		for (SolvedChallenge source : solvedChallenges) {
+			SolvedChallengeDTO solvedChallengeDTO = this.getMapper().map(source, SolvedChallengeDTO.class);
+			Integer usedHints = 0;
+			if (player.getTeam().getUsedHints().contains(source.getChallenge().getHint1())) {
+				usedHints++;
+			}
+			if (player.getTeam().getUsedHints().contains(source.getChallenge().getHint2())) {
+				usedHints++;
+			}
+			solvedChallengeDTO.setHints_utilizados(usedHints);
+			desafiosResueltos.add(solvedChallengeDTO);
+		}
+		result.setDesafios(desafiosResueltos);
+		return result;
+	}
 
 
 		private Collection<ChallengeDTO> prepareDesafio(Collection<Challenge> challenges, Team team) {

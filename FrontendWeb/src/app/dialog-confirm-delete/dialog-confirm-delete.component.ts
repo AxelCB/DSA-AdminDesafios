@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {MdDialogRef} from "@angular/material";
+import {Component, Input, OnInit} from '@angular/core';
+declare var $: JQueryStatic;
 
 @Component({
   selector: 'app-dialog-confirm-delete',
@@ -7,10 +7,21 @@ import {MdDialogRef} from "@angular/material";
   styleUrls: ['./dialog-confirm-delete.component.css']
 })
 export class DialogConfirmDeleteComponent implements OnInit {
+  callback: Function;
 
-  constructor(public dialogRef: MdDialogRef<DialogConfirmDeleteComponent>) { }
+  constructor() {}
 
   ngOnInit() {
+  }
+
+  open(deleteCallbackFunction: Function) {
+    this.callback = deleteCallbackFunction;
+    $('#deleteConfirmationModal').modal({show: true});
+  }
+
+  confirmDeletion() {
+    this.callback();
+    $('#deleteConfirmationModal').modal('hide');
   }
 
 }

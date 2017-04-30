@@ -1,13 +1,19 @@
-<md-card>
-  <md-card-content>
-    <form>
-      <md-input-container>
-        <input mdInput class="form-control one-field" placeholder="Ingrese el nombre de la categoria"
-               [(ngModel)]="category.name" name="name" required  type="text">
-      </md-input-container>
-    </form>
-    <br>
-    <button md-mini-fab (click)="save()"><md-icon>check</md-icon></button>
-    <button md-mini-fab color="warn" (click)="cancel()"><md-icon>close</md-icon></button>
-  </md-card-content>
-</md-card>
+ <form class="form-horizontal">
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="name">Nombre:</label>
+      <div class="col-sm-8">
+        <input class="form-control one-field" placeholder="Ingrese el nombre de la categoria"
+               [(ngModel)]="category.name" name="name" required  type="text" id="name">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-8">
+        <button class="btn btn-success" (click)="save()">
+          Confirmar
+        </button>
+        <button class="btn btn-danger" (click)="cancel()">
+          Cancelar
+        </button>
+      </div>
+    </div>
+</form>

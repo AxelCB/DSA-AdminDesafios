@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ConfigurationService} from "../configuration.service";
-import {Configuration} from "../configuration";
-import {ActivatedRoute, Params} from "@angular/router";
+import {ConfigurationService} from '../configuration.service';
+import {Configuration} from '../configuration';
+import {ActivatedRoute, Params} from '@angular/router';
 import { Location } from '@angular/common';
 
 @Component({

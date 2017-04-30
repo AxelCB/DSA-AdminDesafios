@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {Challenge} from "../challenge";
-import {ChallengeService} from "../challenge.service";
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {Challenge} from '../challenge';
+import {ChallengeService} from '../challenge.service';
 import {DialogConfirmDeleteComponent} from "../../dialog-confirm-delete/dialog-confirm-delete.component";
-import {MdDialog} from "@angular/material";
 
 @Component({
   moduleId: module.id,
@@ -13,24 +12,21 @@ import {MdDialog} from "@angular/material";
 })
 export class ChallengeListComponent implements OnInit {
   challenges: Challenge[];
+  @ViewChild(DialogConfirmDeleteComponent)
+  private deleteDialog: DialogConfirmDeleteComponent;
 
-  constructor(private challengeService: ChallengeService, public dialog: MdDialog) { }
+  constructor(private challengeService: ChallengeService) { }
 
   ngOnInit() {
     this.getChallenges();
   }
 
-  getChallenges():void {
+  getChallenges(): void {
     this.challengeService.getChallenges().subscribe(challenges => this.challenges = challenges);
   }
 
   delete(challenge: Challenge): void {
-    let dialogRef = this.dialog.open(DialogConfirmDeleteComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      if ( result ) {
-        this.challengeService.delete(challenge).subscribe(()=> this.getChallenges());
-      }
-    });
+    this.deleteDialog.open(() => this.challengeService.delete(challenge).subscribe(() => this.getChallenges()));
   }
 
 }
