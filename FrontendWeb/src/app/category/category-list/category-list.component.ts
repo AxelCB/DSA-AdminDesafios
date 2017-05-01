@@ -6,6 +6,8 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import { Category } from '../category';
 import {CategoryService} from '../category.service';
 import {DialogConfirmDeleteComponent} from '../../dialog-confirm-delete/dialog-confirm-delete.component';
+import {MessagesService} from '../../alert-messages/alert-messages.service';
+import {Message} from '../../alert-messages/message';
 
 @Component({
   moduleId: module.id,
@@ -20,7 +22,7 @@ export class CategoryListComponent implements OnInit {
   @ViewChild(DialogConfirmDeleteComponent)
   private deleteDialog: DialogConfirmDeleteComponent;
 
-  constructor(private categoryService: CategoryService) {}
+  constructor(private categoryService: CategoryService, private messagesService: MessagesService) {}
 
   ngOnInit(): void {
     this.getCategories();
@@ -31,6 +33,14 @@ export class CategoryListComponent implements OnInit {
   }
 
   delete(category: Category): void {
-    this.deleteDialog.open(() => this.categoryService.delete(category).subscribe(() => this.getCategories()));
+    this.deleteDialog.open(() => this.categoryService.delete(category).subscribe(
+      () => {
+        this.getCategories();
+        this.messagesService.sendMessage(new Message('Categoría borrada correctamente', false));
+      },
+      () => {
+        this.messagesService.appendToMessage('No se pudo borrar la categoría');
+      })
+    );
   }
 }

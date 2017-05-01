@@ -13,6 +13,7 @@ import { DialogConfirmDeleteComponent } from './dialog-confirm-delete/dialog-con
 import { ConfigurationListComponent } from './configuration/configuration-list/configuration-list.component';
 import { ConfigurationDetailComponent } from './configuration/configuration-detail/configuration-detail.component';
 import { AlertMessagesComponent } from './alert-messages/alert-messages.component';
+import {MessagesService} from './alert-messages/alert-messages.service';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,7 @@ import { AlertMessagesComponent } from './alert-messages/alert-messages.componen
       }
     ])
   ],
-  providers: [],
+  providers: [MessagesService],
   bootstrap: [AppComponent]
 })
 

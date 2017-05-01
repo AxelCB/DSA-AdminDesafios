@@ -14,8 +14,12 @@ export class AlertMessagesComponent implements OnInit {
   ngOnInit() {
   }
 
-  updateMessage(message: Message){
+  updateMessage(message: Message) {
     this.message = message;
+  }
+
+  appendToMessage(messageToAppend: string) {
+    this.message.content += messageToAppend;
   }
 
 }
