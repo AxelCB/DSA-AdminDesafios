@@ -2,6 +2,9 @@ package ar.edu.unlp.dsa.model;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+
 /**
  * Created by axel on 16/10/16.
  */
@@ -35,7 +38,6 @@ public class Challenge {
 
     private String answerDescription;
 
-    //TODO: avoid recursion (id only)
     @OneToOne
     private Challenge nextChallenge;
 
@@ -148,5 +150,13 @@ public class Challenge {
 
     public void setFileName(String fileName) {
         this.fileName = fileName;
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Challenge) {
+            return this.getId().equals(((Challenge) obj).getId());
+        } else {
+            return super.equals(obj);
+        }
     }
 }

@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  environmentName: "qa",
-  backendUrl: "http://localhost:8080/api"
+  environmentName: 'qa',
+  backendUrl: 'http://localhost:8080/api'
 };

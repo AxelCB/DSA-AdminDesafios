@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {CategoryService} from "../category.service";
-import {Category} from "../category";
-import {ActivatedRoute, Params} from "@angular/router";
+import {CategoryService} from '../category.service';
+import {Category} from '../category';
+import {ActivatedRoute, Params} from '@angular/router';
 import { Location } from '@angular/common';
-import {isNullOrUndefined} from "util";
+import {isNullOrUndefined} from 'util';
 
 @Component({
   moduleId: module.id,

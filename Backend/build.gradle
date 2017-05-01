@@ -11,8 +11,10 @@ buildscript {
 }
 
 apply plugin: 'java'
+apply plugin: 'idea'
 apply plugin: 'eclipse'
 apply plugin: 'spring-boot'
+apply plugin: 'war'
 
 jar {
 	baseName = 'admindesafiosspringboot'
@@ -27,6 +29,7 @@ repositories {
 
 
 dependencies {
+	compile('net.sf.dozer:dozer:5.5.1')
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.postgresql:postgresql')

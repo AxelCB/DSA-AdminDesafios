@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {Challenge} from "../challenge";
-import {ChallengeService} from "../challenge.service";
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {Challenge} from '../challenge';
+import {ChallengeService} from '../challenge.service';
+import {DialogConfirmDeleteComponent} from "../../dialog-confirm-delete/dialog-confirm-delete.component";
 
 @Component({
   moduleId: module.id,
@@ -11,6 +12,8 @@ import {ChallengeService} from "../challenge.service";
 })
 export class ChallengeListComponent implements OnInit {
   challenges: Challenge[];
+  @ViewChild(DialogConfirmDeleteComponent)
+  private deleteDialog: DialogConfirmDeleteComponent;
 
   constructor(private challengeService: ChallengeService) { }
 
@@ -18,8 +21,12 @@ export class ChallengeListComponent implements OnInit {
     this.getChallenges();
   }
 
-  getChallenges():void {
+  getChallenges(): void {
     this.challengeService.getChallenges().subscribe(challenges => this.challenges = challenges);
+  }
+
+  delete(challenge: Challenge): void {
+    this.deleteDialog.open(() => this.challengeService.delete(challenge).subscribe(() => this.getChallenges()));
   }
 
 }

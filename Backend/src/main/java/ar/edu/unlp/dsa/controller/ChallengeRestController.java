@@ -1,11 +1,13 @@
 package ar.edu.unlp.dsa.controller;
 
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.Collection;
 
 import ar.edu.unlp.dsa.utils.storage.StorageFileNotFoundException;
 import ar.edu.unlp.dsa.utils.storage.StorageService;
+import ar.edu.unlp.dsa.dto.ChallengeDTO;
+import ar.edu.unlp.dsa.utils.DozerUtils;
+import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -38,16 +40,22 @@ public class ChallengeRestController {
 	private final CategoryRepository categoryRepository;
 	private final HintRepository hintRepository;
 	private final StorageService storageService;
+	private final Mapper mapper;
 
 	@Autowired
 	ChallengeRestController(ChallengeRepository challengeRepository, CategoryRepository categoryRepository,
-			HintRepository hintRepository,StorageService storageService) {
+			HintRepository hintRepository,StorageService storageService, Mapper mapper) {
 		this.challengeRepository = challengeRepository;
 		this.categoryRepository = categoryRepository;
 		this.hintRepository = hintRepository;
 		this.storageService = storageService;
+		this.mapper = mapper;
+	}
 
-
+	@CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
+	@RequestMapping(method = RequestMethod.GET, value="/desafios")
+	public Collection<ChallengeDTO> listDesafios() {
+		return DozerUtils.map(this.mapper,this.getChallengeRepository().findAll(),ChallengeDTO.class);
 	}
 
 	@CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
@@ -60,7 +68,6 @@ public class ChallengeRestController {
 		return challenge;
 	}
 
-	//TODO should delete hints as well?
 	@CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
 	@RequestMapping(value = "/{challengeId}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deleteChallenge(@PathVariable Long challengeId) {

@@ -1,9 +1,23 @@
-<md-nav-list class="categories">
-  <md-list-item *ngFor="let challenge of challenges">
-    <a [routerLink]="['/challenges', challenge.id]">
-      {{challenge.title}}
-    </a>
-  </md-list-item>
-</md-nav-list>
-<a md-mini-fab routerLink="/challenges/new"><md-icon>add</md-icon></a>
+<button class="btn btn-success" routerLink="/challenges/new">Crear Categoría</button>
+<table class="table table-hover categories">
+  <thead class="thead-inverse">
+  <tr>
+    <th scope="row">Título</th>
+    <th scope="row">Categoría</th>
+    <th scope="row">Puntos</th>
+    <th scope="row">Editar</th>
+    <th scope="row">Borrar</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let challenge of challenges">
+    <td>{{ challenge.title }}</td>
+    <td>{{ challenge.category.name }}</td>
+    <td>{{ challenge.points }}</td>
+    <td><a [routerLink]="['/challenges', challenge.id]" class="full-cell"><i class="fa fa-pencil" aria-hidden="true"></i></a></td>
+    <td (click)="delete(challenge)"><a class="full-cell link-without-href" tabindex="1"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+  </tr>
+  </tbody>
+</table>
 
+<app-dialog-confirm-delete></app-dialog-confirm-delete>
