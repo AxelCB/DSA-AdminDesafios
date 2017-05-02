@@ -12,6 +12,8 @@ import { ChallengeDetailComponent } from './challenge/challenge-detail/challenge
 import { DialogConfirmDeleteComponent } from './dialog-confirm-delete/dialog-confirm-delete.component';
 import { ConfigurationListComponent } from './configuration/configuration-list/configuration-list.component';
 import { ConfigurationDetailComponent } from './configuration/configuration-detail/configuration-detail.component';
+import { AlertMessagesComponent } from './alert-messages/alert-messages.component';
+import {MessagesService} from './alert-messages/alert-messages.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { ConfigurationDetailComponent } from './configuration/configuration-deta
     ChallengeListComponent,
     ChallengeDetailComponent,
     ConfigurationListComponent,
-    ConfigurationDetailComponent
+    ConfigurationDetailComponent,
+    AlertMessagesComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +66,7 @@ import { ConfigurationDetailComponent } from './configuration/configuration-deta
       }
     ])
   ],
-  providers: [],
+  providers: [MessagesService],
   bootstrap: [AppComponent]
 })
 

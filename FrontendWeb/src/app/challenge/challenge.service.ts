@@ -3,23 +3,26 @@ import {Http, Headers, RequestOptions, Response} from '@angular/http';
 import {Observable} from 'rxjs';
 import {Challenge} from './challenge';
 import {environment} from '../../environments/environment';
+import {MessagesService} from '../alert-messages/alert-messages.service';
+import {INTERNAL_SERVER_ERROR, NOT_FOUND} from 'http-status-codes';
+import {Message} from '../alert-messages/message';
 
 @Injectable()
 export class ChallengeService {
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private messagesService: MessagesService) { }
 
   getChallenges(): Observable<Challenge[]> {
     return this.http.get(environment.backendUrl + '/challenges')
       .map(response => response.json() as Challenge[])
-      .catch(this.handleError);
+      .catch((error) => this.handleError(error, this.messagesService));
   }
 
   getChallenge(id: number): Observable<Challenge> {
     if (! isNaN(id)) {
       return this.http.get(environment.backendUrl + '/challenges/' + id)
         .map(response => response.json() as Challenge)
-        .catch(this.handleError);
+        .catch((error) => this.handleError(error, this.messagesService));
     } else {
       return Observable.of<Challenge>();
     }
@@ -30,34 +33,44 @@ export class ChallengeService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     return this.http.put(environment.backendUrl + '/challenges/' + challenge.id, JSON.stringify(challenge), options)
-      .catch(this.handleError);
+      .catch((error) => this.handleError(error, this.messagesService));
   }
 
   create(challenge: Challenge): Observable<Challenge> {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     return this.http.post(environment.backendUrl + '/challenges/', JSON.stringify(challenge), options)
-      .catch(this.handleError);
+      .catch((error) => this.handleError(error, this.messagesService));
   }
 
   delete(challenge: Challenge): Observable<Challenge> {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     return this.http.delete(environment.backendUrl + '/challenges/' + challenge.id, options)
-      .catch(this.handleError);
+      .catch((error) => this.handleError(error, this.messagesService));
   }
 
-  private handleError (error: Response | any) {
-    let errMsg: string;
+  private handleError (error: Response | any, messagesService: MessagesService) {
+    let errorMessage = new Message();
+    errorMessage.isError = true;
     if (error instanceof Response) {
-      const body = error.json() || '';
-      const err = body.error || JSON.stringify(body);
-      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+      let responseError = <Response>error;
+      errorMessage.responseCode = responseError.status;
+      switch (responseError.status) {
+        case NOT_FOUND: {
+          errorMessage.content = 'El desafío seleccionado no pudo ser encontrado';
+          break;
+        }
+        case INTERNAL_SERVER_ERROR: {
+          errorMessage.content = 'Ha ocurrido un error inesperado. Intente nuevamente más tarde, o vuelva al inicio';
+          break;
+        }
+      }
     } else {
-      errMsg = error.message ? error.message : error.toString();
+      errorMessage.content = error.message ? error.message : error.toString();
     }
-    console.error(errMsg);
-    return Observable.throw(errMsg);
+    messagesService.sendMessage(errorMessage);
+    return Observable.throw(errorMessage);
   }
 
   uploadChallengeFile(file: File): Observable<string>{

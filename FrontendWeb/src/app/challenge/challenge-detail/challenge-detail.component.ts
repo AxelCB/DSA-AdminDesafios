@@ -3,10 +3,13 @@ import {ChallengeService} from '../challenge.service';
 import {CategoryService} from '../../category/category.service';
 import {Challenge} from '../challenge';
 import {Category} from '../../category/category';
-import {ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import { Location } from '@angular/common';
 import {isNullOrUndefined} from 'util';
 import {Hint} from '../../hint/hint';
+import {MessagesService} from '../../alert-messages/alert-messages.service';
+import {Message} from '../../alert-messages/message';
+import {NOT_FOUND} from 'http-status-codes';
 
 @Component({
   moduleId: module.id,
@@ -24,8 +27,8 @@ export class ChallengeDetailComponent implements OnInit {
   fileChanged = false;
   fileList: FileList;
 
-  constructor(private challengeService: ChallengeService, private categoryService: CategoryService,
-              private route: ActivatedRoute, private location: Location) { }
+  constructor(private challengeService: ChallengeService, private categoryService: CategoryService, private router: Router,
+              private route: ActivatedRoute, private location: Location, private messagesService: MessagesService) { }
 
   ngOnInit(): void {
     this.getCategories();
@@ -36,6 +39,11 @@ export class ChallengeDetailComponent implements OnInit {
           this.displayHint1 = (challenge.hint1 != null && challenge.hint1.description != null);
           this.displayHint2 = (challenge.hint2 != null && challenge.hint2.description != null);
           this.getChallenges();
+      },
+        error => {
+        if ((<Message>error).responseCode != null && (<Message>error).responseCode === NOT_FOUND) {
+          this.router.navigate(['/challenges']);
+        }
       });
   }
 
@@ -47,10 +55,10 @@ export class ChallengeDetailComponent implements OnInit {
     this.categoryService.getCategories().subscribe(categories => this.categories = categories);
   }
 
-  getChallenges():void {
+  getChallenges(): void {
     this.challengeService.getChallenges().subscribe(
       challenges => this.otherChallenges = challenges.filter(
-        challenge => challenge.id != this.challenge.id)
+        challenge => challenge.id !== this.challenge.id)
     );
   }
 
@@ -58,12 +66,27 @@ export class ChallengeDetailComponent implements OnInit {
     if ( isNullOrUndefined(this.fileList) && !this.fileChanged ) {
       if ( this.validateChallenge(this.challenge) ) {
         if ( isNullOrUndefined( this.challenge.id ) ) {
-          this.challengeService.create(this.challenge).subscribe(() => this.goBack());
+          this.challengeService.create(this.challenge).subscribe(() => {
+            this.goBack();
+            this.messagesService.sendMessage(new Message('Desafío creado correctamente', false));
+          },
+          () => {
+            this.messagesService.appendToMessage('No se pudo crear el desafío');
+          }
+        );
         } else {
-          this.challengeService.update(this.challenge).subscribe(() => this.goBack());
+          this.challengeService.update(this.challenge).subscribe(
+          () => {
+            this.goBack();
+            this.messagesService.sendMessage(new Message('Desafío actualizado correctamente', false));
+          },
+          () => {
+            this.messagesService.appendToMessage('No se pudo actualizar el desafío');
+          }
+        );
         }
       } else {
-        console.log("MOSTRAR MENSAJE");
+        this.messagesService.sendMessage(new Message('Debe completar todos los campos obligatorios', true));
       }
     } else {
       this.uploadFile();
