@@ -10,5 +10,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface ChallengeRepository extends JpaRepository<Challenge,Long> {
 	
  	public Collection<Challenge> findByIdNotIn(Collection<Long> challengeIds);
- 	
+
+	public Challenge findByAttachedFileUrl(String hashedFileName);
+
 }

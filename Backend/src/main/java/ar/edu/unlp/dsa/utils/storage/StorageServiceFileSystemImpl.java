@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 
 /**
  * Created by axelcb on 15/3/17.
@@ -35,16 +36,15 @@ public class StorageServiceFileSystemImpl implements StorageService {
 
     @Override
     public Resource loadAsResource(String fileName) {
-        String hashedFileName = this.hashStringMD5(fileName);
-        Resource file = new FileSystemResource(this.getConfigurations().getStorageRootPath()+hashedFileName);
+        Resource file = new FileSystemResource(this.getConfigurations().getStorageRootPath()+fileName);
         return file;
     }
 
     @Override
     public String store(MultipartFile multipartfile) throws IOException {
-        String hashedFileName = this.hashStringMD5(multipartfile.getOriginalFilename());
+        String hashedFileName = this.hashStringMD5(multipartfile.getOriginalFilename()+new Date().getTime());
         multipartfile.transferTo(new File(this.getConfigurations().getStorageRootPath()+hashedFileName));
-        return this.getConfigurations().getStorageRootPath()+hashedFileName;
+        return hashedFileName;
     }
 
     @Override

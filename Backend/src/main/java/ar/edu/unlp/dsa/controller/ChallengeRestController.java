@@ -132,8 +132,8 @@ public class ChallengeRestController {
 		if((challenge.getAttachedFileUrl() != null && !challenge.getAttachedFileUrl().isEmpty() && input.getAttachedFileUrl() == null)
 				||(challenge.getAttachedFileUrl() != null && input.getAttachedFileUrl() != null   && !challenge.getAttachedFileUrl().equals(input.getAttachedFileUrl()))){
 			try {
-				String[] attachedFileUrlSplitted = challenge.getAttachedFileUrl().split("/");
-				if (!this.storageService.remove(attachedFileUrlSplitted[attachedFileUrlSplitted.length-1])){
+				if (!this.storageService.remove(challenge.getAttachedFileUrl())){
+					System.out.println("Could not delete the previously attached file");
 					return new ResponseEntity<>(null, null, HttpStatus.INTERNAL_SERVER_ERROR);
 				}
 			} catch (Exception e) {
@@ -154,8 +154,7 @@ public class ChallengeRestController {
 
 	@CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
 	@RequestMapping(method = RequestMethod.POST)
-	ResponseEntity<?> add(@RequestBody Challenge input) {
-		// Todo file upload
+	public ResponseEntity<?> add(@RequestBody Challenge input) {
 		validateCategory(input.getCategory());
 		validateChallenge(input.getNextChallenge());
 		if(input.getHint1() != null) {
@@ -215,16 +214,17 @@ public class ChallengeRestController {
 	public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
 
 		Resource file = storageService.loadAsResource(filename);
+		Challenge challenge = challengeRepository.findByAttachedFileUrl(filename);
 		return ResponseEntity
 				.ok()
-				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\""+file.getFilename()+"\"")
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\""+challenge.getFileName()+"\"")
 				.body(file);
 	}
 
 	@CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
 	@PostMapping("/files")
 	public ResponseEntity<String> handleFileUpload(@RequestParam("uploadFile") MultipartFile file,
-								   RedirectAttributes redirectAttributes) {
+																	RedirectAttributes redirectAttributes) {
 		String uploadedFilePath;
 		try {
 			uploadedFilePath = storageService.store(file);
@@ -235,7 +235,7 @@ public class ChallengeRestController {
 		} catch(IOException ioException){
 			System.out.println("could not store file!");
 			ioException.printStackTrace();
-			return new ResponseEntity<String>(null,null,HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<>(null,null,HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return ResponseEntity.ok().body(uploadedFilePath);
 	}

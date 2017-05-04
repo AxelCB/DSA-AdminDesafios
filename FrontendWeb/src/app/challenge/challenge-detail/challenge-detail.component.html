@@ -125,7 +125,7 @@
       <span>{{ challenge.fileName }} </span> <button class="btn btn-danger" (click)="deleteFile()"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
     </div>
   </div>
-  <div class="form-group">
+  <div class="form-group" *ngIf="!challenge.fileName || !challenge.attachedFileUrl">
     <label class="col-sm-2 control-label">Adjuntar Archivo:</label>
     <div class="col-sm-8">
       <input class="form-control one-field" placeholder="Ingrese el archivo adjunto"
