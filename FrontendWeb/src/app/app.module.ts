@@ -14,6 +14,7 @@ import { ConfigurationListComponent } from './configuration/configuration-list/c
 import { ConfigurationDetailComponent } from './configuration/configuration-detail/configuration-detail.component';
 import { AlertMessagesComponent } from './alert-messages/alert-messages.component';
 import {MessagesService} from './alert-messages/alert-messages.service';
+import { AuthLoginComponentComponent } from './auth/auth-login-component/auth-login-component.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {MessagesService} from './alert-messages/alert-messages.service';
     ChallengeDetailComponent,
     ConfigurationListComponent,
     ConfigurationDetailComponent,
-    AlertMessagesComponent
+    AlertMessagesComponent,
+    AuthLoginComponentComponent
   ],
   imports: [
     BrowserModule,
