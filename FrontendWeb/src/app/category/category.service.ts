@@ -15,7 +15,7 @@ import {INTERNAL_SERVER_ERROR, NOT_FOUND} from 'http-status-codes';
 @Injectable()
 export class CategoryService {
 
-  constructor(private http: Http,  private messagesService: MessagesService) { }
+  constructor(private http: Http, private messagesService: MessagesService) { }
 
   getCategories(): Observable<Category[]> {
       return this.http.get(environment.backendUrl  + '/categories')
