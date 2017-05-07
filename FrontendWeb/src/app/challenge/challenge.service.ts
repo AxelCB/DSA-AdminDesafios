@@ -4,14 +4,15 @@ import {Observable} from 'rxjs';
 import {Challenge} from './challenge';
 import {environment} from '../../environments/environment';
 import {MessagesService} from '../alert-messages/alert-messages.service';
-import {INTERNAL_SERVER_ERROR, NOT_FOUND} from 'http-status-codes';
+import {FORBIDDEN, INTERNAL_SERVER_ERROR, NOT_FOUND, UNAUTHORIZED} from 'http-status-codes';
 import {Message} from '../alert-messages/message';
 import {AuthService} from '../auth/auth.service';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class ChallengeService {
 
-  constructor(private http: Http, private messagesService: MessagesService, private authService: AuthService) { }
+  constructor(private http: Http, private messagesService: MessagesService, private authService: AuthService, private router: Router) { }
 
   getChallenges(): Observable<Challenge[]> {
     let headers = new Headers({ 'Authorization': this.authService.getToken()});
@@ -70,6 +71,15 @@ export class ChallengeService {
           errorMessage.content = 'Ha ocurrido un error inesperado. Intente nuevamente más tarde, o vuelva al inicio';
           break;
         }
+        case UNAUTHORIZED:
+        case FORBIDDEN:
+          if (this.authService.getToken() != null) {
+            this.authService.logout().subscribe();
+          } else {
+            localStorage.removeItem('loggedUser');
+            this.router.navigate(['/login']);
+          }
+          break;
       }
     } else {
       errorMessage.content = error.message ? error.message : error.toString();

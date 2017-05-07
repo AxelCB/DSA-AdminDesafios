@@ -5,13 +5,14 @@ import {Configuration} from './configuration';
 import {environment} from '../../environments/environment';
 import {MessagesService} from '../alert-messages/alert-messages.service';
 import {Message} from '../alert-messages/message';
-import {INTERNAL_SERVER_ERROR, NOT_FOUND} from 'http-status-codes';
+import {FORBIDDEN, INTERNAL_SERVER_ERROR, NOT_FOUND, UNAUTHORIZED} from 'http-status-codes';
 import {AuthService} from '../auth/auth.service';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class ConfigurationService {
 
-  constructor(private messagesService: MessagesService, private http: Http, private authService: AuthService) { }
+  constructor(private messagesService: MessagesService, private http: Http, private authService: AuthService, private router: Router) { }
 
   getConfigurations(): Observable<Configuration[]> {
     let headers = new Headers({ 'Authorization': this.authService.getToken()});
@@ -56,6 +57,15 @@ export class ConfigurationService {
           errorMessage.content = 'Ha ocurrido un error inesperado. Intente nuevamente más tarde, o vuelva al inicio';
           break;
         }
+        case UNAUTHORIZED:
+        case FORBIDDEN:
+          if (this.authService.getToken() != null) {
+            this.authService.logout().subscribe();
+          } else {
+            localStorage.removeItem('loggedUser');
+            this.router.navigate(['/login']);
+          }
+          break;
       }
     } else {
       errorMessage.content = error.message ? error.message : error.toString();

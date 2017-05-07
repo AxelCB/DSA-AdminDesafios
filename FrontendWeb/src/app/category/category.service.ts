@@ -10,13 +10,14 @@ import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs';
 import {MessagesService} from '../alert-messages/alert-messages.service';
 import {Message} from '../alert-messages/message';
-import {INTERNAL_SERVER_ERROR, NOT_FOUND} from 'http-status-codes';
+import {FORBIDDEN, INTERNAL_SERVER_ERROR, NOT_FOUND, UNAUTHORIZED} from 'http-status-codes';
 import {AuthService} from '../auth/auth.service';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class CategoryService {
 
-  constructor(private http: Http, private messagesService: MessagesService, private authService: AuthService) { }
+  constructor(private http: Http, private messagesService: MessagesService, private authService: AuthService, private router: Router) { }
 
   getCategories(): Observable<Category[]> {
       let headers = new Headers({ 'Authorization': this.authService.getToken()});
@@ -75,6 +76,15 @@ export class CategoryService {
           errorMessage.content = 'Ha ocurrido un error inesperado. Intente nuevamente más tarde, o vuelva al inicio';
           break;
         }
+        case UNAUTHORIZED:
+        case FORBIDDEN:
+          if (this.authService.getToken() != null) {
+            this.authService.logout().subscribe();
+          } else {
+            localStorage.removeItem('loggedUser');
+            this.router.navigate(['/login']);
+          }
+          break;
       }
     } else {
       errorMessage.content = error.message ? error.message : error.toString();
