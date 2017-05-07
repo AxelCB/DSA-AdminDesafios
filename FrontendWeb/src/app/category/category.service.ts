@@ -11,21 +11,26 @@ import {Observable} from 'rxjs';
 import {MessagesService} from '../alert-messages/alert-messages.service';
 import {Message} from '../alert-messages/message';
 import {INTERNAL_SERVER_ERROR, NOT_FOUND} from 'http-status-codes';
+import {AuthService} from '../auth/auth.service';
 
 @Injectable()
 export class CategoryService {
 
-  constructor(private http: Http, private messagesService: MessagesService) { }
+  constructor(private http: Http, private messagesService: MessagesService, private authService: AuthService) { }
 
   getCategories(): Observable<Category[]> {
-      return this.http.get(environment.backendUrl  + '/categories')
+      let headers = new Headers({ 'Authorization': this.authService.getToken()});
+      let options = new RequestOptions({ headers: headers });
+      return this.http.get(environment.backendUrl  + '/categories', options)
                   .map(response => response.json() as Category[])
                   .catch((error) => this.handleError(error, this.messagesService));
   }
 
   getCategory(id: number): Observable<Category> {
+    let headers = new Headers({ 'Authorization': this.authService.getToken()});
+    let options = new RequestOptions({ headers: headers });
       if (! isNaN(id)) {
-          return this.http.get(environment.backendUrl + '/categories/'  + id)
+          return this.http.get(environment.backendUrl + '/categories/'  + id, options)
               .map(response => response.json() as Category)
               .catch((error) => this.handleError(error, this.messagesService));
       } else {
@@ -35,21 +40,21 @@ export class CategoryService {
   }
 
   update(category: Category): Observable<Category> {
-      let headers = new Headers({ 'Content-Type': 'application/json' });
+      let headers = new Headers({ 'Content-Type': 'application/json', 'Authorization': this.authService.getToken() });
       let options = new RequestOptions({ headers: headers });
       return this.http.put(environment.backendUrl + '/categories/' + category.id, JSON.stringify(category), options)
           .catch((error) => this.handleError(error, this.messagesService));
   }
 
   delete(category: Category): Observable<Category> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let headers = new Headers({ 'Content-Type': 'application/json', 'Authorization': this.authService.getToken() });
     let options = new RequestOptions({ headers: headers });
     return this.http.delete(environment.backendUrl + '/categories/' + category.id, options)
       .catch((error) => this.handleError(error, this.messagesService));
   }
 
   create(category: Category): Observable<Category> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let headers = new Headers({ 'Content-Type': 'application/json', 'Authorization': this.authService.getToken() });
     let options = new RequestOptions({ headers: headers });
     return this.http.post(environment.backendUrl + '/categories/', JSON.stringify(category), options)
         .catch((error) => this.handleError(error, this.messagesService));
@@ -58,7 +63,7 @@ export class CategoryService {
   private handleError (error: Response | any, messagesService: MessagesService) {
     let errorMessage = new Message();
     errorMessage.isError = true;
-    if (error instanceof Response) {
+    if ((<Response>error).status != null) {
       let responseError = <Response>error;
       errorMessage.responseCode = responseError.status;
       switch (responseError.status) {

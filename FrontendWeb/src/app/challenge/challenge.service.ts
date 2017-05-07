@@ -6,21 +6,26 @@ import {environment} from '../../environments/environment';
 import {MessagesService} from '../alert-messages/alert-messages.service';
 import {INTERNAL_SERVER_ERROR, NOT_FOUND} from 'http-status-codes';
 import {Message} from '../alert-messages/message';
+import {AuthService} from '../auth/auth.service';
 
 @Injectable()
 export class ChallengeService {
 
-  constructor(private http: Http, private messagesService: MessagesService) { }
+  constructor(private http: Http, private messagesService: MessagesService, private authService: AuthService) { }
 
   getChallenges(): Observable<Challenge[]> {
-    return this.http.get(environment.backendUrl + '/challenges')
+    let headers = new Headers({ 'Authorization': this.authService.getToken()});
+    let options = new RequestOptions({ headers: headers });
+    return this.http.get(environment.backendUrl + '/challenges', options)
       .map(response => response.json() as Challenge[])
       .catch((error) => this.handleError(error, this.messagesService));
   }
 
   getChallenge(id: number): Observable<Challenge> {
     if (! isNaN(id)) {
-      return this.http.get(environment.backendUrl + '/challenges/' + id)
+      let headers = new Headers({ 'Authorization': this.authService.getToken()});
+      let options = new RequestOptions({ headers: headers });
+      return this.http.get(environment.backendUrl + '/challenges/' + id, options)
         .map(response => response.json() as Challenge)
         .catch((error) => this.handleError(error, this.messagesService));
     } else {
@@ -30,21 +35,21 @@ export class ChallengeService {
   }
 
   update(challenge: Challenge): Observable<Challenge> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let headers = new Headers({ 'Content-Type': 'application/json', 'Authorization': this.authService.getToken() });
     let options = new RequestOptions({ headers: headers });
     return this.http.put(environment.backendUrl + '/challenges/' + challenge.id, JSON.stringify(challenge), options)
       .catch((error) => this.handleError(error, this.messagesService));
   }
 
   create(challenge: Challenge): Observable<Challenge> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let headers = new Headers({ 'Content-Type': 'application/json', 'Authorization': this.authService.getToken() });
     let options = new RequestOptions({ headers: headers });
     return this.http.post(environment.backendUrl + '/challenges/', JSON.stringify(challenge), options)
       .catch((error) => this.handleError(error, this.messagesService));
   }
 
   delete(challenge: Challenge): Observable<Challenge> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let headers = new Headers({ 'Content-Type': 'application/json', 'Authorization': this.authService.getToken() });
     let options = new RequestOptions({ headers: headers });
     return this.http.delete(environment.backendUrl + '/challenges/' + challenge.id, options)
       .catch((error) => this.handleError(error, this.messagesService));
@@ -53,7 +58,7 @@ export class ChallengeService {
   private handleError (error: Response | any, messagesService: MessagesService) {
     let errorMessage = new Message();
     errorMessage.isError = true;
-    if (error instanceof Response) {
+    if ((<Response>error).status != null) {
       let responseError = <Response>error;
       errorMessage.responseCode = responseError.status;
       switch (responseError.status) {

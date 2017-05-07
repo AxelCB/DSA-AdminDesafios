@@ -6,21 +6,26 @@ import {environment} from '../../environments/environment';
 import {MessagesService} from '../alert-messages/alert-messages.service';
 import {Message} from '../alert-messages/message';
 import {INTERNAL_SERVER_ERROR, NOT_FOUND} from 'http-status-codes';
+import {AuthService} from '../auth/auth.service';
 
 @Injectable()
 export class ConfigurationService {
 
-  constructor(private messagesService: MessagesService, private http: Http) { }
+  constructor(private messagesService: MessagesService, private http: Http, private authService: AuthService) { }
 
   getConfigurations(): Observable<Configuration[]> {
-    return this.http.get(environment.backendUrl + '/configurations')
+    let headers = new Headers({ 'Authorization': this.authService.getToken()});
+    let options = new RequestOptions({ headers: headers });
+    return this.http.get(environment.backendUrl + '/configurations', options)
       .map(response => response.json() as Configuration[])
       .catch((error) => this.handleError(error, this.messagesService));
   }
 
   getConfiguration(id: number): Observable<Configuration> {
     if (! isNaN(id)) {
-      return this.http.get(environment.backendUrl + '/configurations/' + id)
+      let headers = new Headers({ 'Authorization': this.authService.getToken()});
+      let options = new RequestOptions({ headers: headers });
+      return this.http.get(environment.backendUrl + '/configurations/' + id, options)
         .map(response => response.json() as Configuration)
         .catch((error) => this.handleError(error, this.messagesService));
     } else {
@@ -30,7 +35,7 @@ export class ConfigurationService {
   }
 
   update(configuration: Configuration): Observable<Configuration> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let headers = new Headers({ 'Content-Type': 'application/json', 'Authorization': this.authService.getToken() });
     let options = new RequestOptions({ headers: headers });
     return this.http.put(environment.backendUrl + '/configurations/' + configuration.id, JSON.stringify(configuration), options)
       .catch((error) => this.handleError(error, this.messagesService));
@@ -39,7 +44,7 @@ export class ConfigurationService {
   private handleError (error: Response | any, messagesService: MessagesService) {
     let errorMessage = new Message();
     errorMessage.isError = true;
-    if (error instanceof Response) {
+    if ((<Response>error).status != null) {
       let responseError = <Response>error;
       errorMessage.responseCode = responseError.status;
       switch (responseError.status) {
