@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MessagesService} from './alert-messages/alert-messages.service';
 import {AlertMessagesComponent} from './alert-messages/alert-messages.component';
 import {AuthService} from './auth/auth.service';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Component({
   moduleId: module.id,
