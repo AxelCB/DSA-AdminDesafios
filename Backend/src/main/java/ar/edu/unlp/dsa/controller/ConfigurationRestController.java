@@ -1,6 +1,9 @@
 package ar.edu.unlp.dsa.controller;
 
 import java.util.Collection;
+
+import ar.edu.unlp.dsa.repository.PlayerRepository;
+import ar.edu.unlp.dsa.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +18,12 @@ import ar.edu.unlp.dsa.repository.ConfigurationRepository;
 @RequestMapping(Application.API_PREFIX + "/configurations")
 public class ConfigurationRestController {
 	private final ConfigurationRepository configurationRepository;
+	private final PlayerRepository playerRepository;
 
 	@Autowired
-	ConfigurationRestController(ConfigurationRepository configurationRepository) {
+	ConfigurationRestController(ConfigurationRepository configurationRepository, PlayerRepository playerRepository) {
 		this.configurationRepository = configurationRepository;
+		this.playerRepository = playerRepository;
 	}
 
 	@CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
@@ -54,10 +59,10 @@ public class ConfigurationRestController {
 	public ResponseEntity<?> newGame(@PathVariable String gameId) {
 		Configuration configuration = this.getConfigurationRepository().findByName("id_juego");
 		if (configuration == null) {
-			throw new ConfigurationNotFoundException(1L);
+			throw new ConfigurationNotFoundException(0L);
 		}
 		configuration.setValue(gameId);
-		//TODO: delete all teams (cascade)
+		playerRepository.deleteAll();
 		//TODO: call Users Module for new teams
 		//TODO: save new teams and users
 		this.getConfigurationRepository().save(configuration);

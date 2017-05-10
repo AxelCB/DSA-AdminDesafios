@@ -14,10 +14,10 @@ public class Team {
 	@Column(nullable = false)
 	private String name;
 
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.REMOVE)
 	private List<Hint> usedHints;
 
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.REMOVE)
 	private List<SolvedChallenge> solvedChallenges;
 
 	public Long getId() {
