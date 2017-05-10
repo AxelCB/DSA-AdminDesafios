@@ -79,6 +79,7 @@ export class ChallengeService {
             localStorage.removeItem('loggedUser');
             this.router.navigate(['/login']);
           }
+          this.messagesService.sendMessage(new Message("Su sesión ha caducado, inicie sesión nuevamente.",true));
           break;
       }
     } else {
