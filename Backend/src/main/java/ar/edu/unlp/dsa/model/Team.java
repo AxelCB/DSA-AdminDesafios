@@ -11,6 +11,13 @@ public class Team {
 	@SequenceGenerator(name="team_id_seq", sequenceName="team_id_seq", allocationSize=1)
 	private Long id;
 
+	/**
+	 * Original id provided by Users Module
+	 * As id variable is managed by hibernate, team_id keeps the original one.
+	 * It's used only for input and output (not identification or joins)
+	 */
+	private Long team_id;
+
 	@Column(nullable = false)
 	private String name;
 
@@ -26,6 +33,14 @@ public class Team {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public Long getTeam_id() {
+		return team_id;
+	}
+
+	public void setTeam_id(Long team_id) {
+		this.team_id = team_id;
 	}
 
 	public String getName() {

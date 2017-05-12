@@ -80,7 +80,7 @@ public class ConfigurationRestController {
 		ArrayList<EquipoDTO> equipos = teams.getEquipos();
 		for (EquipoDTO equipo: equipos) {
 			Team team = this.getMapper().map(equipo, Team.class);
-			team = this.getTeamRepository().save(team); //team ids provided are ignored and lost
+			team = this.getTeamRepository().save(team);
 			for (UsuarioDTO usuario : equipo.getUsuarios()) {
 				Player player = this.getMapper().map(usuario, Player.class);
 				player.setTeam(team);

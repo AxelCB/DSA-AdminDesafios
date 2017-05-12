@@ -74,7 +74,7 @@ public class PlayerRestController {
 		AvailableChallengesListDTO result = new AvailableChallengesListDTO();
 		result.setDate(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
 		result.setId_juego(this.getConfigurationRepository().findByName("id_juego").getValue());
-		result.setId_equipo(player.getTeam().getId());
+		result.setId_equipo(player.getTeam().getTeam_id());
 		result.setId_usuario(player.getId());
 		Collection<SolvedChallenge> solvedChallenges = player.getTeam().getSolvedChallenges();
 		Collection<Challenge> challenges;
@@ -137,7 +137,7 @@ public class PlayerRestController {
 	private void prepareStatus(Player player, Challenge challenge, ChallengeStatusDTO result) {
 		result.setDate(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
 		result.setId_juego(this.getConfigurationRepository().findByName("id_juego").getValue());
-		result.setId_equipo(player.getTeam().getId());
+		result.setId_equipo(player.getTeam().getTeam_id());
 		result.setId_usuario(player.getId());
 		result.setId_desafio(challenge.getId());
 		result.setTitulo(challenge.getTitle());
@@ -161,7 +161,7 @@ public class PlayerRestController {
 		CheckAnswerResponseDTO result = new CheckAnswerResponseDTO();
 		result.setDate(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
 		result.setId_juego(this.getConfigurationRepository().findByName("id_juego").getValue());
-		result.setId_equipo(player.getTeam().getId());
+		result.setId_equipo(player.getTeam().getTeam_id());
 		result.setId_usuario(player.getId());
 		result.setId_desafio(challenge.getId());
 		if(challenge.getValidAnswer().equals(answer)){
@@ -227,7 +227,7 @@ public class PlayerRestController {
 		HintStatusDTO result = new HintStatusDTO();
 		result.setDate(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
 		result.setId_juego(this.getConfigurationRepository().findByName("id_juego").getValue());
-		result.setId_equipo(player.getTeam().getId());
+		result.setId_equipo(player.getTeam().getTeam_id());
 		result.setId_usuario(player.getId());
 		result.setId_hint(hint.getId());
 		result.setDescripcion(hint.getDescription());
@@ -251,7 +251,7 @@ public class PlayerRestController {
 		SolvedChallengeListDTO result = new SolvedChallengeListDTO();
 		result.setDate(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
 		result.setId_juego(this.getConfigurationRepository().findByName("id_juego").getValue());
-		result.setId_equipo(player.getTeam().getId());
+		result.setId_equipo(player.getTeam().getTeam_id());
 		result.setId_usuario(player.getId());
 		Collection<SolvedChallenge> solvedChallenges = player.getTeam().getSolvedChallenges();
 		Collection<SolvedChallengeDTO> desafiosResueltos = new ArrayList<>();
