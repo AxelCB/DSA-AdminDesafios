@@ -76,7 +76,8 @@ public class ConfigurationRestController {
 		configuration.setValue(gameId);
 		this.getPlayerRepository().deleteAll();
 		RestTemplate restTemplate = new RestTemplate();
-		TeamListDTO teams = restTemplate.getForObject("http://localhost/equipos.json", TeamListDTO.class);
+		String teamsImportUrl = "http://localhost:"+Application.USER_ADMIN_PORT+"/listado_de_equipos_y_usuarios";
+		TeamListDTO teams = restTemplate.getForObject(teamsImportUrl, TeamListDTO.class);
 		ArrayList<EquipoDTO> equipos = teams.getEquipos();
 		for (EquipoDTO equipo: equipos) {
 			Team team = this.getMapper().map(equipo, Team.class);
@@ -87,8 +88,6 @@ public class ConfigurationRestController {
 				this.getPlayerRepository().save(player);
 			}
 		}
-		//fixme: as sequences don't reset with deletion, I can't match the team with its players by id.
-		//should reset the sequences?
 		this.getConfigurationRepository().save(configuration);
 		return new ResponseEntity<>(null, null, HttpStatus.NO_CONTENT);
 	}
