@@ -21,7 +21,7 @@ public class Player {
 
     private String username;
 
-    @ManyToOne(cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
+    @ManyToOne(cascade = CascadeType.REMOVE)
     private Team team;
 
     public Long getId() {
