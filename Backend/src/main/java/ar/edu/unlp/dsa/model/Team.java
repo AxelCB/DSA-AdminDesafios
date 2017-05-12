@@ -13,10 +13,10 @@ public class Team {
 
 	/**
 	 * Original id provided by Users Module
-	 * As id variable is managed by hibernate, team_id keeps the original one.
+	 * As id variable is managed by hibernate, teamId keeps the original one.
 	 * It's used only for input and output (not identification or joins)
 	 */
-	private Long team_id;
+	private Long teamId;
 
 	@Column(nullable = false)
 	private String name;
@@ -35,12 +35,12 @@ public class Team {
 		this.id = id;
 	}
 
-	public Long getTeam_id() {
-		return team_id;
+	public Long getTeamId() {
+		return teamId;
 	}
 
-	public void setTeam_id(Long team_id) {
-		this.team_id = team_id;
+	public void setTeamId(Long teamId) {
+		this.teamId = teamId;
 	}
 
 	public String getName() {

@@ -75,7 +75,7 @@
         <class-b>ar.edu.unlp.dsa.model.Player</class-b>
         <field>
             <a>id_usuario</a>
-            <b>id</b>
+            <b>playerId</b>
         </field>
         <field>
             <a>nombreDeUsuario</a>
@@ -88,7 +88,7 @@
         <class-b>ar.edu.unlp.dsa.model.Team</class-b>
         <field>
             <a>id_team</a>
-            <b>team_id</b>
+            <b>teamId</b>
         </field>
         <field>
             <a>nombre_team</a>
