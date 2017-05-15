@@ -10,7 +10,6 @@ import ar.edu.unlp.dsa.exception.HintNotFoundException;
 import ar.edu.unlp.dsa.model.*;
 import ar.edu.unlp.dsa.repository.*;
 import ar.edu.unlp.dsa.utils.DozerUtils;
-import org.apache.commons.collections.map.HashedMap;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -64,18 +63,18 @@ public class PlayerRestController {
 		return mapper;
 	}
 
-	@CrossOrigin(origins = "http://localhost:"+Application.USER_ADMIN_PORT)
+	@CrossOrigin(origins = Application.USER_ADMIN_URL)
 	@RequestMapping(value = "/{playerId}/challenges", method = RequestMethod.GET)
 	public AvailableChallengesListDTO getAvailableChallenges(@PathVariable Long playerId) {
-		Player player = this.getPlayerRepository().findOne(playerId);
+		Player player = this.getPlayerRepository().findByPlayerId(playerId);
 		if (player == null) {
 			throw new PlayerNotFoundException(playerId);
 		}
 		AvailableChallengesListDTO result = new AvailableChallengesListDTO();
 		result.setDate(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
 		result.setId_juego(this.getConfigurationRepository().findByName("id_juego").getValue());
-		result.setId_equipo(player.getTeam().getId());
-		result.setId_usuario(player.getId());
+		result.setId_equipo(player.getTeam().getTeamId());
+		result.setId_usuario(playerId);
 		Collection<SolvedChallenge> solvedChallenges = player.getTeam().getSolvedChallenges();
 		Collection<Challenge> challenges;
 		if (solvedChallenges.size() == 0) {
@@ -91,10 +90,10 @@ public class PlayerRestController {
 		return result;
 	}
 
-	@CrossOrigin(origins = "http://localhost:"+Application.USER_ADMIN_PORT)
+	@CrossOrigin(origins = Application.USER_ADMIN_URL)
 	@RequestMapping(value = "/{playerId}/challenges/{challengeId}", method = RequestMethod.GET)
 	public ChallengeStatusDTO getChallengeStatus(@PathVariable Long playerId, @PathVariable Long challengeId) {
-		Player player = this.getPlayerRepository().findOne(playerId);
+		Player player = this.getPlayerRepository().findByPlayerId(playerId);
 		if (player == null) {
 			throw new PlayerNotFoundException(playerId);
 		}
@@ -112,14 +111,14 @@ public class PlayerRestController {
 		}
 		if (solved != null) {
 			ChallengeStatusSolvedDTO result = new ChallengeStatusSolvedDTO();
-			prepareStatus(player, challenge, result);
+			prepareStatus(player, challenge, result, playerId);
 			result.setEstado("resuelto");
-			result.setQuien_resolvio(solved.getSolver().getId());
+			result.setQuien_resolvio(solved.getSolver().getPlayerId());
 			result.setPuntaje_obtenido(solved.getObtainedScore());
 			return result;
 		} else {
 			ChallengeStatusPendingDTO result = new ChallengeStatusPendingDTO();
-			prepareStatus(player, challenge, result);
+			prepareStatus(player, challenge, result, playerId);
 			Hint hint1 = challenge.getHint1();
 			if (hint1 != null){
 				result.setHint1(this.prepareHint(hint1, player.getTeam()));
@@ -134,11 +133,11 @@ public class PlayerRestController {
 		}
 	}
 
-	private void prepareStatus(Player player, Challenge challenge, ChallengeStatusDTO result) {
+	private void prepareStatus(Player player, Challenge challenge, ChallengeStatusDTO result, Long playerId) {
 		result.setDate(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
 		result.setId_juego(this.getConfigurationRepository().findByName("id_juego").getValue());
-		result.setId_equipo(player.getTeam().getId());
-		result.setId_usuario(player.getId());
+		result.setId_equipo(player.getTeam().getTeamId());
+		result.setId_usuario(playerId);
 		result.setId_desafio(challenge.getId());
 		result.setTitulo(challenge.getTitle());
 		result.setCategoria(challenge.getCategory().getName());
@@ -146,10 +145,10 @@ public class PlayerRestController {
 		result.setDescripcion(challenge.getDescription());
 	}
 
-	@CrossOrigin(origins = "http://localhost:"+Application.USER_ADMIN_PORT)
+	@CrossOrigin(origins = Application.USER_ADMIN_URL)
 	@RequestMapping(value = "/{playerId}/challenges/{challengeId}/{answer}", method = RequestMethod.POST)
 	ResponseEntity<?> checkAnswer(@PathVariable Long playerId, @PathVariable Long challengeId, @PathVariable String answer) {
-		Player player = this.getPlayerRepository().findOne(playerId);
+		Player player = this.getPlayerRepository().findByPlayerId(playerId);
 		if (player == null) {
 			throw new PlayerNotFoundException(playerId);
 		}
@@ -161,14 +160,14 @@ public class PlayerRestController {
 		CheckAnswerResponseDTO result = new CheckAnswerResponseDTO();
 		result.setDate(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
 		result.setId_juego(this.getConfigurationRepository().findByName("id_juego").getValue());
-		result.setId_equipo(player.getTeam().getId());
-		result.setId_usuario(player.getId());
+		result.setId_equipo(player.getTeam().getTeamId());
+		result.setId_usuario(playerId);
 		result.setId_desafio(challenge.getId());
 		if(challenge.getValidAnswer().equals(answer)){
 			String progressive = this.getConfigurationRepository().findByName("progressive").getValue();
 			if (progressive.equals("true") && challenge.getNextChallenge() != null) {
 				httpHeaders.add("Link",
-						"<http://localhost:" + Application.BACKEND_PORT + "/player/" + playerId + "/challenges/"
+						"<" + Application.BACKEND_URL + "/player/" + playerId + "/challenges/"
 								+ challenge.getNextChallenge().getId() + ">;rel=\"next\"");
 			}
 
@@ -215,7 +214,7 @@ public class PlayerRestController {
 
 	@RequestMapping(value = "/{playerId}/hint/{hintId}", method = RequestMethod.POST)
 	ResponseEntity<?> getHint(@PathVariable Long playerId, @PathVariable Long hintId) {
-		Player player = this.getPlayerRepository().findOne(playerId);
+		Player player = this.getPlayerRepository().findByPlayerId(playerId);
 		if (player == null) {
 			throw new PlayerNotFoundException(playerId);
 		}
@@ -227,8 +226,8 @@ public class PlayerRestController {
 		HintStatusDTO result = new HintStatusDTO();
 		result.setDate(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
 		result.setId_juego(this.getConfigurationRepository().findByName("id_juego").getValue());
-		result.setId_equipo(player.getTeam().getId());
-		result.setId_usuario(player.getId());
+		result.setId_equipo(player.getTeam().getTeamId());
+		result.setId_usuario(playerId);
 		result.setId_hint(hint.getId());
 		result.setDescripcion(hint.getDescription());
 		result.setPorcentaje(hint.getPointsPercentageCost());
@@ -241,18 +240,18 @@ public class PlayerRestController {
 		}
 	}
 
-	@CrossOrigin(origins = "http://localhost:"+Application.SCOREBOARD_PORT)
+	@CrossOrigin(origins = Application.SCOREBOARD_URL)
 	@RequestMapping(value = "/{playerId}/team-score", method = RequestMethod.GET)
 	public SolvedChallengeListDTO getTeamStatus(@PathVariable Long playerId) {
-		Player player = this.getPlayerRepository().findOne(playerId);
+		Player player = this.getPlayerRepository().findByPlayerId(playerId);
 		if (player == null) {
 			throw new PlayerNotFoundException(playerId);
 		}
 		SolvedChallengeListDTO result = new SolvedChallengeListDTO();
 		result.setDate(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
 		result.setId_juego(this.getConfigurationRepository().findByName("id_juego").getValue());
-		result.setId_equipo(player.getTeam().getId());
-		result.setId_usuario(player.getId());
+		result.setId_equipo(player.getTeam().getTeamId());
+		result.setId_usuario(playerId);
 		Collection<SolvedChallenge> solvedChallenges = player.getTeam().getSolvedChallenges();
 		Collection<SolvedChallengeDTO> desafiosResueltos = new ArrayList<>();
 		for (SolvedChallenge source : solvedChallenges) {

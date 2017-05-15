@@ -1,7 +1,6 @@
 package ar.edu.unlp.dsa.controller;
 
 import java.util.Collection;
-import java.util.List;
 
 import ar.edu.unlp.dsa.dto.ChallengeDTO;
 import ar.edu.unlp.dsa.utils.DozerUtils;
@@ -44,13 +43,13 @@ public class ChallengeRestController {
 		this.mapper = mapper;
 	}
 
-	@CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
+	@CrossOrigin(origins = Application.FRONTEND_URL)
 	@RequestMapping(method = RequestMethod.GET, value="/desafios")
 	public Collection<ChallengeDTO> listDesafios() {
 		return DozerUtils.map(this.mapper,this.getChallengeRepository().findAll(),ChallengeDTO.class);
 	}
 
-	@CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
+	@CrossOrigin(origins = Application.FRONTEND_URL)
 	@RequestMapping(value = "/{challengeId}", method = RequestMethod.GET)
 	public Challenge getChallenge(@PathVariable Long challengeId) {
 		Challenge challenge = this.getChallengeRepository().findOne(challengeId);
@@ -60,7 +59,7 @@ public class ChallengeRestController {
 		return challenge;
 	}
 
-	@CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
+	@CrossOrigin(origins = Application.FRONTEND_URL)
 	@RequestMapping(value = "/{challengeId}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deleteChallenge(@PathVariable Long challengeId) {
 		Challenge challenge = this.getChallengeRepository().findOne(challengeId);
@@ -73,13 +72,13 @@ public class ChallengeRestController {
 		return new ResponseEntity<>(null, httpHeaders, HttpStatus.NO_CONTENT);
 	}
 
-	@CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
+	@CrossOrigin(origins = Application.FRONTEND_URL)
 	@RequestMapping(method = RequestMethod.GET)
 	public Collection<Challenge> listChallenges() {
 		return this.getChallengeRepository().findAll();
 	}
 
-	@CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
+	@CrossOrigin(origins = Application.FRONTEND_URL)
 	@RequestMapping(value = "/{challengeId}", method = RequestMethod.PUT)
 	public ResponseEntity<?> updateChallenge(@RequestBody Challenge input, @PathVariable Long challengeId) {
 		Challenge challenge = this.getChallengeRepository().findOne(challengeId);
@@ -132,7 +131,7 @@ public class ChallengeRestController {
 		return new ResponseEntity<>(null, null, HttpStatus.NO_CONTENT);
 	}
 
-	@CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
+	@CrossOrigin(origins = Application.FRONTEND_URL)
 	@RequestMapping(method = RequestMethod.POST)
 	ResponseEntity<?> add(@RequestBody Challenge input) {
 		// Todo file upload

@@ -12,9 +12,16 @@ public class Player {
     @SequenceGenerator(name="player_id_seq", sequenceName="player_id_seq", allocationSize=1)
     private Long id;
 
+	/**
+	 * Original id provided by Users Module
+	 * As id variable is managed by hibernate, playerId keeps the original one.
+	 * It's used only for input and output (not identification or joins)
+	 */
+	private Long playerId;
+
     private String username;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     private Team team;
 
     public Long getId() {
@@ -25,7 +32,15 @@ public class Player {
         this.id = id;
     }
 
-    public String getUsername() {
+	public Long getPlayerId() {
+		return playerId;
+	}
+
+	public void setPlayerId(Long playerId) {
+		this.playerId = playerId;
+	}
+
+	public String getUsername() {
         return username;
     }
 

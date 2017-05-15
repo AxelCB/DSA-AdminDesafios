@@ -70,4 +70,31 @@
         </field>
     </mapping>
 
+    <mapping>
+        <class-a>ar.edu.unlp.dsa.dto.UsuarioDTO</class-a>
+        <class-b>ar.edu.unlp.dsa.model.Player</class-b>
+        <field>
+            <a>id_usuario</a>
+            <b>playerId</b>
+        </field>
+        <field>
+            <a>nombreDeUsuario</a>
+            <b>username</b>
+        </field>
+    </mapping>
+    
+    <mapping>
+        <class-a>ar.edu.unlp.dsa.dto.EquipoDTO</class-a>
+        <class-b>ar.edu.unlp.dsa.model.Team</class-b>
+        <field>
+            <a>id_team</a>
+            <b>teamId</b>
+        </field>
+        <field>
+            <a>nombre_team</a>
+            <b>name</b>
+        </field>
+    </mapping>
+
+
 </mappings>

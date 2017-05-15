@@ -14,7 +14,7 @@ import ar.edu.unlp.dsa.Application;
 @RequestMapping("/version")
 public class VersionRestController {
 
-	@CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
+	@CrossOrigin(origins = Application.FRONTEND_URL)
 	@RequestMapping(method = RequestMethod.GET)
     public String appVersion() {
         return "{ AppVersion : 0.1 }";
