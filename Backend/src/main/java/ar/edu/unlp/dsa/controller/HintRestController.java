@@ -26,7 +26,7 @@ public class HintRestController {
 		this.hintRepository = hintRepository;
 	}
 
-	@CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
+	@CrossOrigin(origins = Application.FRONTEND_URL)
 	@RequestMapping(value = "/{hintId}", method = RequestMethod.GET)
     public Hint getHint(@PathVariable Long hintId) {
 		Hint hint = this.getHintRepository().findOne(hintId);
@@ -37,7 +37,7 @@ public class HintRestController {
     }
 
 	// TODO throws DataIntegrityViolationException
-	@CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
+	@CrossOrigin(origins = Application.FRONTEND_URL)
 	@RequestMapping(value = "/{hintId}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deleteHint(@PathVariable Long hintId) {
 		Hint hint = this.getHintRepository().findOne(hintId);
@@ -50,7 +50,7 @@ public class HintRestController {
 		return new ResponseEntity<>(null, httpHeaders, HttpStatus.NO_CONTENT);
 	}
 
-	@CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
+	@CrossOrigin(origins = Application.FRONTEND_URL)
 	@RequestMapping(value = "/{hintId}", method = RequestMethod.PUT)
 	public ResponseEntity<?> updateHint(@RequestBody Hint input, @PathVariable Long hintId) {
 		Hint hint = this.getHintRepository().findOne(hintId);
@@ -62,7 +62,7 @@ public class HintRestController {
 		return new ResponseEntity<>(null, null, HttpStatus.NO_CONTENT);
 	}
 
-	@CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
+	@CrossOrigin(origins = Application.FRONTEND_URL)
 	@RequestMapping(method = RequestMethod.POST)
 	ResponseEntity<?> add(@RequestBody Hint input) {
 		Hint result = this.getHintRepository().save(new Hint(input.getDescription(), input.getPointsPercentageCost()));

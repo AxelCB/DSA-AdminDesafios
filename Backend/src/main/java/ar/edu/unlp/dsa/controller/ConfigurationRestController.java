@@ -38,7 +38,7 @@ public class ConfigurationRestController {
 		this.mapper = mapper;
 	}
 
-	@CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
+	@CrossOrigin(origins = Application.FRONTEND_URL)
 	@RequestMapping(value = "/{configurationId}", method = RequestMethod.GET)
 	public Configuration getConfiguration(@PathVariable Long configurationId) {
 		Configuration configuration = this.getConfigurationRepository().findOne(configurationId);
@@ -48,13 +48,13 @@ public class ConfigurationRestController {
 		return configuration;
 	}
 
-	@CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
+	@CrossOrigin(origins = Application.FRONTEND_URL)
 	@RequestMapping(method = RequestMethod.GET)
 	public Collection<Configuration> listConfigurations() {
 		return this.getConfigurationRepository().findAll();
 	}
 
-	@CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
+	@CrossOrigin(origins = Application.FRONTEND_URL)
 	@RequestMapping(value = "/{configurationId}", method = RequestMethod.PUT)
 	public ResponseEntity<?> updateConfiguration(@RequestBody Configuration input, @PathVariable Long configurationId) {
 		Configuration configuration = this.getConfigurationRepository().findOne(configurationId);
@@ -66,7 +66,7 @@ public class ConfigurationRestController {
 		return new ResponseEntity<>(null, null, HttpStatus.NO_CONTENT);
 	}
 
-	@CrossOrigin(origins = "http://localhost:"+Application.CONTROL_PORT)
+	@CrossOrigin(origins = Application.CONTROL_URL)
 	@RequestMapping(value = "/game/{gameId}", method = RequestMethod.POST)
 	public ResponseEntity<?> newGame(@PathVariable String gameId) {
 		Configuration configuration = this.getConfigurationRepository().findByName("id_juego");
@@ -76,7 +76,7 @@ public class ConfigurationRestController {
 		configuration.setValue(gameId);
 		this.getPlayerRepository().deleteAll();
 		RestTemplate restTemplate = new RestTemplate();
-		String teamsImportUrl = "http://localhost:"+Application.USER_ADMIN_PORT+"/listado_de_equipos_y_usuarios";
+		String teamsImportUrl = Application.USER_ADMIN_URL +"/listado_de_equipos_y_usuarios";
 		TeamListDTO teams = restTemplate.getForObject(teamsImportUrl, TeamListDTO.class);
 		ArrayList<EquipoDTO> equipos = teams.getEquipos();
 		for (EquipoDTO equipo: equipos) {

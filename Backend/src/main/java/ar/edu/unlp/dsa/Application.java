@@ -9,11 +9,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class Application{
 	public static final String API_PREFIX = "/api";
-	public static final String BACKEND_PORT = "8080";
-	public static final String FRONTEND_PORT = "4200";
-	public static final String USER_ADMIN_PORT = "2222";
-	public static final String CONTROL_PORT = "3333";
-	public static final String SCOREBOARD_PORT = "9999";
+	public static final String BACKEND_URL = "http://localhost:8080";
+	public static final String FRONTEND_URL = "http://localhost:4200";
+	public static final String USER_ADMIN_URL = "http://localhost:2222";
+	public static final String CONTROL_URL = "http://localhost:3333";
+	public static final String SCOREBOARD_URL = "http://localhost:9999";
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }

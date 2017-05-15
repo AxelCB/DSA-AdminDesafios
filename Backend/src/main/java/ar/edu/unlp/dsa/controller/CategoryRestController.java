@@ -27,7 +27,7 @@ public class CategoryRestController {
         this.categoryRepository=categoryRepository;
     }
 
-    @CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
+    @CrossOrigin(origins = Application.FRONTEND_URL)
     @RequestMapping(value = "/{categoryId}", method = RequestMethod.GET)
     public Category getCategory(@PathVariable Long categoryId) {
     	Category category = this.getCategoryRepository().findOne(categoryId);
@@ -38,7 +38,7 @@ public class CategoryRestController {
     }
 
     //TODO throws DataIntegrityViolationException
-    @CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
+    @CrossOrigin(origins = Application.FRONTEND_URL)
     @RequestMapping(value = "/{categoryId}", method = RequestMethod.DELETE)
     public ResponseEntity<?> deleteCategory(@PathVariable Long categoryId) {
     	Category category = this.getCategoryRepository().findOne(categoryId);
@@ -53,13 +53,13 @@ public class CategoryRestController {
         return new ResponseEntity<>(null, httpHeaders, HttpStatus.NO_CONTENT);
     }
 
-    @CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
+    @CrossOrigin(origins = Application.FRONTEND_URL)
     @RequestMapping(method = RequestMethod.GET)
     public Collection<Category> listCategories() {
         return this.getCategoryRepository().findAll();
     }
     
-    @CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
+    @CrossOrigin(origins = Application.FRONTEND_URL)
 	@RequestMapping(value = "/{categoryId}", method = RequestMethod.PUT)
 	public ResponseEntity<?> updateCategory(@RequestBody Category input, @PathVariable Long categoryId) {
 		Category category = this.getCategoryRepository().findOne(categoryId);
@@ -71,7 +71,7 @@ public class CategoryRestController {
 		return new ResponseEntity<>(null, null, HttpStatus.NO_CONTENT);
 	}
 
-    @CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
+    @CrossOrigin(origins = Application.FRONTEND_URL)
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<?> add(@RequestBody Category input) {
         Category result = this.getCategoryRepository().save(new Category(input.getName()));
