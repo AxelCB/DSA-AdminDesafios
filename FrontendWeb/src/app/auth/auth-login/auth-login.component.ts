@@ -3,7 +3,7 @@ import {User} from '../user';
 import {MessagesService} from '../../alert-messages/alert-messages.service';
 import {Message} from '../../alert-messages/message';
 import {AuthService} from '../auth.service';
-import {FORBIDDEN} from "http-status-codes";
+import {FORBIDDEN} from 'http-status-codes';
 
 @Component({
   selector: 'app-auth-login-component',
@@ -34,11 +34,11 @@ export class AuthLoginComponent implements OnInit {
       this.authService.login(this.user).subscribe(loggedIn => {
         this.authService.updateLoggedInStatus(loggedIn);
         this.isProcessing = false;
-      },(error) => {
-        let errorMessage = error as Message;
-        if (errorMessage != null) {
-          if (errorMessage.isError && errorMessage.responseCode === FORBIDDEN){
-            this.messagesService.sendMessage(new Message("El usuario o la contraseña ingresada son incorrectos.",true));
+      }, (responseError) => {
+        let error = responseError as Message;
+        if (error != null) {
+          if (error.isError && error.responseCode === FORBIDDEN) {
+            this.messagesService.sendMessage(new Message('El usuario o la contraseña ingresada son incorrectos.', true));
           }
         }
         this.isProcessing = false;

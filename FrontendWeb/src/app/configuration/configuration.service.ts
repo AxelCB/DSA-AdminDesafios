@@ -4,7 +4,7 @@ import {Http, Headers, RequestOptions, Response} from '@angular/http';
 import {Configuration} from './configuration';
 import {environment} from '../../environments/environment';
 import {MessagesService} from '../alert-messages/alert-messages.service';
-import {Message} from '../alert-messages/message';
+import {Message, MessagePriority} from '../alert-messages/message';
 import {FORBIDDEN, INTERNAL_SERVER_ERROR, NOT_FOUND, UNAUTHORIZED} from 'http-status-codes';
 import {AuthService} from '../auth/auth.service';
 import {Router} from '@angular/router';
@@ -65,7 +65,7 @@ export class ConfigurationService {
             localStorage.removeItem('loggedUser');
             this.router.navigate(['/login']);
           }
-          this.messagesService.sendMessage(new Message("Su sesión ha caducado, inicie sesión nuevamente.",true));
+          this.messagesService.sendMessage(new Message('Su sesión ha caducado, inicie sesión nuevamente.', true, responseError.status ,MessagePriority.HIGH));
           break;
       }
     } else {

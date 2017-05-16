@@ -3,6 +3,7 @@ import {MessagesService} from './alert-messages/alert-messages.service';
 import {AlertMessagesComponent} from './alert-messages/alert-messages.component';
 import {AuthService} from './auth/auth.service';
 import {Router, NavigationStart} from '@angular/router';
+import {MessagePriority} from './alert-messages/message';
 
 @Component({
   moduleId: module.id,
@@ -35,9 +36,8 @@ export class AppComponent implements OnInit {
     });
 
     this.router.events.subscribe(event => {
-      if(event instanceof NavigationStart && this.alertMessagesComponent.message != null && this.alertMessagesComponent.message.isError){
-        let eventNavigationStart = event as NavigationStart;
-        if (eventNavigationStart.url != '/login'){
+      if (this.alertMessagesComponent.message != null && this.alertMessagesComponent.message.isError) {
+        if (this.alertMessagesComponent.message.priority !== MessagePriority.HIGH) {
           this.alertMessagesComponent.clearMessage();
         };
       };
