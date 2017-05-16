@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MessagesService} from './alert-messages/alert-messages.service';
 import {AlertMessagesComponent} from './alert-messages/alert-messages.component';
 import {AuthService} from './auth/auth.service';
-import {Router} from '@angular/router';
+import {Router, NavigationStart} from '@angular/router';
 
 @Component({
   moduleId: module.id,
@@ -32,6 +32,15 @@ export class AppComponent implements OnInit {
         this.loggedIn = false;
         this.router.navigate(['/login']);
       }
+    });
+
+    this.router.events.subscribe(event => {
+      if(event instanceof NavigationStart && this.alertMessagesComponent.message != null && this.alertMessagesComponent.message.isError){
+        let eventNavigationStart = event as NavigationStart;
+        if (eventNavigationStart.url != '/login'){
+          this.alertMessagesComponent.clearMessage();
+        };
+      };
     });
   }
 
