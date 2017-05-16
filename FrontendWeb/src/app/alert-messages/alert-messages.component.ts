@@ -9,6 +9,7 @@ import {Message} from './message';
 export class AlertMessagesComponent implements OnInit {
   message: Message;
 
+
   constructor() { }
 
   ngOnInit() {
@@ -20,6 +21,10 @@ export class AlertMessagesComponent implements OnInit {
 
   appendToMessage(messageToAppend: string) {
     this.message.content += messageToAppend;
+  }
+
+  clearMessage(){
+    this.message = null;
   }
 
 }
