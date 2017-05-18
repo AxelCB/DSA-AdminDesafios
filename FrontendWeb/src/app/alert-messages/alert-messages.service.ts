@@ -14,8 +14,8 @@ export class MessagesService {
   private messageReceivedToAppendSource = new Subject<string>();
 
   // Observable string streams
-  missionReceived$ = this.messageReceivedSource.asObservable();
-  missionReceivedToAppend$ = this.messageReceivedToAppendSource.asObservable();
+  messageReceived$ = this.messageReceivedSource.asObservable();
+  messageReceivedToAppend$ = this.messageReceivedToAppendSource.asObservable();
 
   // Service message commands
   sendMessage(message: Message) {

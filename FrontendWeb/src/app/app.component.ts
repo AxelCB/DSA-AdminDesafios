@@ -19,10 +19,10 @@ export class AppComponent implements OnInit {
   private alertMessagesComponent: AlertMessagesComponent;
 
   constructor(private messagesService: MessagesService, private authService: AuthService, private router: Router) {
-    messagesService.missionReceived$.subscribe(message => {
+    messagesService.messageReceived$.subscribe(message => {
       this.alertMessagesComponent.updateMessage(message);
     });
-    messagesService.missionReceivedToAppend$.subscribe(messageToAppend => {
+    messagesService.messageReceivedToAppend$.subscribe(messageToAppend => {
       this.alertMessagesComponent.appendToMessage(messageToAppend);
     });
     this.authService.loggedInStatusChanged$.subscribe(loggedInStatus => {
