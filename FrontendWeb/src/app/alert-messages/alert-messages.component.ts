@@ -16,7 +16,7 @@ export class AlertMessagesComponent implements OnInit {
   }
 
   updateMessage(message: Message) {
-    if (this.message != null || this.message.priority <= message.priority) {
+    if ((this.message != null && (this.message.priority <= message.priority || this.message.content == null)) || this.message == null) {
       this.message = message;
     }
   }
