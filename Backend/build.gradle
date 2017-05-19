@@ -32,6 +32,8 @@ dependencies {
 	compile('net.sf.dozer:dozer:5.5.1')
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.mindrot:jbcrypt:0.4')
+	compile('io.jsonwebtoken:jjwt:0.7.0')
 	compile('org.postgresql:postgresql')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }

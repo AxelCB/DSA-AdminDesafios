@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Message} from './message';
+import {Message, MessagePriority} from './message';
 
 @Component({
   selector: 'app-alert-messages',
@@ -9,17 +9,24 @@ import {Message} from './message';
 export class AlertMessagesComponent implements OnInit {
   message: Message;
 
+
   constructor() { }
 
   ngOnInit() {
   }
 
   updateMessage(message: Message) {
-    this.message = message;
+    if ((this.message != null && (this.message.priority <= message.priority || this.message.content == null)) || this.message == null) {
+      this.message = message;
+    }
   }
 
   appendToMessage(messageToAppend: string) {
     this.message.content += messageToAppend;
+  }
+
+  clearMessage() {
+    this.message = null;
   }
 
 }

@@ -13,7 +13,9 @@ import { DialogConfirmDeleteComponent } from './dialog-confirm-delete/dialog-con
 import { ConfigurationListComponent } from './configuration/configuration-list/configuration-list.component';
 import { ConfigurationDetailComponent } from './configuration/configuration-detail/configuration-detail.component';
 import { AlertMessagesComponent } from './alert-messages/alert-messages.component';
-import {MessagesService} from './alert-messages/alert-messages.service';
+import { MessagesService } from './alert-messages/alert-messages.service';
+import { AuthLoginComponent } from './auth/auth-login/auth-login.component';
+import { AuthService } from './auth/auth.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import {MessagesService} from './alert-messages/alert-messages.service';
     ChallengeDetailComponent,
     ConfigurationListComponent,
     ConfigurationDetailComponent,
-    AlertMessagesComponent
+    AlertMessagesComponent,
+    AuthLoginComponent
   ],
   imports: [
     BrowserModule,
@@ -63,10 +66,14 @@ import {MessagesService} from './alert-messages/alert-messages.service';
       {
         path: 'configurations/:id',
         component: ConfigurationDetailComponent
+      },
+      {
+        path: 'login',
+        component: AuthLoginComponent
       }
     ])
   ],
-  providers: [MessagesService],
+  providers: [MessagesService, AuthService],
   bootstrap: [AppComponent]
 })
 
