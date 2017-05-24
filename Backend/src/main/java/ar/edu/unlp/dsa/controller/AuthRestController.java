@@ -25,7 +25,7 @@ public class AuthRestController {
         this.tokenAuthenticationService = tokenAuthenticationService;
     }
 
-    @CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
+    @CrossOrigin(origins = Application.FRONTEND_URL)
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> authenticate(@RequestBody Admin input) {
     	Admin admin = this.getAdminRepository().findByUsername(input.getUsername());
@@ -36,7 +36,7 @@ public class AuthRestController {
         }
     }
 
-    @CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
+    @CrossOrigin(origins = Application.FRONTEND_URL)
     @RequestMapping(value = "/validate", method = RequestMethod.GET)
     public ResponseEntity<?> validate(@RequestHeader(value = "Authorization") String token) {
         if (tokenAuthenticationService.getUserFromJWT(token)!=null) {
@@ -46,7 +46,7 @@ public class AuthRestController {
         }
     }
 
-    @CrossOrigin(origins = "http://localhost:"+Application.FRONTEND_PORT)
+    @CrossOrigin(origins = Application.FRONTEND_URL)
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public ResponseEntity<?> logout(@RequestHeader(value = "Authorization") String token) {
         if(token != null)
