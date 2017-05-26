@@ -28,7 +28,6 @@ Backend/src/main/resources/static/*
 ###################
 
 # compiled output
-FrontendWeb/dist
 FrontendWeb/tmp
 FrontendWeb/FrontendWeb.iml
 
