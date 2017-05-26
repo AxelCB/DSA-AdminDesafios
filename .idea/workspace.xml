@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f688cbb2-58d1-4fb0-881f-dbd53469f2d4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/FrontendWeb/src/app/category/category.component.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/FrontendWeb/src/app/category/category.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/Backend_main.iml" afterPath="$PROJECT_DIR$/.idea/modules/Backend_main.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/Backend_test.iml" afterPath="$PROJECT_DIR$/.idea/modules/Backend_test.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontendWeb/.gitignore" afterPath="$PROJECT_DIR$/FrontendWeb/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontendWeb/package.json" afterPath="$PROJECT_DIR$/FrontendWeb/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FrontendWeb/src/index.html" afterPath="$PROJECT_DIR$/FrontendWeb/src/index.html" />
     </list>
     <ignored path="$PROJECT_DIR$/Backend/.gradle/" />
     <ignored path="$PROJECT_DIR$/Backend/build/" />
@@ -108,46 +112,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.component.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FrontendWeb/src/app/app.component.ts">
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/FrontendWeb/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+            <state relative-caret-position="17">
+              <caret line="1" column="34" lean-forward="false" selection-start-line="1" selection-start-column="34" selection-end-line="1" selection-end-column="34" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="category.component.ts" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/FrontendWeb/src/app/category/category.component.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="14" column="26" lean-forward="true" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
-              <folding>
-                <element signature="e#45#87#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Category.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Backend/src/main/java/ar/edu/unlp/dsa/model/Category.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="category.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FrontendWeb/src/app/category/category.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="4" column="21" lean-forward="false" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
-              <folding>
-                <element signature="n#!!doc;n#Category#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -167,12 +137,12 @@
   <component name="GradleLocalSettings">
     <option name="myGradleHomes">
       <map>
-        <entry key="$PROJECT_DIR$/Backend" value="/usr/local/Cellar/gradle/3.2.1/libexec" />
+        <entry key="$PROJECT_DIR$/Backend" value="C:\GCBA - SUACI\Tools\gradle-3.4" />
       </map>
     </option>
     <option name="myGradleVersions">
       <map>
-        <entry key="$PROJECT_DIR$/Backend" value="3.2.1" />
+        <entry key="$PROJECT_DIR$/Backend" value="3.4" />
       </map>
     </option>
     <option name="availableProjects">
@@ -398,7 +368,8 @@
     <option name="modificationStamps">
       <map>
         <entry key="$PROJECT_DIR$" value="1483043528000" />
-        <entry key="$PROJECT_DIR$/Backend" value="1483061511000" />
+        <entry key="$PROJECT_DIR$/Backend" value="1495823008529" />
+        <entry key="$PROJECT_DIR$/Backend/build.gradle" value="2181478980" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -434,73 +405,141 @@
               <option name="name" value="Backend" />
               <option name="projectBuildClasspath">
                 <list>
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/ant-1.9.6.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/ant-launcher-1.9.6.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/gradle-base-services-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/gradle-base-services-groovy-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/gradle-cli-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/gradle-core-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/gradle-docs-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/gradle-installation-beacon-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/gradle-jvm-services-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/gradle-launcher-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/gradle-logging-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/gradle-messaging-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/gradle-model-core-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/gradle-model-groovy-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/gradle-native-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/gradle-open-api-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/gradle-process-services-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/gradle-resources-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/gradle-script-kotlin-0.4.0.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/gradle-tooling-api-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/gradle-ui-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/gradle-wrapper-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/groovy-all-2.4.7.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-announce-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-antlr-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-build-comparison-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-build-init-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-code-quality-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-composite-builds-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-dependency-management-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-diagnostics-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-ear-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-ide-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-ide-native-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-ide-play-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-ivy-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-jacoco-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-javascript-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-jetty-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-language-groovy-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-language-java-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-language-jvm-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-language-native-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-language-scala-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-maven-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-osgi-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-platform-base-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-platform-jvm-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-platform-native-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-platform-play-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-plugin-development-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-plugin-use-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-plugins-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-publish-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-reporting-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-resources-http-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-resources-s3-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-resources-sftp-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-scala-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-signing-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-task-cache-http-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-test-kit-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-testing-base-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-testing-jvm-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-testing-native-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/gradle-tooling-api-builders-3.2.1.jar" />
-                  <option value="/usr/local/Cellar/gradle/3.2.1/libexec/lib/plugins/ivy-2.2.0.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/announce" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/antlr" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/base-services" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/base-services-groovy" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/build-cache-http" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/build-comparison" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/build-init" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/cli" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/code-quality" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/composite-builds" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/core" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/dependency-management" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/diagnostics" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/ear" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/ide" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/ide-native" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/ide-play" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/installation-beacon" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/internal-android-performance-testing" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/internal-integ-testing" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/internal-performance-testing" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/internal-testing" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/ivy" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/jacoco" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/javascript" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/jetty" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/jvm-services" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/language-groovy" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/language-java" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/language-jvm" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/language-native" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/language-scala" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/launcher" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/logging" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/maven" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/messaging" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/model-core" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/model-groovy" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/native" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/open-api" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/osgi" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/platform-base" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/platform-jvm" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/platform-native" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/platform-play" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/plugin-development" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/plugin-use" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/plugins" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/process-services" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/publish" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/reporting" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/resources" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/resources-http" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/resources-s3" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/resources-sftp" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/scala" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/signing" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/test-kit" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/testing-base" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/testing-jvm" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/testing-native" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/tooling-api" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/tooling-api-builders" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/ui" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/workers" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/src/wrapper" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/ant-1.9.6.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/ant-launcher-1.9.6.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/gradle-base-services-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/gradle-base-services-groovy-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/gradle-cli-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/gradle-core-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/gradle-docs-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/gradle-installation-beacon-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/gradle-jvm-services-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/gradle-launcher-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/gradle-logging-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/gradle-messaging-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/gradle-model-core-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/gradle-model-groovy-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/gradle-native-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/gradle-open-api-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/gradle-process-services-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/gradle-resources-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/gradle-script-kotlin-0.5.1.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/gradle-tooling-api-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/gradle-ui-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/gradle-version-info-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/gradle-wrapper-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/groovy-all-2.4.7.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-announce-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-antlr-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-build-cache-http-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-build-comparison-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-build-init-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-code-quality-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-composite-builds-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-dependency-management-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-diagnostics-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-ear-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-ide-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-ide-native-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-ide-play-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-ivy-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-jacoco-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-javascript-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-jetty-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-language-groovy-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-language-java-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-language-jvm-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-language-native-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-language-scala-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-maven-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-osgi-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-platform-base-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-platform-jvm-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-platform-native-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-platform-play-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-plugin-development-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-plugin-use-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-plugins-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-publish-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-reporting-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-resources-http-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-resources-s3-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-resources-sftp-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-scala-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-signing-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-test-kit-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-testing-base-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-testing-jvm-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-testing-native-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-tooling-api-builders-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/gradle-workers-3.4.jar" />
+                  <option value="C:/GCBA - SUACI/Tools/gradle-3.4/lib/plugins/ivy-2.2.0.jar" />
                   <option value="$PROJECT_DIR$/Backend/buildSrc/src/main/java" />
                   <option value="$PROJECT_DIR$/Backend/buildSrc/src/main/groovy" />
                 </list>
@@ -524,6 +563,10 @@
         <option value="$PROJECT_DIR$/compileWeb.sh" />
         <option value="$PROJECT_DIR$/FrontendWeb/src/app/category/category.ts" />
         <option value="$PROJECT_DIR$/FrontendWeb/src/app/category/category.component.ts" />
+        <option value="$PROJECT_DIR$/FrontendWeb/src/app/app.component.ts" />
+        <option value="$PROJECT_DIR$/FrontendWeb/src/index.html" />
+        <option value="$PROJECT_DIR$/FrontendWeb/.gitignore" />
+        <option value="$PROJECT_DIR$/FrontendWeb/package.json" />
       </list>
     </option>
   </component>
@@ -539,8 +582,8 @@
     <handled-path value="$PROJECT_DIR$/FrontendWeb/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="width" value="1440" />
-    <option name="height" value="900" />
+    <option name="width" value="1920" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -559,6 +602,8 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -571,148 +616,8 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FrontendWeb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FrontendWeb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FrontendWeb" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="category" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dsa" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="org.jetbrains.plugins.gradle.projectView.GradleTreeStructureProvider$GradleSourceSetDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dsa" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -740,6 +645,18 @@
       <recent name="$PROJECT_DIR$/Backend/src/main/resources" />
       <recent name="$PROJECT_DIR$/Backend/src/main/java/ar/edu/unlp/dsa/application" />
     </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager" selected="Gradle.Backend [bootRun]">
     <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
@@ -1162,6 +1079,13 @@
       <envs />
       <method />
     </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerJest" factoryName="Jest">
+      <node-interpreter value="project" />
+      <working-dir value="" />
+      <envs />
+      <scope-kind value="ALL" />
+      <method />
+    </configuration>
     <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
       <config-file value="" />
       <node-interpreter value="project" />
@@ -1185,15 +1109,6 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="Backend" />
       <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="K2JSConfigurationType" factoryName="Kotlin (JavaScript - experimental)">
-      <K2JSConfigurationSettings>
-        <option name="browserFamily" value="Chrome" />
-        <option name="generatedFilePath" value="$PROJECT_DIR$" />
-        <option name="pageToOpenFilePath" value="" />
-        <option name="shouldOpenInBrowserAfterTranslation" value="false" />
-      </K2JSConfigurationSettings>
       <method />
     </configuration>
     <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
@@ -1236,6 +1151,7 @@
     <configuration default="true" type="ReactNative" factoryName="React Native">
       <node-interpreter value="project" />
       <platform value="ANDROID" />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
@@ -1353,6 +1269,15 @@
     <list size="1">
       <item index="0" class="java.lang.String" itemvalue="Gradle.Backend [bootRun]" />
     </list>
+    <configuration default="true" type="K2JSConfigurationType" factoryName="Kotlin (JavaScript - experimental)">
+      <K2JSConfigurationSettings>
+        <option name="browserFamily" value="Chrome" />
+        <option name="generatedFilePath" value="$PROJECT_DIR$" />
+        <option name="pageToOpenFilePath" value="" />
+        <option name="shouldOpenInBrowserAfterTranslation" value="false" />
+      </K2JSConfigurationSettings>
+      <method />
+    </configuration>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
@@ -1369,15 +1294,15 @@
       <workItem from="1483115581799" duration="1790000" />
       <workItem from="1483143935668" duration="100000" />
       <workItem from="1483152332494" duration="675000" />
+      <workItem from="1495823072841" duration="325000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7214000" />
+    <option name="totallyTimeSpent" value="7539000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1397,12 +1322,12 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3385542" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3385542" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27181688" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27452025" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298611" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1468,71 +1393,7 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Backend/src/main/java/ar/edu/unlp/dsa/application/Application.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/compileWeb.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Backend/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="27" lean-forward="false" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Backend/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="71" lean-forward="false" selection-start-line="14" selection-start-column="71" selection-end-line="14" selection-end-column="71" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Backend/src/main/java/ar/edu/unlp/dsa/application/Application.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/compileWeb.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Backend/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="27" lean-forward="false" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Backend/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="71" lean-forward="false" selection-start-line="14" selection-start-column="71" selection-end-line="14" selection-end-column="71" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Backend/src/main/java/ar/edu/unlp/dsa/application/Application.java">
+    <entry file="file://$PROJECT_DIR$/FrontendWeb/src/app/app.component.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1540,6 +1401,82 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Backend/src/main/java/ar/edu/unlp/dsa/model/Category.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="7" lean-forward="true" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
+          <folding>
+            <marker date="1495823008537" expanded="false" signature="312:323" ph=" { " />
+            <marker date="1495823008537" expanded="false" signature="335:341" ph=" }" />
+            <marker date="1495823008537" expanded="false" signature="379:390" ph=" { " />
+            <marker date="1495823008537" expanded="false" signature="407:413" ph=" }" />
+            <marker date="1495823008537" expanded="false" signature="438:449" ph=" { " />
+            <marker date="1495823008537" expanded="false" signature="459:465" ph=" }" />
+            <marker date="1495823008537" expanded="false" signature="497:508" ph=" { " />
+            <marker date="1495823008537" expanded="false" signature="521:527" ph=" }" />
+            <marker date="1495823008537" expanded="false" signature="561:572" ph=" { " />
+            <marker date="1495823008537" expanded="false" signature="589:595" ph=" }" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FrontendWeb/src/app/category/category.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="21" lean-forward="false" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
+          <folding>
+            <element signature="n#!!doc;n#Category#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Backend/src/main/java/ar/edu/unlp/dsa/application/Application.java" />
+    <entry file="file://$PROJECT_DIR$/compileWeb.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Backend/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="27" lean-forward="false" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Backend/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="71" lean-forward="false" selection-start-line="14" selection-start-column="71" selection-end-line="14" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Backend/src/main/java/ar/edu/unlp/dsa/application/Application.java" />
+    <entry file="file://$PROJECT_DIR$/compileWeb.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Backend/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="27" lean-forward="false" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Backend/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="71" lean-forward="false" selection-start-line="14" selection-start-column="71" selection-end-line="14" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Backend/src/main/java/ar/edu/unlp/dsa/application/Application.java" />
     <entry file="file://$PROJECT_DIR$/Backend/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
@@ -1556,18 +1493,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Backend/src/main/java/ar/edu/unlp/dsa/application/Application.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Backend/src/main/java/ar/edu/unlp/dsa/application/Application.java" />
     <entry file="file://$PROJECT_DIR$/Backend/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -1580,7 +1509,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="71" lean-forward="false" selection-start-line="14" selection-start-column="71" selection-end-line="14" selection-end-column="71" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1588,21 +1516,31 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Backend/src/main/java/ar/edu/unlp/dsa/model/Category.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
+        <state relative-caret-position="204">
+          <caret line="12" column="7" lean-forward="false" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+          <folding>
+            <marker date="1495823008537" expanded="false" signature="312:323" ph=" { " />
+            <marker date="1495823008537" expanded="false" signature="335:341" ph=" }" />
+            <marker date="1495823008537" expanded="false" signature="379:390" ph=" { " />
+            <marker date="1495823008537" expanded="false" signature="407:413" ph=" }" />
+            <marker date="1495823008537" expanded="false" signature="438:449" ph=" { " />
+            <marker date="1495823008537" expanded="false" signature="459:465" ph=" }" />
+            <marker date="1495823008537" expanded="false" signature="497:508" ph=" { " />
+            <marker date="1495823008537" expanded="false" signature="521:527" ph=" }" />
+            <marker date="1495823008537" expanded="false" signature="561:572" ph=" { " />
+            <marker date="1495823008537" expanded="false" signature="589:595" ph=" }" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/FrontendWeb/src/app/category/category.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
+        <state relative-caret-position="34">
           <caret line="4" column="21" lean-forward="false" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
           <folding>
             <element signature="n#!!doc;n#Category#0" expanded="false" />
@@ -1612,19 +1550,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/FrontendWeb/src/app/app.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+        <state relative-caret-position="170">
+          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FrontendWeb/src/app/category/category.component.ts">
+    <entry file="file://$PROJECT_DIR$/FrontendWeb/src/app/category/category.component.ts" />
+    <entry file="file://$PROJECT_DIR$/FrontendWeb/src/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="14" column="26" lean-forward="true" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
-          <folding>
-            <element signature="e#45#87#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="68">
+          <caret line="4" column="34" lean-forward="false" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FrontendWeb/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="17" lean-forward="false" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FrontendWeb/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="34" lean-forward="false" selection-start-line="1" selection-start-column="34" selection-end-line="1" selection-end-column="34" />
+          <folding />
         </state>
       </provider>
     </entry>

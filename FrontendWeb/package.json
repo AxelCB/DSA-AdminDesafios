@@ -1,6 +1,6 @@
 {
-  "name": "frontend-web",
-  "version": "0.0.0",
+  "name": "frontend-admin-desafios",
+  "version": "0.1.0-Beta",
   "license": "MIT",
   "angular-cli": {},
   "scripts": {
