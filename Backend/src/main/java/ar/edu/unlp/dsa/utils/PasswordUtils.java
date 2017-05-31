@@ -6,6 +6,8 @@ package ar.edu.unlp.dsa.utils;
 
 import org.apache.commons.lang3.StringUtils;
 import org.mindrot.jbcrypt.BCrypt;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 /**
  * Password and Hash Utils.
@@ -16,10 +18,11 @@ import org.mindrot.jbcrypt.BCrypt;
 public class PasswordUtils {
 
     private static Integer HASH_COST = 12;
+    private static Logger log = LoggerFactory.getLogger(PasswordUtils.class);
 
     public static String hashPassword(String plainTextPassword){
         String hashedPassword = BCrypt.hashpw(plainTextPassword,BCrypt.gensalt(HASH_COST));
-        System.out.println(hashedPassword);
+        log.info(hashedPassword);
         return hashedPassword;
     }
 
