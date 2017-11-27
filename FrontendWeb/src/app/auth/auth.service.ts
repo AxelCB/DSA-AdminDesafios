@@ -5,7 +5,7 @@ import {environment} from '../../environments/environment';
 import {MessagesService} from '../alert-messages/alert-messages.service';
 import {Message} from '../alert-messages/message';
 import {FORBIDDEN, INTERNAL_SERVER_ERROR, NOT_FOUND, UNAUTHORIZED} from 'http-status-codes';
-import { Http, Headers, RequestOptions } from '@angular/http';
+import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import {Router} from '@angular/router';
 import {Subject} from 'rxjs/Subject';
 
