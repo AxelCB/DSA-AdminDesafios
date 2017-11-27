@@ -1,0 +1,31 @@
+{
+	"equipos": [{
+			"id_team": "1",
+			"nombre_team": "grupo1",
+			"vm": "ip_vm1",
+			"usuarios": [{
+					"nombreDeUsuario": "Juan",
+					"id_usuario": "1"
+				},
+				{
+					"nombreDeUsuario": "Pedro",
+					"id_usuario": "2"
+				}
+			]
+		},
+		{
+			"id_team": "2",
+			"nombre_team": "grupo2",
+			"vm": "ip_vm2",
+			"usuarios": [{
+					"nombreDeUsuario": "Juan2",
+					"id_usuario": "5"
+				},
+				{
+					"nombreDeUsuario": "Pedro4",
+					"id_usuario": "3"
+				}
+			]
+		}
+	]
+}
