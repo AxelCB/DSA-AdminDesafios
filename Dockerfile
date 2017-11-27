@@ -37,11 +37,30 @@ RUN echo "listen_addresses='*'" >> /etc/postgresql/9.5/main/postgresql.conf
 
 USER root
 
+#Apache config
+
+RUN apt-get install -y apache2
+
+ADD FrontendWeb/dist /var/www/html/
+
+RUN sed -i.bak 's#80#4200#g' /etc/apache2/sites-enabled/000-default.conf
+RUN sed -i.bak 's#80#4200#g' /etc/apache2/sites-available/000-default.conf
+RUN sed -i.bak 's#80#4200#g' /etc/apache2/ports.conf
+RUN rm /etc/apache2/sites-available/000-default.conf.bak && rm /etc/apache2/sites-enabled/000-default.conf.bak && rm /etc/apache2/ports.conf.bak
+
+RUN chmod -R 777 /var/www/html && service apache2 start
+
+# End
+
 # Expose the PostgreSQL port
 EXPOSE 5432
 EXPOSE 8080
+EXPOSE 4200
 
 VOLUME /tmp
-ARG JAR_FILE
-ADD ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+#ARG JAR_FILE
+ADD Backend/dump.sql dump.sql
+ADD Backend/build/libs/admindesafiosspringboot-0.0.1-SNAPSHOT.jar app.jar
+ADD Backend/dockerStartScript.sh dockerStartScript.sh
+RUN chmod 777 dockerStartScript.sh
+ENTRYPOINT ["/dockerStartScript.sh"]

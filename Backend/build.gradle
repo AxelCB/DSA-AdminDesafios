@@ -3,10 +3,16 @@ buildscript {
 		springBootVersion = '1.4.1.RELEASE'
 	}
 	repositories {
+		maven {
+			url "https://plugins.gradle.org/m2/"
+		}
 		mavenCentral()
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+// tag::build[]
+		classpath('gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.13.0')
+// end::build[]
 	}
 }
 
@@ -15,6 +21,20 @@ apply plugin: 'idea'
 apply plugin: 'eclipse'
 apply plugin: 'spring-boot'
 apply plugin: 'war'
+// tag::plugin[]
+apply plugin: 'com.palantir.docker'
+// end::plugin[]
+
+// This is used as the docker image prefix (org)
+group = 'axelcb'
+
+// tag::task[]
+docker {
+	name "${project.group}/dsa-backend"
+	files "build/libs/admindesafiosspringboot-0.0.1-SNAPSHOT.jar"
+	buildArgs(['JAR_FILE': "admindesafiosspringboot-0.0.1-SNAPSHOT.jar", "DUMP_FILE":"dump.sql", "SCRIPT_FILE":"dockerStartScript.sh"])
+}
+// end::task[]
 
 jar {
 	baseName = 'admindesafiosspringboot'
@@ -32,6 +52,7 @@ dependencies {
 	compile('net.sf.dozer:dozer:5.5.1')
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-web')
+	compile "com.heroku.sdk:heroku-jdbc:0.1.1"
 	compile('org.mindrot:jbcrypt:0.4')
 	compile('io.jsonwebtoken:jjwt:0.7.0')
 	compile('org.postgresql:postgresql')
