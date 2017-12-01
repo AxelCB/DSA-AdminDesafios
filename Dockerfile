@@ -52,13 +52,22 @@ RUN chmod -R 777 /var/www/html && service apache2 start
 
 # End
 
+# Python server config
+RUN add-apt-repository ppa:fkrull/deadsnakes && \
+    apt update && apt install -y python2.7 python-pip python-dev build-essential
+
+RUN pip install requests
+
 # Expose the PostgreSQL port
 EXPOSE 5432
 EXPOSE 8080
 EXPOSE 4200
 
 VOLUME /tmp
+VOLUME /py
 #ARG JAR_FILE
+ADD mocks/server.py /py/server.py
+ADD mocks/listado_de_equipos_y_usuarios /py/listado_de_equipos_y_usuarios
 ADD Backend/dump.sql dump.sql
 ADD Backend/build/libs/admindesafiosspringboot-0.0.1-SNAPSHOT.jar app.jar
 ADD Backend/dockerStartScript.sh dockerStartScript.sh

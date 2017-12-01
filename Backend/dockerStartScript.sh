@@ -15,4 +15,10 @@ fi
 
 service apache2 start
 
+cd /py
+
+python server.py &
+
+cd /
+
 java -Djava.security.egd=file:/dev/./urandom -jar /app.jar
